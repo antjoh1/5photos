@@ -1,6 +1,5 @@
 <script>
     import PhotoPreview from "$lib/photoPreview.svelte";
-    export const prerender = true
 </script>
 
 <div class='photoCarousel' >

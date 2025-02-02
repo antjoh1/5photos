@@ -1,0 +1,17 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+body { 
+    background-color: var(--background-color-2)
+}
+
+:root {
+    --header-color: black;
+    --background-color-1: #F8F8F8;
+    --text-color-header: white;
+    --text-color-body: black;
+    --background-color-2: #F0F0F0;
+    --background-color-3: #E0E0E0;
+    --pink-accent: #F19AC8;
+  }

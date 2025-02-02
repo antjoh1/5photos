@@ -1,7 +1,7 @@
 <script>
     import { base } from "$app/paths";
 
-    import photo1 from "$lib/assets/photo1.jpeg";
+    import photo1 from "$lib/assets/photo1.jpeg?raw";
     import photo2 from "$lib/assets/photo2.jpeg";
     import photo3 from "$lib/assets/photo3.jpeg";
     import photo4 from "$lib/assets/photo4.jpeg";

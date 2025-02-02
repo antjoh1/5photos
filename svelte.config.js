@@ -1,5 +1,5 @@
 import adapter from '@sveltejs/adapter-static';
-// import { vitePreprocess } from '@sveltejs/kit/vite';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -24,6 +24,8 @@ const config = {
 			base: process.env.NODE_ENV === 'production' ? '/5photos/gh-pages' : process.env.BASE_PATH,
 		}
 	},
+
+	preprocess: vitePreprocess(),
 
 };
 

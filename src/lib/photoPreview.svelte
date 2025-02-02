@@ -1,5 +1,5 @@
 <script>
-    // import { base } from 'app/paths';
+    import { base } from "$app/paths";
 
     import photo1 from "$lib/assets/photo1.jpeg";
     import photo2 from "$lib/assets/photo2.jpeg";

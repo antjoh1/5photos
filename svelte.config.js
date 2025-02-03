@@ -20,7 +20,7 @@ const config = {
 			precompress: false,
 			strict: true,
 			trailingSlash: 'always',
-			paths: {base: process.env.NODE_ENV === 'production' ? '/5photos' : process.env.BASE_PATH}
+			paths: {base: process.env.NODE_ENV === 'production' ? '/5photos/gh-pages' : process.env.BASE_PATH}
 		})
 
 	},

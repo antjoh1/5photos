@@ -1,11 +1,11 @@
 <script>
     import { base } from "$app/paths";
 
-    import photo1 from "$lib/photo1.jpeg";
-    import photo2 from "$lib/photo2.jpeg";
-    import photo3 from "$lib/photo3.jpeg";
-    import photo4 from "$lib/photo4.jpeg";
-    import photo5 from "$lib/photo5.jpeg";
+    import photo1 from "$lib/assets/photo1.jpeg";
+    import photo2 from "$lib/assets/photo2.jpeg";
+    import photo3 from "$lib/assets/photo3.jpeg";
+    import photo4 from "$lib/assets/photo4.jpeg";
+    import photo5 from "$lib/assets/photo5.jpeg";
 
     /**
 	 * @param {MouseEvent} e
@@ -34,11 +34,17 @@
 </script>
 
 <div class='wheel'>
-    <img src={photo1} class='singleImage first active' alt='photo1' onclick={highlightScroll} />
+    <!-- <img src={photo1} class='singleImage first active' alt='photo1' onclick={highlightScroll} />
     <img src={photo2} class='singleImage secondary' alt='photo2' onclick={highlightScroll} />
     <img src={photo3} class='singleImage secondary' alt='photo3' onclick={highlightScroll} />
     <img src={photo4} class='singleImage secondary' alt='photo4' onclick={highlightScroll} />
-    <img src={photo5} class='singleImage last secondary ' alt='photo5' onclick={highlightScroll} />
+    <img src={photo5} class='singleImage last secondary ' alt='photo5' onclick={highlightScroll} /> -->
+
+    <img src={photo1} class='singleImage first active' alt='photo1'/>
+    <img src={photo2} class='singleImage secondary' alt='photo2'  />
+    <img src={photo3} class='singleImage secondary' alt='photo3' />
+    <img src={photo4} class='singleImage secondary' alt='photo4' />
+    <img src={photo5} class='singleImage last secondary ' alt='photo5' />
 </div>
 
 <style> 

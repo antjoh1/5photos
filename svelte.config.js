@@ -3,6 +3,8 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
+	preprocess: vitePreprocess(),
+
 	kit: {
 		appDir: 'App',
 		
@@ -17,16 +19,11 @@ const config = {
 			fallback: undefined,
 			precompress: false,
 			strict: true,
-			trailingSlash: 'always'
+			trailingSlash: 'always',
+			paths: {base: process.env.NODE_ENV === 'production' ? '/5photos' : process.env.BASE_PATH}
 		})
 
-		// paths: {
-		// 	base: process.env.NODE_ENV === 'production' ? '/5photos/gh-pages' : process.env.BASE_PATH,
-		// }
 	},
-
-	preprocess: vitePreprocess()
-
 };
 
 export default config;

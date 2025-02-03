@@ -34,8 +34,8 @@
 </script>
 
 <div class='wheel'>
-    <img src="{base}/{photo1}"class='singleImage first active' alt='photo1' onclick={highlightScroll} />
-    <img src="{base}/{photo2}" class='singleImage secondary' alt='photo2' onclick={highlightScroll} />
+    <img src={photo1} class='singleImage first active' alt='photo1' onclick={highlightScroll} />
+    <img src={photo2} class='singleImage secondary' alt='photo2' onclick={highlightScroll} />
     <img src={photo3} class='singleImage secondary' alt='photo3' onclick={highlightScroll} />
     <img src={photo4} class='singleImage secondary' alt='photo4' onclick={highlightScroll} />
     <img src={photo5} class='singleImage last secondary ' alt='photo5' onclick={highlightScroll} />

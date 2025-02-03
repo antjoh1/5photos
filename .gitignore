@@ -5,11 +5,10 @@ node_modules
 .vercel
 .netlify
 .wrangler
+/build
 # .src
 # .static
 /.svelte-kit
-
-/build
 
 # OS
 .DS_Store

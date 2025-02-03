@@ -10,11 +10,10 @@
 	 */
     function highlightScroll (e) { 
         let allPhotos = /** @type {NodeListOf<HTMLImageElement>} */ (document.querySelectorAll('img'));
-        console.log(allPhotos, typeof(e.target))
+        // console.log(allPhotos, typeof(e.target))
 
         for ( let photo of allPhotos) {
-            console.log(photo.alt)
-            console.log('This was clicked', e.target)
+            console.log(photo.alt, e.target)
 
             // @ts-ignore
             if (photo.alt == e.target?.alt) {
@@ -45,7 +44,7 @@
         <img src={photo4} class='singleImage secondary' alt='photo4' />
     </button>
     <button onclick={highlightScroll}>
-        <img src={photo5} class='singleImage last secondary ' alt='photo5' />
+        <img src={photo5} class='singleImage last secondary' alt='photo5' />
     </button>
 
 </div>
@@ -53,7 +52,6 @@
 <style> 
     .singleImage { 
         scale: 50%;
-        /* max-height: 40vw; */
         max-width: 80vw;
         margin: auto;
         display: flex;
@@ -80,14 +78,11 @@
 
     .singleImage.secondary { 
         opacity: 0.5;
-        /* width: 30vw; */
         z-index: 0;
     }
 
     .wheel {
-        /* margin-right: 5vw; */
         display: flex;
-        /* column-gap: -10rem; */
         flex-wrap: nowrap;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;

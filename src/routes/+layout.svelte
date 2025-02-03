@@ -1,6 +1,7 @@
 <script>
 	import '../app.css';
 	let { children } = $props();
+
 </script>
 
 <header > 
@@ -20,7 +21,7 @@
         archive
         <div class="circle"></div>
     </div>
-	<div> B. Syla </div>
+	<!-- <div> B. Syla </div> -->
 </footer>
 
 <style>

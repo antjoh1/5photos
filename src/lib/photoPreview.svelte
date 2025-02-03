@@ -1,4 +1,6 @@
 <script>
+    import { base } from "$app/paths";
+
     import photo1 from "$lib/assets/photo1.jpeg";
     import photo2 from "$lib/assets/photo2.jpeg";
     import photo3 from "$lib/assets/photo3.jpeg";
@@ -44,7 +46,7 @@
         <img src={photo4} class='singleImage secondary' alt='photo4' />
     </button>
     <button onclick={highlightScroll}>
-        <img src={photo5} class='singleImage last secondary' alt='photo5' />
+        <img src={photo5} class='singleImage last secondary ' alt='photo5' />
     </button>
 
 </div>
@@ -52,6 +54,8 @@
 <style> 
     .singleImage { 
         scale: 50%;
+        /* max-height: 40vw; */
+
         max-width: 80vw;
         margin: auto;
         display: flex;
@@ -78,10 +82,14 @@
 
     .singleImage.secondary { 
         opacity: 0.5;
+        /* width: 30vw; */
+
         z-index: 0;
     }
 
     .wheel {
+        /* margin-right: 5vw; */
+
         display: flex;
         flex-wrap: nowrap;
         overflow-x: auto;

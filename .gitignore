@@ -5,8 +5,8 @@ node_modules
 .vercel
 .netlify
 .wrangler
-.src
-.static
+# .src
+# .static
 /.svelte-kit
 
 # /build

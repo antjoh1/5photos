@@ -9,7 +9,7 @@ node_modules
 # .static
 /.svelte-kit
 
-# /build
+/build
 
 # OS
 .DS_Store

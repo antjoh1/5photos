@@ -23,7 +23,8 @@ const config = {
 		}),
 
 		paths: {
-			base: process.env.NODE_ENV === 'production' ? '/5photos' : process.env.BASE_PATH,
+			// base: process.env.NODE_ENV === 'production' ? '/5photos' : process.env.BASE_PATH,
+			base: '/5photos'
 		}
 	},
 

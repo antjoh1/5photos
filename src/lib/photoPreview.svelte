@@ -35,7 +35,7 @@
     <button onclick={highlightScroll}>
         <img src={photo1} class='singleImage first active' alt='photo1' />
     </button>
-    <button onclick={highlightScroll}>
+    <button onclick={highlightScroll}> 
         <img src={photo2} class='singleImage secondary' alt='photo2' />
     </button>
     <button onclick={highlightScroll}>
@@ -47,14 +47,14 @@
     <button onclick={highlightScroll}>
         <img src={photo5} class='singleImage last secondary ' alt='photo5' />
     </button>
-   
+
 </div>
 
 <style> 
     .singleImage { 
         scale: 50%;
-        max-height: 40vw;
-        max-width: 50vw;
+        /* max-height: 40vw; */
+        max-width: 80vw;
         margin: auto;
         display: flex;
         align-items: center;
@@ -71,7 +71,7 @@
     }
 
     .last { 
-        margin-right: 30vw;
+        margin-right: 15vw;
     }
 
     .active {
@@ -80,12 +80,12 @@
 
     .singleImage.secondary { 
         opacity: 0.5;
-        width: 50vw;
+        /* width: 30vw; */
         z-index: 0;
     }
 
     .wheel {
-        margin-right: 5vw;
+        /* margin-right: 5vw; */
         display: flex;
         /* column-gap: -10rem; */
         flex-wrap: nowrap;

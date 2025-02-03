@@ -1,7 +1,7 @@
 <script>
     import { base } from "$app/paths";
 
-    import photo1 from "/favicon.png";
+    import photo1 from "$lib/assets/photo1.jpeg";
     import photo2 from "$lib/assets/photo2.jpeg";
     import photo3 from "$lib/assets/photo3.jpeg";
     import photo4 from "$lib/assets/photo4.jpeg";
@@ -44,8 +44,8 @@
 <style> 
     .singleImage { 
         scale: 50%;
-        max-height: 40vw;
-        max-width: 50vw;
+        /* max-height: 40vw; */
+        max-width: 80vw;
         margin: auto;
         display: flex;
         align-items: center;

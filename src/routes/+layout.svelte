@@ -21,7 +21,7 @@
         archive
         <div class="circle"></div>
     </div>
-	<div> B. Syla </div>
+	<!-- <div> B. Syla </div> -->
 </footer>
 
 <style>

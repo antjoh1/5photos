@@ -4,7 +4,6 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
-		
 		appDir: 'App',
 		
 		// adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
@@ -18,14 +17,14 @@ const config = {
 			fallback: undefined,
 			precompress: false,
 			strict: true
-		}),
+		})
 
-		paths: {
-			base: process.env.NODE_ENV === 'production' ? '/5photos/gh-pages' : process.env.BASE_PATH,
-		}
+		// paths: {
+		// 	base: process.env.NODE_ENV === 'production' ? '/5photos/gh-pages' : process.env.BASE_PATH,
+		// }
 	},
 
-	preprocess: vitePreprocess(),
+	preprocess: vitePreprocess()
 
 };
 

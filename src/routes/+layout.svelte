@@ -26,7 +26,6 @@
 	@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@100..900&display=swap');
 	
 	header { 
-		width: 100vw;
 		display: flex; 
 		justify-content: space-between;
 		align-content:last baseline;
@@ -41,7 +40,7 @@
 	footer {
 		display: flex;
 		justify-content: space-between;
-		padding: 1rem 5rem 2.5rem 5rem;
+		padding: 1rem 5rem 3rem 5rem;
 		background-color: var(--background-color-3);
 		font-family: 'Lexend exa';
 		font-weight: 100;

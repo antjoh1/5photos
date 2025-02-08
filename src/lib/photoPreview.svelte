@@ -1,17 +1,19 @@
 <script>
     import { fade, fly } from "svelte/transition";
     import { flip } from "svelte/animate";
-	import { backIn, cubicIn, expoOut, quadOut, quartIn, quartOut } from "svelte/easing";
+	import { quartIn, quartOut } from "svelte/easing";
 
     import photo1 from "$lib/assets/photo1.jpeg";
     import photo2 from "$lib/assets/photo2.jpeg";
     import photo3 from "$lib/assets/photo3.jpeg";
     import photo4 from "$lib/assets/photo4.jpeg";
     import photo5 from "$lib/assets/photo5.jpeg";
+
+    import descs from "$lib/assets/photoDescs.json"
     
 
     let activePhoto = $state({img: photo1, thumb: false, id: 1});
-    let photos = $state([ photo2, photo3, photo4, photo5 ])
+    let activePhotoText = $state(descs[0])
     let photosDict = $state([
         {img: photo1, thumb: false, id: 1},
         {img: photo2, thumb: true, id: 2},
@@ -22,7 +24,8 @@
 
     let index = $state(0);
     let animate = $state(false);
-    let animDuration = 700;
+
+    let animDuration = 700; // duration for all animations
 
     function switchPhoto() { 
         animate = true
@@ -31,32 +34,13 @@
         } else { index = 0}
         console.log ( index )
 
-        setTimeout(() => {
-            
+        setTimeout(() => { 
             activePhoto = photosDict[index]
+            activePhotoText = descs[index]
             animate = false; // Start fade in
-        }, animDuration); // This should match `out:fade` duration
+        }, animDuration);// This should match `out:fade` duration 
         
     }
-
-    /** @param {Number} index */
-    function selectImage (index) {
-        animate = true
-        for (let i=0; i < photosDict.length; i++) {
-            if (!(photosDict[i].thumb)) { photosDict[i].thumb = true}
-        }
-
-        let temp = activePhoto
-        activePhoto = photosDict[index]
-        photosDict[index].thumb = false
-
-        console.log(photosDict)
-
-
-    }
-
-    let text = $state('Beautiful');
-    let location = $state('Munich, BY')
 
 </script>
 
@@ -67,9 +51,9 @@
             <div class='mainImg'>
                 <img src={activePhoto.img} class='singleImage active' alt='mainPhoto' />
 
-                <div class='photoDesc' in:fade={{duration: 1000, delay: 1000}}> 
-                    <h1> {text} </h1>
-                    <h3> {location} </h3>
+                <div class='photoDesc' in:fade={{duration: 500, delay: animDuration-100}}> 
+                    <h1> {activePhotoText.text} </h1>
+                    <h3> {activePhotoText.location} </h3>
                 </div>
             </div>
         </div>
@@ -79,15 +63,6 @@
         <button class='nextPhoto' onclick={switchPhoto}> Next  </button>
     </div>
 </div>
-
-<!-- Thumbnails -->
-<!-- <div class="thumbsBox" >
-    {#each photosDict as image, ind  (image.id)}
-      <button onclick={()=>selectImage(ind)} >
-        <img src={image.img}  class="thumbsImg" alt={image.id.toString()}/>
-      </button>
-    {/each}
-</div> -->
 
 
 <style> 
@@ -133,34 +108,16 @@
         scale: 100%;
     }
 
-    /* .thumbsImg { 
-        object-fit: fill;
-    }
-    
-    .thumbsBox { 
-        width: 40%;
-        max-height: 300px;
-        /* padding-top: 2rem; 
-        padding: 1rem;
-        display: flex;
-        flex-direction: row;
-        /* margin-top: 2rem; 
-        margin: auto;
-        column-gap: 3rem;
-    } */
-
     .nextPhoto {
         height: 4rem;
         width: 4rem;
         border-radius: 1000px;
         border: 1px solid white;
-        /* background-color: white; */
         transition: 0.25s;
     }
 
 
     button { 
-        /* border: 2px solid black; */
         border-radius: 10px;
         transition: transform 0.3s ease-in-out
     }
@@ -169,10 +126,5 @@
         background-color: white;
         transform: scale(1.5);
     }
-
-    /* .thumbsImg:hover { 
-        border: 0.5rem solid white;
-        border-radius: 5px;
-    } */
 
 </style>

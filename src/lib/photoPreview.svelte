@@ -1,102 +1,93 @@
 <script>
-    import { base } from "$app/paths";
-
     import photo1 from "$lib/assets/photo1.jpeg";
     import photo2 from "$lib/assets/photo2.jpeg";
     import photo3 from "$lib/assets/photo3.jpeg";
     import photo4 from "$lib/assets/photo4.jpeg";
     import photo5 from "$lib/assets/photo5.jpeg";
 
+    let activePhoto = $state(photo1);
+    let photos = $state([ photo2, photo3, photo4, photo5])
+    // let activePhoto = $state(photos[0])
+
     /**
-	 * @param {MouseEvent} e
+	 * @param {Number} index
 	 */
-    function highlightScroll (e) { 
-        let allPhotos = /** @type {NodeListOf<HTMLImageElement>} */ (document.querySelectorAll('img'));
-        // console.log(allPhotos, typeof(e.target))
+    function selectImage (index) { 
 
-        for ( let photo of allPhotos) {
-            console.log(photo.alt, e.target)
-
-            // @ts-ignore
-            if (photo.alt == e.target?.alt) {
-                photo.classList.remove('secondary')
-                photo.classList.add('active')
-            } else {
-                photo.classList.remove('active')
-                photo.classList.add('secondary')
-            }
-
-        }
-
+        let temp = activePhoto;
+        activePhoto = photos[index];
+        photos[index] = temp;
+        // photos.splice(index,1);
+        // photos.unshift(temp);
     }
 
 </script>
 
-<div class='wheel'>
-    <button onclick={highlightScroll}>
-        <img src={photo1} class='singleImage first active' alt='photo1' />
+<div class='mainImage'> 
+    <button class='mainImgButton'>
+        <img src={activePhoto} class='singleImage active' alt='mainPhoto'/>
     </button>
-    <button onclick={highlightScroll}> 
-        <img src={photo2} class='singleImage secondary' alt='photo2' />
-    </button>
-    <button onclick={highlightScroll}>
-        <img src={photo3} class='singleImage secondary' alt='photo3' />
-    </button>
-    <button onclick={highlightScroll}>
-        <img src={photo4} class='singleImage secondary' alt='photo4' />
-    </button>
-    <button onclick={highlightScroll}>
-        <img src={photo5} class='singleImage last secondary ' alt='photo5' />
-    </button>
-
 </div>
 
-<style> 
-    .singleImage { 
-        scale: 50%;
-        /* max-height: 40vw; */
+<!-- Thumbnails -->
+<div class="thumbsBox" >
+    {#each photos as image, ind}
+      <button onclick={()=>selectImage(ind)} >
+        <img src={image} alt="Thumbnail" class="thumbsImg" />
+      </button>
+    {/each}
+</div>
 
-        max-width: 80vw;
-        margin: auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+
+<style> 
+
+    .singleImage { 
+        max-width: 60vw;
+        max-height: 40vw;
+        margin: 0rem 0 0rem 1rem;
+        align-items: left;
         padding: 30px 30px;
         background-color: white;
         border-radius: 5px;
         z-index: 100;
-        transition: 500ms;
     }
 
-    .first { 
-        margin-left: 10vw;
+    .mainImgButton {
+        position: relative;
     }
 
-    .last { 
-        margin-right: 15vw;
-    }
 
     .active {
         scale: 100%;
     }
 
-    .singleImage.secondary { 
-        opacity: 0.5;
-        /* width: 30vw; */
-
-        z-index: 0;
+    .thumbsImg { 
+        object-fit:cover;
+        transition-property: transform, translate, scale, rotate;
+        transition-timing-function: var(--default-transition-timing-function); /* cubic-bezier(0.4, 0, 0.2, 1) */
+        transition-duration: var(--default-transition-duration);
     }
-
-    .wheel {
-        /* margin-right: 5vw; */
-
+    
+    .thumbsBox { 
+        width: 25%;
+        padding-top: 2rem;
+        /* margin-top: 2rem; */
+        margin: auto;
         display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        -ms-overflow-style: -ms-autohiding-scrollbar; 
+        flex-direction: row;
+        column-gap: 2rem;
     }
 
+    button { 
+        /* border: 2px solid black; */
+        border-radius: 10px;
+        transition: transform 0.3s ease-in-out
+    }
 
+    button:hover { 
+        border: 0.5rem solid white;
+        appearance: none;
+        transform: scale(1.1);
+    }
 
 </style>

@@ -6,6 +6,20 @@ body {
     background-color: var(--background-color-3)
 }
 
+h1 { 
+	font-family: 'Lexend exa';
+    font-weight: 200;
+    font-size: 1rem;
+}
+
+h3 { 
+
+	font-family: 'Lexend exa';
+    font-weight: 100;
+    font-size: 1rem;
+}
+
+
 :root {
     --header-color: black;
     --background-color-1: #F8F8F8;

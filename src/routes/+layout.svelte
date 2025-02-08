@@ -48,6 +48,7 @@
 		font-size: 2rem;
 	}
 
+
 	.textContainer { 
 		position: relative;
 		display: inline-block;

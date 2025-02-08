@@ -1,45 +1,75 @@
 <script>
+    import { fade, fly } from "svelte/transition";
+    import { flip } from "svelte/animate";
+
     import photo1 from "$lib/assets/photo1.jpeg";
     import photo2 from "$lib/assets/photo2.jpeg";
     import photo3 from "$lib/assets/photo3.jpeg";
     import photo4 from "$lib/assets/photo4.jpeg";
     import photo5 from "$lib/assets/photo5.jpeg";
 
-    let activePhoto = $state(photo1);
-    let photos = $state([ photo2, photo3, photo4, photo5])
-    // let activePhoto = $state(photos[0])
+    let activePhoto = $state({img: photo1, thumb: false, id: 1});
+    let photos = $state([ photo2, photo3, photo4, photo5 ])
+    let photosDict = $state([
+        {img: photo1, thumb: false, id: 1},
+        {img: photo2, thumb: true, id: 2},
+        {img: photo3, thumb: true, id: 3},
+        {img: photo4, thumb: true, id: 4},
+        {img: photo5, thumb: true, id: 5},
+    ])
 
     /**
 	 * @param {Number} index
-	 */
+	*/
     function selectImage (index) { 
+        // let temp = activePhoto;
+        // activePhoto = photos[index];
+        // photos.unshift(temp); // add old active photo to thumbnail
+        // photos.splice(index+1, 1) // remove photo from thumbnail
 
-        let temp = activePhoto;
-        activePhoto = photos[index];
-        photos[index] = temp;
-        // photos.splice(index,1);
-        // photos.unshift(temp);
+        for (let i=0; i < photosDict.length; i++) {
+            if (!(photosDict[i].thumb)) { photosDict[i].thumb = true}
+        }
+
+        let temp = activePhoto
+        activePhoto = photosDict[index]
+        photosDict[index].thumb = false
+
+        console.log(photosDict)
+
     }
 
+    let text = $state('Beautiful');
+    let location = $state('Munich, BY')
 </script>
 
-<div class='mainImage'> 
-    <button class='mainImgButton'>
-        <img src={activePhoto} class='singleImage active' alt='mainPhoto'/>
-    </button>
-</div>
+    <div class='mainImg'> 
+        <img src={activePhoto.img} class='singleImage active' alt='mainPhoto' out:fly/>
+        <div> 
+            <h1> {text} </h1>
+            <h3> {location} </h3>
+        </div>
+    </div>
 
 <!-- Thumbnails -->
 <div class="thumbsBox" >
-    {#each photos as image, ind}
-      <button onclick={()=>selectImage(ind)} >
-        <img src={image} alt="Thumbnail" class="thumbsImg" />
+    {#each photosDict as image, ind  (image.id)}
+      <button onclick={()=>selectImage(ind)} in:receive={{ key: image.id }} out:send={{ key: image.id }} animate:flip={{ duration: 500 }} >
+        <img src={image.img} alt="Thumbnail" class="thumbsImg" />
       </button>
     {/each}
 </div>
 
 
 <style> 
+
+    .mainImg {
+        display: flex;
+        flex-direction: row;
+        column-gap: 2rem;
+        align-items: last baseline;
+        margin-left: 5rem;
+    }
 
     .singleImage { 
         max-width: 60vw;
@@ -51,11 +81,6 @@
         border-radius: 5px;
         z-index: 100;
     }
-
-    .mainImgButton {
-        position: relative;
-    }
-
 
     .active {
         scale: 100%;

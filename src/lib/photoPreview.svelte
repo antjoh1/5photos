@@ -54,7 +54,7 @@
 <!-- Thumbnails -->
 <div class="thumbsBox" >
     {#each photosDict as image, ind  (image.id)}
-      <button onclick={()=>selectImage(ind)} in:receive={{ key: image.id }} out:send={{ key: image.id }} animate:flip={{ duration: 500 }} >
+      <button onclick={()=>selectImage(ind)} animate:flip={{ duration: 500 }} >
         <img src={image.img} alt="Thumbnail" class="thumbsImg" />
       </button>
     {/each}

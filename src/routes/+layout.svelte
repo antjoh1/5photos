@@ -1,13 +1,17 @@
 <script>
 	import '../app.css';
 	let { children } = $props();
+	let reachMeToggle = $state(false); 
+
+	let reachMeText = $derived(reachMeToggle ? 'reach out' : 'photos')
+	let reachMeLink = $derived(reachMeToggle ? '/reachMe' : '/')
 
 </script>
 
 <header > 
 	<div class='textContainer'> 5 PHOTOS </div>
 	<div class='textContainer interactive'>
-        reach out
+        <a href={reachMeLink} onclick={() => {reachMeToggle = !reachMeToggle; console.log(reachMeToggle)}}>{reachMeText}</a>
         <div class="circle"></div>
     </div>
 </header>
@@ -29,7 +33,7 @@
 		display: flex; 
 		justify-content: space-between;
 		align-content:last baseline;
-		padding: 1rem 5rem 1rem 5rem;
+		padding: 2.5rem 5rem 1rem 5rem;
 		background-color: var(--header-color);
 		color: var(--text-color-header);
 		font-family: 'Lexend exa';
@@ -44,7 +48,7 @@
 		background-color: var(--background-color-3);
 		font-family: 'Lexend exa';
 		font-weight: 100;
-		font-size: 2rem;
+		font-size: 1.5rem;
 	}
 
 
@@ -67,8 +71,8 @@
 
 	/* Hover effect */ 
     .textContainer.interactive:hover {
-           color: black; /* Text changes to black */
-		   z-index: 1;
+		color: black; /* Text changes to black */
+		z-index: 1;
     }
 
 	.circle {
@@ -83,13 +87,13 @@
     }
 
 	.textContainer:hover .circle {
-            width: 100%;
-            height: 100%;
-            border-radius: 5px;
-            top: 0;
-            right: 0;
-            background-color: #F19AC8;
-            z-index: -1; 
+		width: 100%;
+		height: 100%;
+		border-radius: 5px;
+		top: 0;
+		right: 0;
+		background-color: #F19AC8;
+		z-index: -1; 
     }
 
 </style>

@@ -2,6 +2,11 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+html {
+    ffont-faimly: 'Lexend exa';
+    font-size: 16px; /* or whatever size you use locally */
+}
+
 body { 
     background-color: var(--background-color-3)
 }

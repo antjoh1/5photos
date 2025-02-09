@@ -7,10 +7,7 @@
 </div>
 
 <style>
-
     .photoCarousel {
-        /* margin-top: 5rem; */
-        /* border: 1px solid black; */
         margin-top: 2rem;
         max-height: 80vh;
         min-height: 50vh;

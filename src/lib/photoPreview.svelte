@@ -100,7 +100,7 @@
         padding: 30px 30px;
         background-color: white;
         border-radius: 5px;
-        z-index: 100;
+        z-index: 1;
         transition:cubic-bezier(0.47, 0, 0.745, 0.715);
         box-shadow: 4px 4px 100px rgba(50, 50, 93, 0.4);
     }

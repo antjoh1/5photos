@@ -4,7 +4,7 @@
 	let { children } = $props();
 	let reachMeToggle = $state(false); 
 
-	let reachMeText = $derived(reachMeToggle ? 'reach out' : 'photos')
+	let reachMeText = $derived(reachMeToggle ? 'photos' : 'reach out')
 	let reachMeLink = $derived(reachMeToggle ? base+'/reachMe' : base+'/')
 
 </script>

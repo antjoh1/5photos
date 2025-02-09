@@ -1,10 +1,11 @@
 <script>
 	import '../app.css';
+	import { base } from '$app/paths';
 	let { children } = $props();
 	let reachMeToggle = $state(false); 
 
 	let reachMeText = $derived(reachMeToggle ? 'reach out' : 'photos')
-	let reachMeLink = $derived(reachMeToggle ? '/reachMe' : '/')
+	let reachMeLink = $derived(reachMeToggle ? base+'/reachMe' : base+'/')
 
 </script>
 

@@ -31,7 +31,7 @@
         <h2> If you like any of the photos and you'd like to have them in higher quality
             please reach out. I'd be happy to send them to you.
         </h2>
-        <p class='disclaimerText'> If you find yourself on a photo and you don't want it to be online - please reach out and I'll take it down asap! </p>
+        <p class='disclaimerText'> If you find yourself on a photo and you don't want it to be online - please reach out and I'll take it down. </p>
 
         <div class='firstLoadButton'>
             <button  onclick={()=>{blurBg=false; introMsgFlag=false}}> 
@@ -76,24 +76,24 @@
         z-index: 3;
         padding: 3rem;
         font-family: 'Lexend exa';
-        font-size: 1.5rem;
+        font-size: 1rem;
         font-weight: 200;
     }
 
     .disclaimerText { 
-        font-size: large;
+        font-size: 0.8rem;
         font-style: italic;
     }
 
     .firstLoadButton { 
         background-color: var(--pink-accent);
         /* width: 40%; */
-        height: 3rem;
+        height: 2.5rem;
         position: relative;
         align-self: center;      
         font-family: 'Lexend exa';
         font-weight: 200;
-        font-size: 2rem;
+        font-size: 1.5rem;
         padding-right: 20px;
         padding-left: 20px;
         border-radius: 5px;

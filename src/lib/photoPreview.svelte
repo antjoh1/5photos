@@ -72,7 +72,7 @@
     }
 
     .mainContentBox {
-        padding-left: 5rem;
+        padding-left: 5em;
         width: 80vw;
         display: flex;
         flex-direction: row;
@@ -83,13 +83,13 @@
 
     .mainImg {
         display: flex;
-        column-gap: 2rem;
+        column-gap: 2em;
         flex-direction: row;
         align-items: flex-end;
     }
 
      .photoDesc { 
-        padding-bottom: 3rem;
+        padding-bottom: 3em;
         align-self: flex-end;
     }
 
@@ -97,7 +97,7 @@
         max-width: 60vw;
         min-height: 40vw;
         max-height: 40vw;
-        margin: 0rem 1rem 3rem 1rem;
+        margin: 0em 1em 3em 1em;
         padding: 30px 30px;
         background-color: white;
         border-radius: 5px;
@@ -111,8 +111,8 @@
     }
 
     .nextPhoto {
-        height: 4rem;
-        width: 4rem;
+        height: 4em;
+        width: 4em;
         border-radius: 1000px;
         border: 1px solid white;
         transition: 0.25s;

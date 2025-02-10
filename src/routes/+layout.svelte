@@ -50,7 +50,7 @@
 		color: var(--text-color-header);
 		font-family: 'Lexend exa';
 		font-weight: 200;
-		font-size: 1.5rem;
+		font-size: 1rem;
 	}
 
 	footer {
@@ -60,7 +60,7 @@
 		background-color: var(--background-color-3);
 		font-family: 'Lexend exa';
 		font-weight: 100;
-		font-size: 1.5rem;
+		font-size: 1rem;
 	}
 
 
@@ -70,7 +70,7 @@
 		color: white;
 		font-family: 'Lexend exa';
 		font-weight: 100;
-		font-size: 2rem;
+		font-size: 1.5rem;
 		padding-right: 20px;
 		padding-left: 20px;
 		border-radius: 5px;

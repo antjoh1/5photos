@@ -21,7 +21,7 @@
 
     p { 
         margin-top: 1rem;
-        font-size: 1.5rem;
+        font-size: 1.5srem;
         font-weight: 200;
         font-family: 'Lexend exa';
         text-wrap: wrap;
@@ -61,7 +61,7 @@
     }
 
     .introName { 
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-weight: 400;
     }
 

@@ -1,12 +1,18 @@
 <script>
 	import '../app.css';
 	import { base } from '$app/paths';
+	import { slide } from 'svelte/transition';
+	import { page } from '$app/state';
 
-	let { children } = $props();
+
+	let { data, children } = $props(); // 
 	let reachMeToggle = $state(false); 
 
 	let reachMeText = $derived(reachMeToggle ? 'photos' : 'reach out')
 	let reachMeLink = $derived(reachMeToggle ? base+'/reachMe' : base+'/')
+
+	let keyVal = $state(data)
+    // $inspect(data.url, page.data, keyVal)
 
 </script>
 
@@ -18,7 +24,11 @@
     </div>
 </header>
 
-{@render children()}
+{#key page.data}
+	<div in:slide={{axis: 'y', duration: 850, delay: 900}} out:slide={{axis: 'y', duration: 850}}>
+		{@render children()}
+	</div>
+{/key}
 
 <footer>
 	<div class="textContainer interactive bottom">
@@ -77,25 +87,5 @@
 		z-index: 1;
     }
 
-	.circle {
-		position: absolute;
-		top: -5px;
-		right: -5px;
-		width: 12px;
-		height: 12px;
-		background-color: #F19AC8;
-		border-radius: 50%;
-		transition: all 250ms ease-in-out;
-    }
-
-	.textContainer:hover .circle {
-		width: 100%;
-		height: 100%;
-		border-radius: 5px;
-		top: 0;
-		right: 0;
-		background-color: #F19AC8;
-		z-index: -1; 
-    }
 
 </style>

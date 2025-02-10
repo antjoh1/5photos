@@ -1,5 +1,5 @@
 <script>
-    import { fade, fly } from "svelte/transition";
+    import { fade, fly, slide } from "svelte/transition";
     import { flip } from "svelte/animate";
 	import { quartIn, quartOut } from "svelte/easing";
 
@@ -25,7 +25,7 @@
     let index = $state(0);
     let animate = $state(false);
 
-    let animDuration = 700; // duration for all animations
+    let animDuration = 900; // duration for all animations
 
     function switchPhoto() { 
         animate = true
@@ -46,12 +46,13 @@
 
 <div class='mainContentBox'  >
     {#if !animate}
-    <div class="block" out:fly={{x: -500, duration: animDuration, easing:quartIn}} in:fly={{x:-500, duration:animDuration, easing:quartOut}}>
+    <div class="block" out:fly={{x: -500, duration: animDuration, easing:quartOut}} in:fly={{x:-500, duration:animDuration, easing:quartIn}}>
+    <!-- <div class="block" out:slide={{axis: 'x', }} in:slide={{axis: 'x'}}> -->
     
             <div class='mainImg'>
                 <img src={activePhoto.img} class='singleImage active' alt='mainPhoto' />
 
-                <div class='photoDesc' in:fade={{duration: 500, delay: animDuration-100}}> 
+                <div class='photoDesc' in:fade={{duration: 500, delay: animDuration*1.5}}> 
                     <h1> {activePhotoText.text} </h1>
                     <h3> {activePhotoText.location} </h3>
                 </div>
@@ -101,8 +102,8 @@
         background-color: white;
         border-radius: 5px;
         z-index: 1;
-        transition:cubic-bezier(0.47, 0, 0.745, 0.715);
-        box-shadow: 4px 4px 100px rgba(50, 50, 93, 0.4);
+        /* transition:cubic-bezier(0.47, 0, 0.745, 0.715); */
+        /* box-shadow: 4px 4px 100px rgba(50, 50, 93, 0.4); */
     }
 
     .active {

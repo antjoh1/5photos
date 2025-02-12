@@ -1,6 +1,5 @@
 <script>
     import { fade, fly, slide } from "svelte/transition";
-    import { flip } from "svelte/animate";
 	import { quartIn, quartOut } from "svelte/easing";
 
     import photo1 from "$lib/assets/photo1.jpeg";
@@ -53,8 +52,8 @@
                 <img src={activePhoto.img} class='singleImage active' alt='mainPhoto' />
 
                 <div class='photoDesc' in:fade={{duration: 500, delay: animDuration*1.5}}> 
-                    <h1> {activePhotoText.text} </h1>
-                    <h3> {activePhotoText.location} </h3>
+                    <h3> {activePhotoText.text} </h3>
+                    <h4> {activePhotoText.location} </h4>
                 </div>
             </div>
         </div>
@@ -88,7 +87,7 @@
         align-items: flex-end;
     }
 
-     .photoDesc { 
+    .photoDesc { 
         padding-bottom: 3em;
         align-self: flex-end;
     }
@@ -98,12 +97,10 @@
         min-height: 40vw;
         max-height: 40vw;
         margin: 0em 1em 3em 1em;
-        padding: 30px 30px;
+        padding: 2% 2%;
         background-color: white;
-        border-radius: 5px;
+        border-radius: 2%;
         z-index: 1;
-        /* transition:cubic-bezier(0.47, 0, 0.745, 0.715); */
-        /* box-shadow: 4px 4px 100px rgba(50, 50, 93, 0.4); */
     }
 
     .active {
@@ -113,14 +110,15 @@
     .nextPhoto {
         height: 4em;
         width: 4em;
-        border-radius: 1000px;
+        border-radius: 15%;
         border: 1px solid white;
         transition: 0.25s;
+        font-size: 0.8em;
     }
 
 
     button { 
-        border-radius: 10px;
+        border-radius: 5%;
         transition: transform 0.3s ease-in-out
     }
 

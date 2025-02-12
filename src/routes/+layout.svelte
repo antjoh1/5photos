@@ -1,6 +1,5 @@
 <script>
 	import '../app.css';
-
 	import { base } from '$app/paths';
 	import { slide, fade } from 'svelte/transition';
 	import { page } from '$app/state';

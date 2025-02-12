@@ -14,7 +14,7 @@
             <p class='descparagraph'> {paragraph} </p>
         {/each}
     </div>
-    <a href='/' class="email">myEmail@mail.com</a>
+    <p class="email">myEmail@mail.com</p>
 </div>
 
 <style> 

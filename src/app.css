@@ -1,6 +1,7 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@100..900&display=swap');
 
 :root {
     --header-color: black;
@@ -14,24 +15,25 @@
 
 html {
     font-family: 'Lexend exa';
-    font-size: 16px; /* or whatever size you use locally */
 }
 
 body { 
     background-color: var(--background-color-3)
 }
 
-h1 { 
-	font-family: 'Lexend exa';
+h1, h2{ 
     font-weight: 200;
-    font-size: 1rem;
+    font-size: 1em;
 }
 
 h3 { 
+    font-weight: 200;
+    font-size: 1.5em;
+}
 
-	font-family: 'Lexend exa';
+h4 { 
     font-weight: 100;
-    font-size: 1rem;
+    font-size: 1em;
 }
 
 .circle{
@@ -49,12 +51,9 @@ h3 {
     position: relative;
     display: inline-block;
     color: white;
-    font-family: 'Lexend exa';
-    font-weight: 100;
-    font-size: 1.5rem;
-    padding-right: 20px;
-    padding-left: 20px;
-    border-radius: 5px;
+    padding-right: 2%;
+    padding-left: 2%;
+    border-radius: 5%;
     transition: color 250ms ease-in-out;
 }
 
@@ -68,12 +67,47 @@ h3 {
     z-index: -1; 
 }
 
-.firstLoadButton:hover .circle {
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
-    top: 0;
-    right: 0;
-    background-color: #F19AC8;
-    z-index: -1; 
+
+
+.blurBgDiv { 
+    height: 100vh;
+    width: 100vw;
+    backdrop-filter: blur(10px);
+    position: fixed;
+    inset: 0px;
+    max-width: 100vw;
+    max-height: 100dvh;
+    z-index: 2;
+    padding: 2rem;
+}
+
+.firstLoadMessage { 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-height: 40vh;
+    width: 80vw;
+    position: fixed;
+    inset: 0px;
+    /* max-width: 100vw; */
+    /* max-height: 100dvh; */
+    margin: auto;
+    background-color: rgb(211, 211, 211);
+    border-radius: 10px;
+    z-index: 3;
+    padding: 3rem;
+    /* font-family: 'Lexend exa'; */
+    /* font-size: 0.5em; */
+    font-weight: 200;
+}
+
+
+@media (max-width: 800px){
+    /* html { font-size: 10px; }  */
+    h1 {font-size: 1em;}
+    h2 {font-size: 1em;}
+    h3 {font-size: 1em;}
+    h4 {font-size: 1em;}
+    .textContainer { font-size: 0.6em;}
+    .firstLoadMessage { width: 80vw; max-height: 50vh; }
 }

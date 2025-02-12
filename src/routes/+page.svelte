@@ -1,12 +1,17 @@
 <script>
+    import '../app.css';
     import PhotoPreview from "$lib/photoPreview.svelte";
 	import { onMount } from "svelte";
 	import { fade, fly } from "svelte/transition";
-    import { quartIn, quartOut } from "svelte/easing";
+    import { quartIn, quartOut } from "svelte/easing";  
+    import { getContext } from "svelte";
+
+    let { data } = $props()
+    let archiveToggle = getContext('archiveToggle')
 
     let blurBg = $state(false); 
     let introMsgFlag = $state(false);
-    let introDuration = 1000;
+    let introDuration = 800;
     let loadCount = $state(0) // attempt at making this appear only on first load
 
     onMount( () => {
@@ -14,41 +19,43 @@
             blurBg = true
             introMsgFlag = true
         }
-
     })
+
+    $inspect(data)
 
 </script>
 
 {#if blurBg}
-    <div class='firstLoadWindow' in:fade={{delay:500, duration: 500}} out:fade={{delay: 500, duration: 500}}></div>
+    <div class='blurBgDiv' in:fade={{delay:introDuration/3, duration: introDuration}} out:fade={{delay: introDuration/3, duration: introDuration}}></div>
 {/if}
 {#if introMsgFlag}
     <div class='firstLoadMessage' in:fly={{delay: introDuration*1.5, x:-1000, duration: 2000, easing:quartOut}} out:fly={{x:-800, duration: 500, easing:quartIn}}>
-        <h1 class='firstLoadTitle'>Hi!</h1>
-        <h2>
-            This is a little page where I post 5 photos every week. 
-        </h2>
-        <h2> If you like any of the photos and you'd like to have them in higher quality
-            please reach out. I'd be happy to send them to you.
-        </h2>
+        
+        <div class='disclaimerMsg'> 
+            <h1 class='firstLoadTitle'>Hi!</h1>
+            <h2>
+                This is a little page where I post 5 photos every week. 
+            </h2>
+            <h2> If you like any of the photos and you'd like to have them in higher quality
+                please reach out. I'd be happy to send them to you.
+            </h2>
+    </div>
         <p class='disclaimerText'> If you find yourself on a photo and you don't want it to be online - please reach out and I'll take it down. </p>
 
         <div class='firstLoadButton'>
             <button  onclick={()=>{blurBg=false; introMsgFlag=false}}> 
                 Welcome!
-                <!-- <div class='circle'></div> -->
              </button>
-            
         </div>
     </div>
-{/if}
+{/if} 
 
 <div class='photoCarousel' >
     <PhotoPreview></PhotoPreview>
 </div>
 
 <style>
-    .firstLoadWindow { 
+    .blurBgDiv { 
         height: 100vh;
         width: 100vw;
         backdrop-filter: blur(10px);
@@ -60,43 +67,27 @@
         padding: 2rem;
     }
 
-    .firstLoadMessage { 
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 40vh;
-        width: 50vw;
-        position: fixed;
-        inset: 0px;
-        max-width: 100vw;
-        max-height: 100dvh;
-        margin: auto;
-        background-color: rgb(211, 211, 211);
-        border-radius: 10px;
-        z-index: 3;
-        padding: 3rem;
-        font-family: 'Lexend exa';
-        font-size: 1rem;
-        font-weight: 200;
+    .disclaimerText { 
+        font-size: 0.7em;
+        font-style: italic;
     }
 
-    .disclaimerText { 
-        font-size: 0.8rem;
-        font-style: italic;
+    .disclaimerMsg {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
     }
 
     .firstLoadButton { 
         background-color: var(--pink-accent);
-        /* width: 40%; */
-        height: 2.5rem;
+        /* height: 2.5rem; */
         position: relative;
         align-self: center;      
         font-family: 'Lexend exa';
-        font-weight: 200;
-        font-size: 1.5rem;
-        padding-right: 20px;
-        padding-left: 20px;
-        border-radius: 5px;
+        font-weight: 100;
+        font-size: 1em;
+        padding:  1% 5% 1% 5%;
+        border-radius: 5%;
         transition: color 250ms ease-in-out;
     }
 
@@ -108,7 +99,6 @@
         transition: color 250ms ease-in-out;
         background-color:  #ed6db1;
     }
-
 
     .photoCarousel {
         margin-top: 2rem;

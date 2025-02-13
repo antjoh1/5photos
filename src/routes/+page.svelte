@@ -5,13 +5,13 @@
 	import { fade, fly } from "svelte/transition";
     import { quartIn, quartOut } from "svelte/easing";  
     import { getContext } from "svelte";
+    import { userState } from './state.svelte';
 
     let { data } = $props()
     let archiveToggle = getContext('archiveToggle')
 
     let blurBg = $state(false); 
     let introMsgFlag = $state(false);
-    let introDuration = 800;
     let loadCount = $state(0) // attempt at making this appear only on first load
 
     onMount( () => {
@@ -26,10 +26,10 @@
 </script>
 
 {#if blurBg}
-    <div class='blurBgDiv' in:fade={{delay:introDuration/3, duration: introDuration}} out:fade={{delay: introDuration/3, duration: introDuration}}></div>
+    <div class='blurBgDiv' in:fade={{delay:userState.introDuration/3, duration: userState.introDuration}} out:fade={{delay: userState.introDuration/3, duration: userState.introDuration}}></div>
 {/if}
 {#if introMsgFlag}
-    <div class='firstLoadMessage' in:fly={{delay: introDuration*1.5, x:-1000, duration: 2000, easing:quartOut}} out:fly={{x:-800, duration: 500, easing:quartIn}}>
+    <div class='firstLoadMessage' in:fly={{delay: userState.introDuration*1.5, x:-1000, duration: userState.introDuration, easing:quartOut}} out:fly={{x:-800, duration: userState.introDuration, easing:quartIn}}>
         
         <div class='disclaimerMsg'> 
             <h1 class='firstLoadTitle'>Hi!</h1>
@@ -40,10 +40,10 @@
                 please reach out. I'd be happy to send them to you.
             </h2>
     </div>
-        <p class='disclaimerText'> If you find yourself on a photo and you don't want it to be online - please reach out and I'll take it down. </p>
+        <p class='disclaimerText'> Disclaimer: If you find yourself on a photo and you don't want it to be online - please reach out and I'll take it down. </p>
 
         <div class='firstLoadButton'>
-            <button  onclick={()=>{blurBg=false; introMsgFlag=false}}> 
+            <button class='firstLoadButton' onclick={()=>{blurBg=false; introMsgFlag=false}}> 
                 Welcome!
              </button>
         </div>
@@ -58,9 +58,10 @@
     .blurBgDiv { 
         height: 100vh;
         width: 100vw;
+    
         backdrop-filter: blur(10px);
-        position: fixed;
-        inset: 0px;
+        /* position: fixed; */
+        inset: 0;
         max-width: 100vw;
         max-height: 100dvh;
         z-index: 2;
@@ -68,19 +69,18 @@
     }
 
     .disclaimerText { 
-        font-size: 0.7em;
+        font-size: 10px;
         font-style: italic;
     }
 
     .disclaimerMsg {
         display: flex;
         flex-direction: column;
-        row-gap: 1rem;
+        row-gap: 15px;
     }
 
     .firstLoadButton { 
         background-color: var(--pink-accent);
-        /* height: 2.5rem; */
         position: relative;
         align-self: center;      
         font-family: 'Lexend exa';

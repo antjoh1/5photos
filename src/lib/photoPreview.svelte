@@ -37,7 +37,7 @@
             activePhoto = photosDict[index]
             activePhotoText = descs[index]
             animate = false; // Start fade in
-        }, animDuration);// This should match `out:fade` duration 
+        }, animDuration); // This should match `out:fade` duration 
         
     }
 
@@ -45,22 +45,24 @@
 
 <div class='mainContentBox'  >
     {#if !animate}
-    <div class="block" out:fly={{x: -500, duration: animDuration, easing:quartOut}} in:fly={{x:-500, duration:animDuration, easing:quartIn}}>
-    <!-- <div class="block" out:slide={{axis: 'x', }} in:slide={{axis: 'x'}}> -->
-    
-            <div class='mainImg'>
-                <img src={activePhoto.img} class='singleImage active' alt='mainPhoto' />
-
-                <div class='photoDesc' in:fade={{duration: 500, delay: animDuration*1.5}}> 
-                    <h3> {activePhotoText.text} </h3>
-                    <h4> {activePhotoText.location} </h4>
-                </div>
-            </div>
+        <div class="block" out:fly={{x: -500, duration: animDuration, easing:quartOut}} in:fly={{x:-500, duration:animDuration, easing:quartIn}}>
+                    <img src={activePhoto.img} alt='mainPhoto'/>
         </div>
     {/if}
 
-    <div class='nextPhotoButtonDiv'> 
-        <button class='nextPhoto' onclick={switchPhoto}> Next  </button>
+    <div class='picExtra'>
+        <div class='photoDesc'>
+            {#if !animate}
+                <div in:fade={{duration: 500, delay: animDuration*1.5}} > 
+                    <h3> {activePhotoText.text} </h3>
+                    <h4> {activePhotoText.location} </h4>
+                </div>
+            {/if}
+        </div>
+
+        <div class='nextPhotoButtonDiv'> 
+            <button  onclick={switchPhoto}> Next  </button>
+        </div>
     </div>
 </div>
 
@@ -68,63 +70,59 @@
 <style> 
     .block {
         display: block;
+        transition: 350ms;
     }
 
     .mainContentBox {
-        padding-left: 5em;
-        width: 80vw;
+        padding-left: 40px;
+        padding-right: 40px;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+        row-gap: 15px;
+        column-gap: 20px;
         flex-wrap: wrap;
+        
     }
 
-    .mainImg {
+    .picExtra { 
+        width: inherit;
+        padding-right: 40px;
         display: flex;
-        column-gap: 2em;
-        flex-direction: row;
-        align-items: flex-end;
+        justify-content: space-between;
+    }
+
+    img {
+        max-width: 70vw; 
+        max-height: 70vh; 
+        object-fit: fill;
+        padding: 15px;
+        background-color: white;
     }
 
     .photoDesc { 
-        padding-bottom: 3em;
+        width: 200px;
         align-self: flex-end;
     }
 
-    .singleImage { 
-        max-width: 60vw;
-        min-height: 40vw;
-        max-height: 40vw;
-        margin: 0em 1em 3em 1em;
-        padding: 2% 2%;
-        background-color: white;
-        border-radius: 2%;
-        z-index: 1;
-    }
-
-    .active {
-        scale: 100%;
-    }
-
-    .nextPhoto {
-        height: 4em;
-        width: 4em;
+    .nextPhotoButtonDiv {
+        align-self: center;
+        height: 60px;
+        width: 60px;
         border-radius: 15%;
         border: 1px solid white;
-        transition: 0.25s;
-        font-size: 0.8em;
+        transition: transform 0.3s ease-in-out;
+        border-radius: 50%;
+        text-align: center;
+        align-content: center;
     }
 
-
-    button { 
-        border-radius: 5%;
-        transition: transform 0.3s ease-in-out
+    .nextPhotoButtonDiv button { 
+        font-size: 16px;
     }
 
-    button:hover { 
+    .nextPhotoButtonDiv:hover { 
         background-color: white;
-        transform: scale(1.5);
+        transform: scale(1.3);
     }
 
 </style>

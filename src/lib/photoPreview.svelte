@@ -60,9 +60,7 @@
             {/if}
         </div>
 
-        <div class='nextPhotoButtonDiv'> 
-            <button  onclick={switchPhoto}> Next  </button>
-        </div>
+        <button  class='nextPhotoButton' onclick={switchPhoto}> Next  </button>
     </div>
 </div>
 
@@ -104,25 +102,10 @@
         align-self: flex-end;
     }
 
-    .nextPhotoButtonDiv {
-        align-self: center;
-        height: 60px;
-        width: 60px;
-        border-radius: 15%;
-        border: 1px solid white;
-        transition: transform 0.3s ease-in-out;
-        border-radius: 50%;
-        text-align: center;
-        align-content: center;
-    }
+    @media (max-width: 800px){
+    .mainContentBox { justify-content: center; max-width: 100vw; padding: 0px;}
+    img {max-width: 98vw;}
+}
 
-    .nextPhotoButtonDiv button { 
-        font-size: 16px;
-    }
-
-    .nextPhotoButtonDiv:hover { 
-        background-color: white;
-        transform: scale(1.3);
-    }
 
 </style>

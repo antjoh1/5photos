@@ -27,7 +27,7 @@
         text-wrap: wrap;
     }
     .mainContentBox {
-        padding: 2rem 2rem 2rem 5rem;
+        padding: 20px 20px 20px 20px;
         width: 90vw;
         display: flex;
         flex-direction: row;
@@ -61,8 +61,14 @@
     }
 
     .introName { 
-        font-size: 1.5rem;
+        font-size: 16px;
         font-weight: 400;
+    }
+
+
+    @media (max-width: 800px){
+        .mainContentBox { width: 90vw; }
+        .photoDesc { font-size: 12px; }
     }
 
 </style>

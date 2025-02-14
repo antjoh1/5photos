@@ -125,14 +125,14 @@ h4 {
 
 @media (max-width: 800px){
     header {padding: 10px 10px 10px 10px;}
-    h1 {font-size: 14px;}
-    h2 {font-size: 14px;}
+    h1 {font-size: 12px;}
+    h2 {font-size: 12px;}
     h3 {font-size: 14px;}
     h4 {font-size: 14px;}
     .nextPhotoButton {font-size: 8px;}
     .mainContentBox { justify-content: center; max-width: 95vw;}
-    .textContainer { font-size: 16px; font-weight: 200; padding-right: 0.5%; padding-left: 0.5%;}
-    .firstLoadMessage {width: 70vw; max-height: 400px; row-gap: 10px; }
+    .textContainer { font-size: 15px; font-weight: 200; padding-right: 0.5%; padding-left: 0.5%;}
+    .firstLoadMessage {width: 70vw; max-height: 800px; row-gap: 5px; }
     .disclaimerText { font-size: 9px;}
     .circle {height: 6px; width: 6px;}
 }

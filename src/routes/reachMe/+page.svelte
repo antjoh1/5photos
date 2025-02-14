@@ -9,13 +9,13 @@
 
     <div class='photoDesc'> 
         <h1 class='introName'> B. Syla </h1> 
-
         {#each profileDesc as paragraph}
-            <p class='descparagraph'> {paragraph} </p>
+            <p> {paragraph} </p>
         {/each}
     </div>
-    <p class="email">myEmail@mail.com</p>
 </div>
+
+<p class="email">myEmail@mail.com</p>
 
 <style> 
 
@@ -26,49 +26,51 @@
         font-family: 'Lexend exa';
         text-wrap: wrap;
     }
+
     .mainContentBox {
-        padding: 20px 20px 20px 20px;
+        padding: 40px 40px 40px 40px;
         width: 90vw;
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
         column-gap: 3rem;
         align-items: center;
-        /* flex-wrap: wrap; */
     }
 
     .singleImage { 
-        max-width: 60vw;
+        max-width: 50vw;
         min-height: 40vw;
         max-height: 40vw;
         margin: 0rem 1rem 3rem 1rem;
-        padding: 30px 30px;
+        padding: 10px;
         background-color: white;
         border-radius: 5px;
-        z-index: 100;
-        transition:cubic-bezier(0.47, 0, 0.745, 0.715);
+        transition: cubic-bezier(0.47, 0, 0.745, 0.715);
     }
 
-    .photoDesc { 
+    .photoDesc {
+        max-width: 1000px;
         display: flex;
         flex-direction: column;
         row-gap: 1rem;
         padding-bottom: 3rem;
     }
 
-    .email { 
-        align-self: flex-end;
+    .email {
+        display: flex;
+        padding-right: 40px;
+        justify-content: flex-end;
     }
 
     .introName { 
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 400;
     }
 
-
     @media (max-width: 800px){
-        .mainContentBox { width: 90vw; }
-        .photoDesc { font-size: 12px; }
+        .mainContentBox { flex-direction: column; row-gap: 10px;  width: 85vw; align-items: center; padding-left: 20px;}
+        .photoDesc { padding-left: 20px; font-size: 16px; }
+        .singleImage { max-width: 85vw; max-height: 60vh; align-self: flex-start;}
     }
 
 </style>

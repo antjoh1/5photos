@@ -58,9 +58,7 @@
     .blurBgDiv { 
         height: 100vh;
         width: 100vw;
-    
         backdrop-filter: blur(10px);
-        /* position: fixed; */
         inset: 0;
         max-width: 100vw;
         max-height: 100dvh;
@@ -82,8 +80,7 @@
     .firstLoadButton { 
         background-color: var(--pink-accent);
         position: relative;
-        align-self: center;      
-        font-family: 'Lexend exa';
+        align-self: center;
         font-weight: 100;
         font-size: 1em;
         padding:  1% 5% 1% 5%;

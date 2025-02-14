@@ -74,7 +74,7 @@
     .disclaimerMsg {
         display: flex;
         flex-direction: column;
-        row-gap: 15px;
+        row-gap: 10px;
     }
 
     .firstLoadButton { 

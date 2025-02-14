@@ -23,7 +23,7 @@ body {
 
 h1, h2{ 
     font-weight: 200;
-    font-size: 20px;
+    font-size: 18px;
     transition: 250ms;
 }
 
@@ -125,13 +125,13 @@ h4 {
 
 @media (max-width: 800px){
     header {padding: 10px 10px 10px 10px;}
-    h1 {font-size: 16px;}
-    h2 {font-size: 16px;}
+    h1 {font-size: 14px;}
+    h2 {font-size: 14px;}
     h3 {font-size: 14px;}
     h4 {font-size: 14px;}
     .nextPhotoButton {font-size: 8px;}
     .mainContentBox { justify-content: center; max-width: 95vw;}
-    .textContainer { font-size: 14px; padding-right: 0.5%; padding-left: 0.5%;}
+    .textContainer { font-size: 16px; font-weight: 200; padding-right: 0.5%; padding-left: 0.5%;}
     .firstLoadMessage {width: 70vw; max-height: 400px; row-gap: 10px; }
     .disclaimerText { font-size: 9px;}
     .circle {height: 6px; width: 6px;}

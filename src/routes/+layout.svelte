@@ -51,7 +51,7 @@
 	</div>
 
 	<footer>
-		<div class='textContainer bottom'> B. Syla </div>
+		<div class='textContainer bottom'> Bleona S. </div>
 		<div class='textContainer bottom'> {selectedDate}</div>
 	</footer>
 

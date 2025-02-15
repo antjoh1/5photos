@@ -4,6 +4,7 @@
 	import { slide, fade } from 'svelte/transition';
 	import { page } from '$app/state';
 	import { userState } from './state.svelte';
+	import ArchivePicker from '$lib/archivePicker.svelte';
 
 	let { data, children } = $props(); //
 	let reachMeToggle = $state(false); 
@@ -46,7 +47,11 @@
 
 		{#if userState.archiveToggle}
 			<div class='blurBgDiv' in:fade={{duration: userState.introDuration/4}} out:fade={{duration: userState.introDuration/4}}></div>
-			<div class='firstLoadMessage'> <button onclick={() => userState.archiveToggle=false}> Choose a thing </button></div>
+			<div class='firstLoadMessage'> 
+				<ArchivePicker></ArchivePicker> 
+				<button onclick={() => userState.archiveToggle=false}> Select </button>
+			</div>
+			
 		{/if}
 	</div>
 
@@ -62,8 +67,6 @@
 	.titleLogo {
 		color: white;
 		font-weight: 100;
-		/* padding: 0.25% 0% 0.25% 0%; */
-		/* border-radius: 5%; */
 		transition:  250ms;
 		font-size: 24px;
 	}
@@ -98,7 +101,6 @@
 	.bottom { 
 		color: black;
 	}
-
 
 	/* Hover effect */ 
     .textContainer.interactive:hover {

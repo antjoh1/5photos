@@ -1,4 +1,5 @@
 export const userState = $state({
     archiveToggle: false,
-    introDuration: 800,
+    introDuration: 600,
+    animationBaseLength: 800,
 }) 

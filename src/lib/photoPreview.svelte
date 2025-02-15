@@ -1,5 +1,5 @@
 <script>
-    import { fade, fly, slide } from "svelte/transition";
+    import { fade, fly } from "svelte/transition";
 	import { quartIn, quartOut } from "svelte/easing";
 
     import photo1 from "$lib/assets/photo1.jpeg";
@@ -7,8 +7,8 @@
     import photo3 from "$lib/assets/photo3.jpeg";
     import photo4 from "$lib/assets/photo4.jpeg";
     import photo5 from "$lib/assets/photo5.jpeg";
-
     import descs from "$lib/assets/photoDescs.json"
+    import { userState } from "../routes/state.svelte";
     
 
     let activePhoto = $state({img: photo1, thumb: false, id: 1});
@@ -24,8 +24,6 @@
     let index = $state(0);
     let animate = $state(false);
 
-    let animDuration = 900; // duration for all animations
-
     function switchPhoto() { 
         animate = true
         if (index < (photosDict.length-1)) {
@@ -37,7 +35,7 @@
             activePhoto = photosDict[index]
             activePhotoText = descs[index]
             animate = false; // Start fade in
-        }, animDuration); // This should match `out:fade` duration 
+        }, userState.animationBaseLength*0.5); // This should match `out:fade` duration 
         
     }
 
@@ -45,7 +43,7 @@
 
 <div class='mainContentBox'  >
     {#if !animate}
-        <div class="block" out:fly={{x: -500, duration: animDuration, easing:quartOut}} in:fly={{x:-500, duration:animDuration, easing:quartIn}}>
+        <div class="block" out:fly={{x: -200, duration: userState.animationBaseLength*0.5, easing:quartOut}} in:fly={{x:-200, duration:userState.animationBaseLength*0.5, easing:quartIn}}>
                     <img src={activePhoto.img} alt='mainPhoto'/>
         </div>
     {/if}
@@ -53,7 +51,7 @@
     <div class='picExtra'>
         <div class='photoDesc'>
             {#if !animate}
-                <div in:fade={{duration: 500, delay: animDuration*1.5}} > 
+                <div in:fade={{duration: userState.animationBaseLength, delay: userState.animationBaseLength}} > 
                     <h3> {activePhotoText.text} </h3>
                     <h4> {activePhotoText.location} </h4>
                 </div>

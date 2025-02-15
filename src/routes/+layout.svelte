@@ -23,7 +23,7 @@
 <div class='wholePageContainer'>
 	<div>
 		<header> 
-			<div class='textContainer'> 5 PHOTOS </div>
+			<div class='titleLogo'> 5 PHOTOS </div>
 			<div class='textContainer interactive'>
 				<div>
 					<input type='checkbox' name='archive' id='archive' bind:checked={userState.archiveToggle}/>  
@@ -59,6 +59,15 @@
 
 <style>
 
+	.titleLogo {
+		color: white;
+		font-weight: 100;
+		/* padding: 0.25% 0% 0.25% 0%; */
+		/* border-radius: 5%; */
+		transition:  250ms;
+		font-size: 24px;
+	}
+
 	.wholePageContainer { 
 		height: 100vh;
 		width: 100vw;
@@ -70,7 +79,8 @@
 	header { 
 		display: flex; 
 		justify-content: space-between;
-		align-content:last baseline;
+		/* align-content:last baseline; */
+		align-items: center;
 		padding: 20px 40px 20px 40px;
 		background-color: var(--header-color);
 		color: var(--text-color-header);
@@ -98,6 +108,11 @@
 
 	input { 
 		display: none;
+	}
+
+	@media (max-width: 800px) {
+		header {padding: 20px 10px 20px 10px}
+		.titleLogo {font-size: 15px; font-weight: 200;}
 	}
 
 

@@ -23,7 +23,7 @@
         border-top: 2px solid rgb(255, 255, 255);
         /* border-top: 1px solid rgb(255, 252, 252); */
         border-bottom: 2px solid rgb(255, 255, 255);
-        height: 1.4em;
+        height: 2em;
         left: 0;
         top: 50%;
         transform: translateY(-65%);
@@ -36,14 +36,14 @@
         box-shadow: 0 .5vw 2vw -5px rgba(200, 200, 200, 0.435);
         border-radius: 15px;
         position: relative;
-        border-top: 2rem solid var(--background-color-3);
-        border-bottom: 2rem solid var(--background-color-3);
+        border-top: 2rem solid black;
+        border-bottom: 2rem solid black;
         padding-left: 1rem;
         padding-right: 1rem;
         background: var(--background-color-3);
         grid-template-columns: repeat(4, fit-content(500px));
         font-size: calc(0.5rem + 1vw);
-        position: relative;
+        /* position: relative; */
         font-feature-settings: "tnum";
         font-weight: 200;
         
@@ -55,17 +55,16 @@
             pointer-events: none;
         }
         &:before {
-            top: -0.9em;
+            top: -1.3em;
             background: linear-gradient(white, rgba(255, 255, 255, .7))
         }
         &:after {
-            bottom: -0.5em;
+            bottom: -0.6em;
             height: 3em;
             background: linear-gradient(rgba(255, 255, 255, .7), white)
         }
-    }
 
-    ul {
+        ul {
         max-height: 4em;
         overflow-y: scroll;
         margin-right: 1em;
@@ -73,12 +72,17 @@
         padding-bottom: 3em;
         padding-top: 3em;
         }
-    li {
-        scroll-snap-align: center;
-        height: 1.4em;
-        text-align: right;
-        word-spacing: .2em;
+
+        li {
+            scroll-snap-align: center;
+            height: 1.8em;
+            text-align: right;
+            text-justify: center;
+            word-spacing: 0.4em;
+        }
     }
+
+    
 
     .picker-day {
         padding-right: .5em;

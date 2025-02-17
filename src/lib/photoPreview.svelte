@@ -47,7 +47,7 @@
             {/if}
         </div>
 
-        <button  class='nextPhotoButton' onclick={switchPhoto}> Next  </button>
+        <button class='nextPhotoButton' onclick={switchPhoto}> Next  </button>
     </div>
 </div>
 

@@ -1,39 +1,31 @@
 <script>
     import { fade, fly } from "svelte/transition";
 	import { quartIn, quartOut } from "svelte/easing";
-
-    import photo1 from "$lib/assets/photo1.jpeg";
-    import photo2 from "$lib/assets/photo2.jpeg";
-    import photo3 from "$lib/assets/photo3.jpeg";
-    import photo4 from "$lib/assets/photo4.jpeg";
-    import photo5 from "$lib/assets/photo5.jpeg";
-    import descs from "$lib/assets/photoDescs.json"
     import { userState } from "../routes/state.svelte";
+    import { base } from "$app/paths";
     
+    // import photo descs 
+    import descs from "$lib/assets/photoDescs.json"
 
-    let activePhoto = $state({img: photo1, thumb: false, id: 1});
+    let { importPhotos, photoDescs } = $props();
+
+    let activePhoto = $state(importPhotos[0]);
     let activePhotoText = $state(descs[0])
-    let photosDict = $state([
-        {img: photo1, thumb: false, id: 1},
-        {img: photo2, thumb: true, id: 2},
-        {img: photo3, thumb: true, id: 3},
-        {img: photo4, thumb: true, id: 4},
-        {img: photo5, thumb: true, id: 5},
-    ])
+
 
     let index = $state(0);
     let animate = $state(false);
 
     function switchPhoto() { 
         animate = true
-        if (index < (photosDict.length-1)) {
+        if (index < (importPhotos.length-1)) {
             index += 1
         } else { index = 0}
         console.log ( index )
 
         setTimeout(() => { 
-            activePhoto = photosDict[index]
-            activePhotoText = descs[index]
+            activePhoto = importPhotos[index]
+            activePhotoText = photoDescs[index]
             animate = false; // Start fade in
         }, userState.animationBaseLength*0.5); // This should match `out:fade` duration 
         

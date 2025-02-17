@@ -1,11 +1,16 @@
 // This can be false if you're using a fallback (i.e. SPA mode)
 export const prerender = true;
-// export const ssr = false;
 
+import { photoBatches } from "$lib/assets/photoData";
 
 export async function load ({ url }) {
 
     return { 
-        url: url.pathname
+        url: url.pathname,
+        batches: photoBatches.map((batch) => ({
+            date: batch.date, 
+            photos: batch.photos,
+            descs: batch.descs
+        }))
     }
 }

@@ -1,5 +1,6 @@
 <script>
 	import PhotoPreview from "$lib/photoPreview.svelte";
+
     // data contains one batch from $lib/photoData.js but apparently has access to other .js load function returns 
     let { data } = $props(); 
     
@@ -12,8 +13,6 @@
     ]
 
     let descs = data.chosenBatch.descs
-
-    // console.log(data)
 
 </script> 
 

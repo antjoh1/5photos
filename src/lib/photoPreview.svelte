@@ -3,14 +3,11 @@
 	import { quartIn, quartOut } from "svelte/easing";
     import { userState } from "../routes/state.svelte";
     import { base } from "$app/paths";
-    
-    // import photo descs 
-    import descs from "$lib/assets/photoDescs.json"
 
     let { importPhotos, photoDescs } = $props();
 
-    let activePhoto = $state(importPhotos[0]);
-    let activePhotoText = $state(descs[0])
+    let activePhoto = $state(base+importPhotos[0].img);
+    let activePhotoText = $state(photoDescs[0])
 
 
     let index = $state(0);
@@ -24,7 +21,7 @@
         console.log ( index )
 
         setTimeout(() => { 
-            activePhoto = importPhotos[index]
+            activePhoto = base + importPhotos[index].img
             activePhotoText = photoDescs[index]
             animate = false; // Start fade in
         }, userState.animationBaseLength*0.5); // This should match `out:fade` duration 
@@ -36,7 +33,7 @@
 <div class='mainContentBox'  >
     {#if !animate}
         <div class="block" out:fly={{x: -200, duration: userState.animationBaseLength*0.5, easing:quartOut}} in:fly={{x:-200, duration:userState.animationBaseLength*0.5, easing:quartIn}}>
-                    <img src={activePhoto.img} alt='mainPhoto'/>
+                    <img src={activePhoto} alt='mainPhoto'/>
         </div>
     {/if}
 

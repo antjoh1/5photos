@@ -1,11 +1,11 @@
 
 export const photoBatches = [
     {"date": "Feb 25",    
-        "photos": ["../feb25/bridge.jpeg",
-                    "../feb25/building.jpeg", 
-                    "../feb25/bridge.jpeg",
-                    "../feb25/window.jpeg", 
-                    "../feb25/building.jpeg"],
+        "photos": ["/feb25photos/bridge.jpeg",
+                    "/feb25photos/building.jpeg", 
+                    "/feb25photos/bridge.jpeg",
+                    "/feb25photos/window.jpeg", 
+                    "/feb25photos/building.jpeg"],
         "descs": [
             {"text": "Family", "location": "Prishtine"},
             {"text": "Business", "location": "Prishtine"},
@@ -15,11 +15,11 @@ export const photoBatches = [
             ]
     },
     {"date": "Jan 25",  
-    "photos": ["../jan25/photo1.jpeg",
-                "../jan25/photo2.jpeg", 
-                "../jan25/photo3.jpeg",
-                "../jan25/photo4.jpeg", 
-                "../jan25/photo5.jpeg"],
+    "photos": ["/jan25photos/photo1.jpeg",
+                "/jan25photos/photo2.jpeg", 
+                "/jan25photos/photo3.jpeg",
+                "/jan25photos/photo4.jpeg", 
+                "/jan25photos/photo5.jpeg"],
     "descs": [
         {"text": "Family", "location": "Prishtine"},
         {"text": "Business", "location": "Prishtine"},

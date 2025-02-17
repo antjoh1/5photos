@@ -51,9 +51,8 @@
 
 		{#if userState.archiveToggle}
 			<div class='blurBgDiv' in:fade={{duration: userState.introDuration/4}} out:fade={{duration: userState.introDuration/4}}></div>
-			<div class='firstLoadMessage'> 
+			<div class='firstLoadMessage archive'> 
 				<ArchivePicker {data}></ArchivePicker> 
-				<button onclick={() => userState.archiveToggle=false}> Select </button>
 			</div>
 			
 		{/if}
@@ -111,7 +110,6 @@
 	header { 
 		display: flex; 
 		justify-content: space-between;
-		/* align-content:last baseline; */
 		align-items: center;
 		padding: 20px 40px 20px 40px;
 		background-color: var(--header-color);
@@ -178,6 +176,12 @@
         transition: color 250ms ease-in-out;
         background-color:  #ed6db1;
     }
+
+	.archive { 
+		justify-content: center;
+		width: 20vw;
+		height: 300px;
+	}
 
 	input { 
 		display: none;

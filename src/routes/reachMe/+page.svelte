@@ -8,16 +8,16 @@
     <img src={profilePic} alt='Blonqe' class='singleImage' />
 
     <div class='photoDesc'> 
-       
         <h1 class='introName'> Bleona S. </h1> 
         
         {#each profileDesc as paragraph}
             <p> {paragraph} </p>
         {/each}
+
+        <p class="email">myEmail@mail.com</p>
     </div>
 </div>
 
-<p class="email">myEmail@mail.com</p>
 
 <style> 
 
@@ -61,6 +61,7 @@
     .email {
         display: flex;
         padding-right: 40px;
+        margin-top: 200px;
         justify-content: flex-end;
     }
 

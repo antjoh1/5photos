@@ -5,13 +5,15 @@
     let { data } = $props();
     
     let photosBlogPath = base
+
+    let isSelected = (/** @type {string} */ value) => {return value == userState.pickedDate}
     
 </script>
 
-    <ul>
+    <ul class='dateList'>
         {#each data.batches as batch}
-            <li>
-                <a href="{photosBlogPath}/{batch.date.replace(/\s/g, '')}" onclick={() => userState.pickedDate = batch.date}>{batch.date}</a> 
+            <li class = {isSelected(batch.date) ? 'active' : 'notActive'}>
+                <a href="{photosBlogPath}/{batch.date.replace(/\s/g, '')}" onclick={() => {userState.pickedDate = batch.date; userState.archiveToggle=false}}>{batch.date}</a> 
             </li>
         {/each}
     </ul>
@@ -22,20 +24,41 @@
     }
 
     ul {
-        max-height: 4em;
         overflow-y: scroll;
-        margin-right: 1em;
         scroll-snap-type: y mandatory;
-        padding-bottom: 3em;
-        padding-top: 3em;
-        }
+    }
 
     li {
         scroll-snap-align: center;
-        height: 1.8em;
-        text-align: right;
+        height: 40px;
+        text-align: center;
         text-justify: center;
         word-spacing: 0.4em;
+        transition: 250ms;
+    }
+
+    li:hover { 
+        transform: scale(1.2);
+    }
+
+    .active { 
+        color: black;
+        font-weight: 300;
+    }
+
+    .notActive {
+        color: rgb(141, 140, 140);
+        font-weight: 100;
+    }
+
+    .dateList { 
+        overflow-y: auto;
+        scrollbar-width: 0px;
+        font-size: 24px;
+    }
+
+    .dateList::-webkit-scrollbar{
+        display: none;
     }
 
 </style>

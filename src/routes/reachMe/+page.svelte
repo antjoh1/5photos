@@ -10,11 +10,15 @@
     <div class='photoDesc'> 
         <h1 class='introName'> Bleona S. </h1> 
         
-        {#each profileDesc as paragraph}
-            <p> {paragraph} </p>
-        {/each}
+        <div class='paragraphs'>
+            {#each profileDesc as paragraph}
+                <p> {paragraph} </p>
+            {/each}
+        </div>
 
-        <p class="email">myEmail@mail.com</p>
+        <p class='disclaimer'>Disclaimer: If you find yourself on a photo and you don't want it to be online - please reach out and I'll take it down.</p>
+
+        <p class='email'>myEmail@mail.com</p>
     </div>
 </div>
 
@@ -58,11 +62,21 @@
         padding-bottom: 3rem;
     }
 
+    .paragraphs:last-child { 
+        font-style: italic;
+    }
+
     .email {
         display: flex;
         padding-right: 40px;
         margin-top: 200px;
         justify-content: flex-end;
+    }
+    
+    .disclaimer { 
+        font-weight: 100;
+        font-style: italic;
+        font-size: 14px;
     }
 
     .introName { 

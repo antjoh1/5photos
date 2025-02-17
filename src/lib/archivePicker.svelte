@@ -61,4 +61,8 @@
         display: none;
     }
 
+    @media (max-width: 800px){
+        .dateList { font-size: 20px;}
+    }
+
 </style>

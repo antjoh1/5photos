@@ -1,5 +1,4 @@
 <script>
-	import { onMount } from 'svelte';
     import '../app.css';
     import { base } from '$app/paths';
 	import { userState } from '../routes/state.svelte';
@@ -12,7 +11,7 @@
     <ul>
         {#each data.batches as batch}
             <li>
-                <a href="{photosBlogPath}{batch.date}" onclick={() => userState.pickedDate = batch.date}>{batch.date}</a> 
+                <a href="{photosBlogPath}{batch.date.replace(/\s/g, '')}" onclick={() => userState.pickedDate = batch.date}>{batch.date}</a> 
             </li>
         {/each}
     </ul>

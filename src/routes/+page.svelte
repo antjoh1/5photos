@@ -1,35 +1,20 @@
 <script>
     import '../app.css';
-    import PhotoPreview from "$lib/photoPreview.svelte";
-	import { onMount } from "svelte";  
     import { getContext } from "svelte";
-    import { userState } from './state.svelte';
+    // import { userState } from './state.svelte';
 
-    let { data } = $props()
-    let archiveToggle = getContext('archiveToggle')
+    // let { data } = $props()
+    // let archiveToggle = getContext('archiveToggle')
 
-    let blurBg = $state(false); 
-    let introMsgFlag = $state(false);
-
-    onMount( () => {
-        if (userState.firstLoadCounter < 1){
-            blurBg = true
-            introMsgFlag = true
-        }
-    })
-
-    $inspect(data)
 
 </script>
 
 <div class='photoCarousel' >
     <!-- <PhotoPreview importPhotos={photosDict} photoDescs={descs}></PhotoPreview> -->
-     HELLO WORLD!
+     Oh oh! You shouldn't be here! There's nothing on this page
 </div>
 
 <style>
-   
-
     .photoCarousel {
         margin-top: 2rem;
         max-height: 80vh;

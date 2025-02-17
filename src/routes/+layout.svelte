@@ -1,15 +1,15 @@
 <script>
 	import '../app.css';
+	import { onMount } from 'svelte';
 	import { base } from '$app/paths';
+	import { page } from '$app/state';
 	import { slide, fade, fly} from 'svelte/transition';
     import { quartIn, quartOut } from "svelte/easing";  
-	import { page } from '$app/state';
 	import { userState } from './state.svelte';
 	import ArchivePicker from '$lib/archivePicker.svelte';
-	import { onMount } from 'svelte';
 
 	let { data, children } = $props(); 
-	const reachMeLink = base+'reachMe'
+	const reachMeLink = base+'/reachMe'
 
     let blurBg = $state(false); 
     let introMsgFlag = $state(false);

@@ -8,7 +8,9 @@
     <img src={profilePic} alt='Blonqe' class='singleImage' />
 
     <div class='photoDesc'> 
-        <h1 class='introName'> B. Syla </h1> 
+       
+        <h1 class='introName'> Bleona S. </h1> 
+        
         {#each profileDesc as paragraph}
             <p> {paragraph} </p>
         {/each}

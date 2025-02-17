@@ -15,7 +15,7 @@ export function entries() {
     let entriesList = []
 
     for (let entry of photoBatches){
-        entriesList.push({ slug: entry.date.replace(/\s/g, '') })
+        entriesList.push({ slug: '/'+entry.date.replace(/\s/g, '') })
     }
 
     return entriesList;

@@ -92,7 +92,7 @@
     @media (max-width: 800px){
     .mainContentBox { justify-content: center; max-width: 100vw; padding: 0px;}
     img {max-width: 98vw;}
-}
+    }
 
 
 </style>

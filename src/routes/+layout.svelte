@@ -79,14 +79,12 @@
             <h2> If you like any of the photos and you'd like to have them in higher quality
                 please reach out. I'd be happy to send them to you.
             </h2>
-    </div>
+    	</div>
         <p class='disclaimerText'> Disclaimer: If you find yourself on a photo and you don't want it to be online - please reach out and I'll take it down. </p>
 
-        <div class='firstLoadButton'>
-            <button class='firstLoadButton' onclick={()=>{blurBg=false; introMsgFlag=false, userState.firstLoadCounter = 1}}> 
-                Welcome!
-             </button>
-        </div>
+		<button class='firstLoadButton' onclick={()=>{blurBg=false; introMsgFlag=false; userState.firstLoadCounter=1}}> 
+			Welcome!
+		</button>
     </div>
 {/if} 
 
@@ -165,17 +163,14 @@
         font-size: 1em;
         padding:  1% 5% 1% 5%;
         border-radius: 5%;
-        transition: color 250ms ease-in-out;
+        transition: color 500ms ease-in-out;
     }
-
+/* 
     .firstLoadButton:hover { 
         background-color: #ee79b7;
         transition: color 2500ms ease-in-out;
-    }
-    .firstLoadButton:active { 
-        transition: color 250ms ease-in-out;
-        background-color:  #ed6db1;
-    }
+    } */
+
 
 	.archive { 
 		justify-content: center;
@@ -191,6 +186,13 @@
 		header {padding: 20px 10px 20px 10px}
 		.titleLogo {font-size: 15px; font-weight: 200;}
 		.archive {width: 50vw;}
+	}
+
+	@media (hover: hover) {
+    .firstLoadButton:hover {
+        background-color: #ee54a6;
+		transition: color 2500ms ease-in-out;
+    	}
 	}
 
 

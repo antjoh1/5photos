@@ -37,9 +37,9 @@
         transition: 250ms;
     }
 
-    li:hover { 
+    /* li:hover { 
         transform: scale(1.2);
-    }
+    } */
 
     .active { 
         color: black;
@@ -63,6 +63,12 @@
 
     @media (max-width: 800px){
         .dateList { font-size: 20px;}
+    }
+
+    @media (hover: hover) {
+    li:hover {
+        transform: scale(1.15);
+        }
     }
 
 </style>

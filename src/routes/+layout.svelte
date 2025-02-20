@@ -28,7 +28,7 @@
 <div class='wholePageContainer'>
 	<div>
 		<header> 
-			<div class='titleLogo'> <a href={base+'/'}>5 PHOTOS </a></div>
+			<div class='titleLogo'> <a href={base+'/'}>5 SCENES </a></div>
 			<div class='textContainer interactive'>
 				<div>
 					<input type='checkbox' name='archive' id='archive' bind:checked={userState.archiveToggle}/>  

@@ -37,10 +37,6 @@
         transition: 250ms;
     }
 
-    /* li:hover { 
-        transform: scale(1.2);
-    } */
-
     .active { 
         color: black;
         font-weight: 300;

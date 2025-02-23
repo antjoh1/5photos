@@ -4,7 +4,7 @@
 	import { userState } from '../routes/state.svelte';
     let { data } = $props();
     
-    let photosBlogPath = base
+    // let photosBlogPath = base
 
     let isSelected = (/** @type {string} */ value) => {return value == userState.pickedDate}
     
@@ -13,7 +13,7 @@
     <ul class='dateList'>
         {#each data.batches as batch}
             <li class = {isSelected(batch.date) ? 'active' : 'notActive'}>
-                <a href="{photosBlogPath}/{batch.date.replace(/\s/g, '')}" onclick={() => {userState.pickedDate = batch.date; userState.archiveToggle=false}}>{batch.date}</a> 
+                <a href="{base}/{batch.date.replace(/\s/g, '')}" onclick={() => {userState.pickedDate = batch.date; userState.archiveToggle=false}}>{batch.date}</a> 
             </li>
         {/each}
     </ul>

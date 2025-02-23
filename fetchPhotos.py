@@ -75,6 +75,3 @@ with open(PHOTODATA_FILE, 'w') as f:
     json.dump(photoData, f)
 
     print("Edited Pathing file")
-
-
-

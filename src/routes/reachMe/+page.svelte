@@ -50,7 +50,7 @@
         margin: 0rem 1rem 3rem 1rem;
         padding: 10px;
         background-color: white;
-        border-radius: 5px;
+        /* border-radius: 5px; */
         transition: cubic-bezier(0.47, 0, 0.745, 0.715);
     }
 

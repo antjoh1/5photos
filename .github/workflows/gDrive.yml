@@ -55,7 +55,7 @@ jobs:
                   if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
             - name: Run gDrive Script
-              run: python3 .github/scripts/fetchPhotos.py
+              run: python3 ../fetchPhotos.py
 
             - name: check for changes
               id: git-check

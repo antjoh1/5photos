@@ -22,10 +22,12 @@ concurrency:
 
 env: 
     BRANCH_NAME: keys_update--${{ github.run_id }}-${{ github.run_attempt }}
-    GDRIVE_API_KEY: ${{ secrets.GDRIVE_API_KEY }}
 
 jobs:
     Run-Python-Script: 
+        environment:
+                name: github-pages
+
         outputs:
             changes: ${{ steps.git-check.outputs.changes }}
 

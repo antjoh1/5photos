@@ -22,6 +22,8 @@ root_response = requests.get(url).json()
 
 folders = [] 
 
+print(root_response)
+
 
 ## ----- Create folders and download files into Static/ ----- ## 
 for folder in root_response['files']: 

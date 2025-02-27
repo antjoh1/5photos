@@ -1,10 +1,5 @@
 <script>
     import '../app.css';
-    // import { userState } from './state.svelte';
-
-    // let { data } = $props()
-    // let archiveToggle = getContext('archiveToggle')
-
 
 </script>
 

@@ -4,14 +4,17 @@
     import { userState } from "../routes/state.svelte";
     import { base } from "$app/paths";
 
+    // Input variables defined during instantiating component in +page.svelte
     let { importPhotos, photoDescs } = $props();
-
-    let activePhoto = $state(base+importPhotos[0].img);
-    let activePhotoText = $state(photoDescs[0])
-
 
     let index = $state(0);
     let animate = $state(false);
+
+    /** @type {string} */
+    let activePhotoPath = $derived(base+importPhotos[index].img);
+    let activePhotoId = $derived(importPhotos[index].id)
+    let activePhotoText = $derived(photoDescs.find((/** @type {{id:string, text:string, location:string}} */ desc) => desc.id === activePhotoId))
+
 
     function switchPhoto() { 
         animate = true
@@ -21,26 +24,25 @@
         console.log ( index )
 
         setTimeout(() => { 
-            activePhoto = base + importPhotos[index].img
-            activePhotoText = photoDescs[index]
             animate = false; // Start fade in
         }, userState.animationBaseLength*0.5); // This should match `out:fade` duration 
-        
     }
+
+    $inspect(activePhotoPath, activePhotoId, activePhotoText)
 
 </script>
 
 <div class='mainContentBox'  >
     {#if !animate}
         <div class="block" out:fly={{x: -200, duration: userState.animationBaseLength*0.5, easing:quartOut}} in:fly={{x:-200, duration:userState.animationBaseLength*0.5, easing:quartIn}}>
-                    <img src={activePhoto} alt='mainPhoto'/>
+                    <img src={activePhotoPath} alt='mainPhoto'/>
         </div>
     {/if}
 
     <div class='picExtra'>
         <div class='photoDesc'>
             {#if !animate}
-                <div in:fade={{duration: userState.animationBaseLength, delay: userState.animationBaseLength}} > 
+                <div in:fade={{duration: userState.animationBaseLength, delay: userState.animationBaseLength*0.5}} > 
                     <h3> {activePhotoText.text} </h3>
                     <h4> {activePhotoText.location} </h4>
                 </div>

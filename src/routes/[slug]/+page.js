@@ -1,5 +1,7 @@
 import { error } from '@sveltejs/kit'
-import { photoBatches } from '$lib/assets/photoData.js'
+import photoBatches from '$lib/assets/photoData.json'
+
+
 export function load ( { params }) {
     let chosenBatch = photoBatches.find((batch) => batch.date.replace(/\s/g, '') === params.slug);
 

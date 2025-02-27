@@ -1,4 +1,4 @@
-import { photoBatches } from "$lib/assets/photoData"
+import photoBatches from "$lib/assets/photoData.json"
 
 export const userState = $state({
     archiveToggle: false,

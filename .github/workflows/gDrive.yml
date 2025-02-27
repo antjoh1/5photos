@@ -86,7 +86,10 @@ jobs:
 
             - name: push changes
               if: steps.git-check.outputs.changes == 'true'
-              run: git push 
+              uses: ad-m/github-push-action@master
+              with: 
+                github_token: ${{ secrets.PAT }}
+            #   run: git push 
 #
             # - name: generate pull request
             #   env: 

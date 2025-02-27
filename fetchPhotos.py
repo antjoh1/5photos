@@ -50,7 +50,6 @@ for folder in root_response['files']:
 
 photoData = [] ## initialize empty list for .json file
 
-
 TARGET_PATH_BASE_CONTENT = os.listdir(TARGET_PATH_BASE) ## re-do with new folders in place
 
 for folder in TARGET_PATH_BASE_CONTENT:

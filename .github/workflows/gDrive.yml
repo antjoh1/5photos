@@ -72,13 +72,7 @@ jobs:
 
             - name: continue workflow
               if: steps.git-check.outputs.changes == 'true'
-              run: echo "Changes detected, continuing workflow"
-
-            - name: cut a branch
-              if: steps.git-check.outputs.changes == 'true'
-              run: |
-                git checkout -b ${{ env.BRANCH_NAME }}
-                git push -u origin ${{ env.BRANCH_NAME }}
+              run: echo "New photos detected, continuing workflow"
 
             - name: stage changed files
               if: steps.git-check.outputs.changes == 'true'
@@ -86,7 +80,7 @@ jobs:
 
             - name: commit changed files
               if: steps.git-check.outputs.changes == 'true'
-              run: git commit -m "replacing keys"
+              run: git commit -m "adding photos"
 
             - name: fetch from branch
               if: steps.git-check.outputs.changes == 'true'
@@ -95,10 +89,10 @@ jobs:
             - name: push code to branch
               if: steps.git-check.outputs.changes == 'true'
               run: git push origin ${{ env.BRANCH_NAME }}
-
-            - name: generate pull request
-              env: 
-                GH_TOKEN: ${{ github.token }}
-              if: steps.git-check.outputs.changes == 'true'
-              run: gh pr create -B main -H ${{ env.BRANCH_NAME }} --title "${{ env.BRANCH_NAME }}" --body "Created by GHA Workflow"
+#
+            # - name: generate pull request
+            #   env: 
+            #     GH_TOKEN: ${{ github.token }}
+            #   if: steps.git-check.outputs.changes == 'true'
+            #   run: gh pr create -B main -H ${{ env.BRANCH_NAME }} --title "${{ env.BRANCH_NAME }}" --body "Created by GHA Workflow"
             

@@ -37,6 +37,7 @@ jobs:
             - name: Check out repo to runner
               uses: actions/checkout@v4
               with: 
+                persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
                 fetch-depth: 0
                 
             - name: Configure Git
@@ -83,7 +84,7 @@ jobs:
               if: steps.git-check.outputs.changes == 'true'
               run: git commit -m "adding photos"
 
-            - name: push code to branch
+            - name: push changes
               if: steps.git-check.outputs.changes == 'true'
               run: git push 
 #

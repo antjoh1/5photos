@@ -57,6 +57,8 @@ jobs:
                   if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
             - name: Run gDrive Script
+              env: 
+                GDRIVE_API_KEY: ${{ secrets.GDRIVE_API_KEY }}
               run: python3 "fetchPhotos.py"
 
             - name: check for changes

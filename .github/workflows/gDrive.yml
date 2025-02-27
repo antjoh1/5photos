@@ -45,6 +45,7 @@ jobs:
                 git config user.email github-actions@github.com
                 git checkout main
                 git fetch origin
+                git pull 
             
             - name: Setup Python
               uses: actions/setup-python@v5

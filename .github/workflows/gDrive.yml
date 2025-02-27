@@ -26,7 +26,6 @@ env:
 
 jobs:
     Run-Python-Script: 
-        
         outputs:
             changes: ${{ steps.git-check.outputs.changes }}
 
@@ -56,7 +55,7 @@ jobs:
                   if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
             - name: Run gDrive Script
-              run: .github/fetchPhotos.py
+              run: .github/scripts/fetchPhotos.py
 
             - name: check for changes
               id: git-check
@@ -66,26 +65,33 @@ jobs:
                   exit 0
                 fi
                 echo "changes=true" >> $GITHUB_OUTPUT
+
             - name: continue workflow
               if: steps.git-check.outputs.changes == 'true'
               run: echo "Changes detected, continuing workflow"
+
             - name: cut a branch
               if: steps.git-check.outputs.changes == 'true'
               run: |
                 git checkout -b ${{ env.BRANCH_NAME }}
                 git push -u origin ${{ env.BRANCH_NAME }}
+
             - name: stage changed files
               if: steps.git-check.outputs.changes == 'true'
               run: git add .
+
             - name: commit changed files
               if: steps.git-check.outputs.changes == 'true'
               run: git commit -m "replacing keys"
+
             - name: fetch from branch
               if: steps.git-check.outputs.changes == 'true'
               run: git fetch origin ${{ env.BRANCH_NAME }}
+
             - name: push code to branch
               if: steps.git-check.outputs.changes == 'true'
               run: git push origin ${{ env.BRANCH_NAME }}
+
             - name: generate pull request
               if: steps.git-check.outputs.changes == 'true'
               run: gh pr create -B main -H ${{ env.BRANCH_NAME }} --title "${{ env.BRANCH_NAME }}" --body "Created by GHA Workflow"

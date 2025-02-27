@@ -22,7 +22,7 @@ root_response = requests.get(url).json()
 
 folders = [] 
 
-print(root_response)
+print(root_response, API_KEY)
 
 
 ## ----- Create folders and download files into Static/ ----- ## 

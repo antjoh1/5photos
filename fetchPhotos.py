@@ -58,7 +58,7 @@ for folder in TARGET_PATH_BASE_CONTENT:
         folder_contents = os.listdir(f"{TARGET_PATH_BASE}{folder}")
 
         for file in folder_contents:
-            if ".jpeg" in file:
+            if ".jpeg" or ".jpg" in file:
                 folder_dict['photos'].append({"id":f"{file.split('.')[0]}", "path": f"/{folder}/{file}"})
 
             if ".txt" in file:

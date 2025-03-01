@@ -74,7 +74,7 @@
         <div class='disclaimerMsg'> 
             <h1 class='firstLoadTitle'>Hi!</h1>
             <h2>
-                This is a little page where I post 5 photos every week. 
+                This is a little page where I post 5 photos every once in a while. 
             </h2>
             <h2> If you like any of the photos and you'd like to have them in higher quality
                 please reach out. I'd be happy to send them to you.
@@ -165,12 +165,6 @@
         border-radius: 5%;
         transition: color 500ms ease-in-out;
     }
-/* 
-    .firstLoadButton:hover { 
-        background-color: #ee79b7;
-        transition: color 2500ms ease-in-out;
-    } */
-
 
 	.archive { 
 		justify-content: center;

@@ -4,8 +4,6 @@
 	import { userState } from '../routes/state.svelte';
     let { data } = $props();
     
-    // let photosBlogPath = base
-
     let isSelected = (/** @type {string} */ value) => {return value == userState.pickedDate}
     
 </script>

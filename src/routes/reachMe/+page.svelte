@@ -1,6 +1,7 @@
 <script> 
     import profilePic from '$lib/assets/reachMe.jpeg';
     import profileDesc from '$lib/assets/blonqeIntro.json';
+    import { base } from '$app/paths';
 
 </script>
 
@@ -8,8 +9,13 @@
     <img src={profilePic} alt='Blonqe' class='singleImage' />
 
     <div class='photoDesc'> 
-        <h1 class='introName'> Bleona S. </h1> 
-        
+        <div class='nameAndIcons'>
+            <h1 class='introName'> Bleona S. </h1> 
+            <a class='instaLink' href='https://www.instagram.com/bleonassss/'>
+                <img class='instaLogo' src='{base}/instagramLogo.svg' alt='instagramLink' />
+            </a>
+        </div>
+
         <div class='paragraphs'>
             {#each profileDesc as paragraph}
                 <p> {paragraph} </p>
@@ -18,7 +24,7 @@
 
         <p class='disclaimer'>Disclaimer: If you find yourself on a photo and you don't want it to be online - please reach out and I'll take it down.</p>
 
-        <p class='email'>myEmail@mail.com</p>
+        <p class='email'>bleonasylaaa@gmail.com</p>
     </div>
 </div>
 
@@ -33,24 +39,51 @@
         text-wrap: wrap;
     }
 
+    .nameAndIcons { 
+        display: flex;
+        flex-direction: row;
+        align-items: start;
+        justify-content: space-between;
+        height: 50px;
+    }
+    
+    .instaLogo { 
+        height: 20px;
+    }
+
+    .instaLink {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 35px;
+        width: 35px;
+        background-color: var(--pink-accent);
+        border-radius: 100%;
+        transition: 300ms;
+    }
+
+    .instaLink:hover { 
+        background-color: white;
+        transform: scale(1.1);
+    }
+
     .mainContentBox {
-        padding: 40px 40px 40px 40px;
-        width: 90vw;
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
+        padding: 40px 40px 40px 40px;
+        width: 90vw;
         column-gap: 3rem;
-        align-items: center;
+        align-items: start;
+        /* max-height: 40vw; */
     }
 
     .singleImage { 
         max-width: 50vw;
         min-height: 40vw;
         max-height: 40vw;
-        margin: 0rem 1rem 3rem 1rem;
         padding: 10px;
         background-color: white;
-        /* border-radius: 5px; */
         transition: cubic-bezier(0.47, 0, 0.745, 0.715);
     }
 
@@ -69,8 +102,9 @@
     .email {
         display: flex;
         padding-right: 40px;
-        margin-top: 200px;
+        margin-top: 50px;
         justify-content: flex-end;
+        align-self: flex-end;
     }
     
     .disclaimer { 
@@ -80,14 +114,15 @@
     }
 
     .introName { 
-        font-size: 18px;
-        font-weight: 400;
+        font-size: 28px;
+        font-weight: 300;
     }
 
     @media (max-width: 800px){
         .mainContentBox { flex-direction: column; row-gap: 10px;  width: 85vw; align-items: center; padding-left: 20px;}
         .photoDesc { padding-left: 20px; font-size: 16px; }
         .singleImage { max-width: 85vw; max-height: 60vh; align-self: flex-start;}
+        .nameAndIcons { margin-top: 50px;}
     }
 
 </style>

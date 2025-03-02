@@ -50,7 +50,9 @@
 
 
 		{#if userState.archiveToggle}
-			<div class='blurBgDiv' in:fade={{duration: userState.introDuration/4}} out:fade={{duration: userState.introDuration/4}}></div>
+			<button onclick={() => userState.archiveToggle=false} style="color:var(--background-color-3);"> BUTTON
+				<div class='blurBgDiv' in:fade={{duration: userState.introDuration/4}} out:fade={{duration: userState.introDuration/4}}></div>
+			</button>
 			<div class='firstLoadMessage archive'> 
 				<ArchivePicker {data}></ArchivePicker> 
 			</div>
@@ -68,6 +70,7 @@
 {#if blurBg}
     <div class='blurBgDiv' in:fade={{delay:userState.introDuration/3, duration: userState.introDuration}} out:fade={{delay: userState.introDuration/3, duration: userState.introDuration}}></div>
 {/if}
+
 {#if introMsgFlag}
     <div class='firstLoadMessage' in:fly={{delay: userState.introDuration*1.5, x:-1000, duration: userState.introDuration, easing:quartOut}} out:fly={{x:-800, duration: userState.introDuration, easing:quartIn}}>
         

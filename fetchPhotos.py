@@ -13,7 +13,7 @@ if not API_KEY:
 ROOT_FOLDER_LINK = "10Q9pxxSB91b4xN9Uqb0mGzGeetsWIPbN"
 TARGET_PATH_BASE = 'static/'
 TARGET_PATH_BASE_CONTENT = os.listdir(TARGET_PATH_BASE)
-EXCLUDE_LIST = ['.nojekyll', 'favicon.png', 'favicon.svg'] # list of variables to 
+EXCLUDE_LIST = ['.nojekyll', 'favicon.png', 'favicon.svg', 'instagramLogo.svg'] # list of variables to 
 PHOTODATA_FILE = 'src/lib/assets/photoData.json'
 
 # Get the list of files in the folder

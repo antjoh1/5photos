@@ -101,10 +101,12 @@
 
     .email {
         display: flex;
-        padding-right: 40px;
+        padding-right: 0px;
         margin-top: 50px;
         justify-content: flex-end;
         align-self: flex-end;
+        font-weight: 100;
+        font-size: 14px;
     }
     
     .disclaimer { 
@@ -120,7 +122,7 @@
 
     @media (max-width: 800px){
         .mainContentBox {margin:auto; flex-direction: column; row-gap: 10px;  width: 90vw; align-items: center; padding-left: 20px; padding-right:20px;}
-        .photoDesc { padding-left: 10px; font-size: 16px; width: 90vw; }
+        .photoDesc { padding-left: 10px; font-size: 16px; width: 90vw; padding-left: 20px; padding-right: 20px;}
         .singleImage { max-width: 85vw; max-height: 60vh; margin:auto;}
         .nameAndIcons { margin-top: 50px;}
     }

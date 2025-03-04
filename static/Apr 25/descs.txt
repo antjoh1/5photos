@@ -1,7 +1,0 @@
-[
-    {"id": "photo1", "text": "Family", "location": "Prishtine"},
-    {"id": "photo2", "text": "Business", "location": "Prishtine"},
-    {"id": "photo3", "text": "Friends", "location": "Munich"},
-    {"id": "photo4", "text": "Movement", "location": "Munich"},
-    {"id": "photo5", "text": "Christmas", "location": "Zagreb"}
-]

@@ -1,7 +1,0 @@
-[
-    {"id": "photo1", "text": "Something", "location": "Sky"},
-    {"id": "photo2", "text": "Outfit", "location": "Universe"},
-    {"id": "photo3", "text": "Friends", "location": "Bottom"},
-    {"id": "photo4", "text": "New", "location": "Rock"},
-    {"id": "photo5", "text": "Toda", "location": "Thing"}
-]

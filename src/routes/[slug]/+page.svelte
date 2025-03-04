@@ -18,16 +18,14 @@
 
 </script> 
 
-<div class='photoCarousel' >
-    <PhotoPreview importPhotos={photosDict} photoDescs={descs}></PhotoPreview>
-</div>
+<PhotoPreview importPhotos={photosDict} photoDescs={descs}></PhotoPreview>
 
 <style>
-   
 
-    .photoCarousel {
+    /* .photoCarousel {
+        display: block;
         margin-top: 2rem;
         max-height: 80vh;
         min-height: 50vh;
-    }
+    } */
 </style>

@@ -43,7 +43,7 @@
 		</header>
 
 		{#key page.data}
-			<div in:slide={{axis: 'y', duration: 850, delay: 900}} out:slide={{axis: 'y', duration: 850}}>
+			<div class='pageContentAnimated' in:slide={{axis: 'y', duration: userState.animationBaseLength, delay: userState.animationBaseLength*1.1}} out:slide={{axis: 'y', duration: userState.animationBaseLength}}>
 				{@render children()}
 			</div>
 		{/key}
@@ -108,6 +108,7 @@
 		row-gap: 50px;
 		justify-content: space-between;
 	}
+
 	header { 
 		display: flex; 
 		justify-content: space-between;
@@ -115,6 +116,7 @@
 		padding: 20px 40px 20px 40px;
 		background-color: var(--header-color);
 		color: var(--text-color-header);
+		margin-bottom: 2rem;
 	}
 
 	footer {
@@ -188,7 +190,7 @@
 	@media (hover: hover) {
     .firstLoadButton:hover {
         background-color: #ee54a6;
-		transition: color 2500ms ease-in-out;
+		transition: color 500ms ease-in-out;
     	}
 	}
 

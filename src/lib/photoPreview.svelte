@@ -72,7 +72,8 @@
 
     .picExtra { 
         width: inherit;
-        padding-right: 40px;
+        padding-right: 20px;
+        padding-left: 20px;
         display: flex;
         justify-content: space-between;
     }
@@ -91,8 +92,9 @@
     }
 
     @media (max-width: 800px){
-    .mainContentBox { justify-content: center; max-width: 100vw; padding: 0px;}
-    img {max-width: 98vw;}
+    .mainContentBox { justify-content: flex-start; max-width: 90vw; padding: 0px; height: 50vw; flex-direction: column; flex-wrap:nowrap; padding-left: 10px; padding-right: 10px;}
+    .photoDesc { align-self: start;  }
+    img {max-width: 95vw;}
     }
 
 

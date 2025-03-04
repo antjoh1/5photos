@@ -182,7 +182,8 @@
 	}
 
 	@media (max-width: 800px) {
-		header {padding: 20px 10px 20px 10px}
+		header {padding: 20px 20px 20px 20px}
+		footer {padding: 20px 20px 20px 12px}
 		.titleLogo {font-size: 15px; font-weight: 200;}
 		.archive {width: 50vw;}
 	}

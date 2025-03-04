@@ -71,11 +71,11 @@
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
-        padding: 40px 40px 40px 40px;
+        padding-left: 40px;
+        padding-right: 40px;
         width: 90vw;
         column-gap: 3rem;
         align-items: start;
-        /* max-height: 40vw; */
     }
 
     .singleImage { 
@@ -119,9 +119,9 @@
     }
 
     @media (max-width: 800px){
-        .mainContentBox { flex-direction: column; row-gap: 10px;  width: 85vw; align-items: center; padding-left: 20px;}
-        .photoDesc { padding-left: 20px; font-size: 16px; }
-        .singleImage { max-width: 85vw; max-height: 60vh; align-self: flex-start;}
+        .mainContentBox {margin:auto; flex-direction: column; row-gap: 10px;  width: 90vw; align-items: center; padding-left: 20px; padding-right:20px;}
+        .photoDesc { padding-left: 10px; font-size: 16px; width: 90vw; }
+        .singleImage { max-width: 85vw; max-height: 60vh; margin:auto;}
         .nameAndIcons { margin-top: 50px;}
     }
 

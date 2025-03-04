@@ -17,15 +17,15 @@
 
 
     function switchPhoto() { 
-        animate = true
+        
         if (index < (importPhotos.length-1)) {
             index += 1
         } else { index = 0}
         console.log ( index )
-
+        animate = true
         setTimeout(() => { 
             animate = false; // Start fade in
-        }, userState.animationBaseLength*0.5); // This should match `out:fade` duration 
+        }, userState.animationBaseLength*0.8); // This should match `out:fade` duration 
     }
 
     $inspect(activePhotoPath, activePhotoId, activePhotoText)
@@ -34,41 +34,40 @@
 
 <div class='mainContentBox'  >
     {#if !animate}
-        <div class="block" out:fly={{x: -200, duration: userState.animationBaseLength*0.5, easing:quartOut}} in:fly={{x:-200, duration:userState.animationBaseLength*0.5, easing:quartIn}}>
-                    <img src={activePhotoPath} alt='mainPhoto'/>
+        <div class="block" out:fly={{x: -200, duration: userState.animationBaseLength*0.8, easing:quartOut}} in:fly={{x:-200, duration:userState.animationBaseLength*0.8, easing:quartIn}}>
+            <img src={activePhotoPath} alt='mainPhoto'/>
         </div>
-    {/if}
+    
 
-    <div class='picExtra'>
-        <div class='photoDesc'>
-            {#if !animate}
-                <div in:fade={{duration: userState.animationBaseLength, delay: userState.animationBaseLength*0.5}} > 
+        <div class='picExtra'>
+            <div class='photoDesc'>
+                <div out:fade={{duration: userState.animationBaseLength*0.5}} in:fade={{duration: userState.animationBaseLength*0.8, delay: userState.animationBaseLength*0.8}}> 
                     <h3> {activePhotoText.text} </h3>
                     <h4> {activePhotoText.location} </h4>
                 </div>
-            {/if}
-        </div>
+            </div>
+    
 
-        <button class='nextPhotoButton' onclick={switchPhoto}> Next  </button>
-    </div>
+            <button class='nextPhotoButton' onclick={switchPhoto}> Next  </button>
+        </div>
+    {/if}
 </div>
 
 
 <style> 
     .block {
         display: block;
-        transition: 350ms;
     }
 
     .mainContentBox {
-        padding-left: 40px;
-        padding-right: 40px;
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         row-gap: 15px;
         column-gap: 20px;
-        flex-wrap: wrap;
-        
+        padding-left: 40px;
+        padding-right: 40px;
+        height: 70vh;
     }
 
     .picExtra { 

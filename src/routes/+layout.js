@@ -10,7 +10,6 @@ export async function load ({ url }) {
         batches: photoBatches.map((batch) => ({
             date: batch.date, 
             photos: batch.photos,
-            descs: batch.descs
         }))
     }
 }

@@ -1,7 +1,0 @@
-[
-    {"id": "photo1", "text": "Morso Museo", "location": "Munich"},
-    {"id": "photo2", "text": "Morso Museo", "location": "Munich"},
-    {"id": "photo3", "text": "Morso Museo", "location": "Munich"},
-    {"id": "photo4", "text": "Morso Museo", "location": "Munich"},
-    {"id": "photo5", "text": "Morso Museo", "location": "Munich"}
-]

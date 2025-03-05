@@ -5,30 +5,30 @@
     import { base } from "$app/paths";
 
     // Input variables defined during instantiating component in +page.svelte
-    let { importPhotos, photoDescs } = $props();
+    let { chosenBatch } = $props();
 
-    let index = $state(0);
+    let i = $state(0);
     let animate = $state(false);
 
-    /** @type {string} */
-    let activePhotoPath = $derived(base+importPhotos[index].img);
-    let activePhotoId = $derived(importPhotos[index].id)
-    let activePhotoText = $derived(photoDescs.find((/** @type {{id:string, text:string, location:string}} */ desc) => desc.id === activePhotoId))
+    let photoOrder = ['photo1', 'photo2', 'photo3', 'photo4', 'photo5']
 
+    /** @type {string} */
+    let activePhotoPath = $derived(base+chosenBatch.photos[photoOrder[i]].path);
+    let activePhotoText = $derived(chosenBatch.photos[photoOrder[i]].text)
+    let activePhotoLocation = $derived(chosenBatch.photos[photoOrder[i]].location)
 
     function switchPhoto() { 
-        
-        if (index < (importPhotos.length-1)) {
-            index += 1
-        } else { index = 0}
-        console.log ( index )
+        if (i < (photoOrder.length-1)) {
+            i += 1
+        } else { i = 0}
+        console.log ( i )
         animate = true
         setTimeout(() => { 
             animate = false; // Start fade in
         }, userState.animationBaseLength*0.8); // This should match `out:fade` duration 
     }
 
-    $inspect(activePhotoPath, activePhotoId, activePhotoText)
+    $inspect(activePhotoPath, activePhotoText)
 
 </script>
 
@@ -42,8 +42,8 @@
         <div class='picExtra'>
             <div class='photoDesc'>
                 <div out:fade={{duration: userState.animationBaseLength*0.5}} in:fade={{duration: userState.animationBaseLength*0.8, delay: userState.animationBaseLength*0.8}}> 
-                    <h3> {activePhotoText.text} </h3>
-                    <h4> {activePhotoText.location} </h4>
+                    <h3> {activePhotoText} </h3>
+                    <h4> {activePhotoLocation} </h4>
                 </div>
             </div>
     

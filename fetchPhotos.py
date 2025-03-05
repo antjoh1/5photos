@@ -46,7 +46,7 @@ for folder in root_response['files']:
 
         print(f"Downloaded {file['name']}")
 
-## ----- Create photoData.js ----- ## 
+## ----- Create photoData.json ----- ## 
 
 photoData = [] ## initialize empty list for .json file
 
@@ -54,18 +54,17 @@ TARGET_PATH_BASE_CONTENT = os.listdir(TARGET_PATH_BASE) ## re-do with new folder
 
 for folder in TARGET_PATH_BASE_CONTENT:
     if folder not in EXCLUDE_LIST:
-        folder_dict = {'date': f"{folder}" , 'photos': [], 'descs': []} ## structure of folder dictionary that's pushed into photoData
+        folder_dict = {'date': f"{folder}" , 'photos': {}} ## structure of folder dictionary that's pushed into photoData
         folder_contents = os.listdir(f"{TARGET_PATH_BASE}{folder}")
+
+        # read descs.txt file in folder 
+        with open(f"{TARGET_PATH_BASE}{folder}/descs.txt") as f:
+            descs_data = json.load(f)
 
         for file in folder_contents:
             if ".txt" not in file:
-                folder_dict['photos'].append({"id":f"{file.split('.')[0]}", "path": f"/{folder}/{file}"})
-
-            else:
-                with open(f"{TARGET_PATH_BASE}{folder}/{file}") as f: 
-                    descs_data = json.load(f) 
-                
-                folder_dict['descs'] = descs_data
+                photoKey = f"{file.split('.')[0]}"
+                folder_dict['photos'][f"{file.split('.')[0]}"] = { "path": f"/{folder}/{file}", "text": descs_data[photoKey]['text'], "location": descs_data[photoKey]['location'] }
 
         photoData.append(folder_dict)
 

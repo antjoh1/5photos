@@ -70,9 +70,10 @@
     .mainContentBox {
         display: flex;
         flex-direction: row;
-        justify-content: flex-start;
+        /* justify-content: flex-start; */
         padding-left: 40px;
         padding-right: 40px;
+        /* height: 80vh; */
         width: 90vw;
         column-gap: 3rem;
         align-items: start;
@@ -88,7 +89,7 @@
     }
 
     .photoDesc {
-        max-width: 1000px;
+        /* max-width: 1000px; */
         display: flex;
         flex-direction: column;
         row-gap: 1rem;
@@ -124,10 +125,10 @@
         .mainContentBox {margin:auto; 
             flex-direction: column; 
             row-gap: 10px;  
-            width: 90vw; 
-            align-items: center;
+            /* width: 90vw;  */
+            /* align-items: center; */
         }
-        .photoDesc { padding-left: 10px; font-size: 16px; width: 90vw;}
+        .photoDesc { max-width: 80vw; font-size: 16px; width: 90vw;}
         .singleImage { max-width: 85vw; 
             max-height: 60vh; 
             margin:auto; 

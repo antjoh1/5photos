@@ -124,7 +124,7 @@ h4 {
     .nextPhotoButton {font-size: 8px;}
     .mainContentBox { justify-content: center; max-width: 95vw;}
     .textContainer { font-size: 15px; font-weight: 200; padding-right: 0.5%; padding-left: 0.5%;}
-    .firstLoadMessage {width: 60vw; height: 30vh; row-gap: 5px; padding: 20px; }
+    .firstLoadMessage {width: 70vw; height: 45vh; row-gap: 5px; padding: 20px; }
     .disclaimerText { font-size: 6px;}
     .circle {height: 6px; width: 6px;}
     }

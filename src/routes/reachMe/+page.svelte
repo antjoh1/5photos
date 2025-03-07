@@ -71,8 +71,8 @@
         display: flex;
         flex-direction: row;
         /* justify-content: flex-start; */
-        padding-left: 40px;
-        padding-right: 40px;
+        /* padding-left: 40px; */
+        /* padding-right: 40px; */
         /* height: 80vh; */
         width: 90vw;
         column-gap: 3rem;
@@ -83,13 +83,14 @@
         max-width: 50vw;
         min-height: 40vw;
         max-height: 40vw;
+        align-self: center;
         padding: 10px;
         background-color: white;
         transition: cubic-bezier(0.47, 0, 0.745, 0.715);
     }
 
     .photoDesc {
-        /* max-width: 1000px; */
+        max-width: 1000px;
         display: flex;
         flex-direction: column;
         row-gap: 1rem;
@@ -128,10 +129,10 @@
             /* width: 90vw;  */
             /* align-items: center; */
         }
-        .photoDesc { max-width: 80vw; font-size: 16px; width: 90vw;}
+        .photoDesc { width: inherit; font-size: 16px; width: 90vw;}
         .singleImage { max-width: 85vw; 
             max-height: 60vh; 
-            margin:auto; 
+            /* margin:auto;  */
             padding-left: 20; 
             padding-right: 20;
         }

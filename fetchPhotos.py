@@ -24,7 +24,6 @@ folders = []
 
 print(root_response)
 
-
 ## ----- Create folders and download files into Static/ ----- ## 
 for folder in root_response['files']: 
     if folder['name'] in TARGET_PATH_BASE_CONTENT:

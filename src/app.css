@@ -84,17 +84,16 @@ h4 {
 }
 
 .firstLoadMessage { 
+    position: fixed;
+    inset: 0;
     display: flex;
     flex-direction: column;
     row-gap: 20px;
-    width: 65vw;
-    height: 40vh;
-    max-width: 600px;
-    max-height: 800px;
+    width: 40vw;
+    height: 35vh; 
+    /* max-width: 600px; */
+    /* max-height: 800px; */
     margin: auto;
-    position: fixed;
-    inset: 0;
-    justify-content: space-between;
     background-color: rgb(211, 211, 211);
     border-radius: 10px;
     z-index: 30;
@@ -125,11 +124,10 @@ h4 {
     .nextPhotoButton {font-size: 8px;}
     .mainContentBox { justify-content: center; max-width: 95vw;}
     .textContainer { font-size: 15px; font-weight: 200; padding-right: 0.5%; padding-left: 0.5%;}
-    .firstLoadMessage {width: 80vw; max-height: 1000px; row-gap: 5px; padding: 20px; }
+    .firstLoadMessage {width: 60vw; height: 30vh; row-gap: 5px; padding: 20px; }
     .disclaimerText { font-size: 6px;}
     .circle {height: 6px; width: 6px;}
     }
-
 
 @media (hover: hover) {
     .nextPhotoButton:hover {
@@ -138,3 +136,4 @@ h4 {
         transform: scale(1.3);
         }
     }
+

@@ -83,7 +83,7 @@
                 please reach out. I'd be happy to send them to you.
             </h2>
     	</div>
-        <p class='disclaimerText'> Disclaimer: If you find yourself on a photo and you don't want it to be online - please reach out and I'll take it down. </p>
+        <!-- <p class='disclaimerText'> Disclaimer: If you find yourself on a photo and you don't want it to be online - please reach out and I'll take it down. </p> -->
 
 		<button class='firstLoadButton' onclick={()=>{blurBg=false; introMsgFlag=false; userState.firstLoadCounter=1}}> 
 			Welcome!
@@ -148,22 +148,23 @@
         z-index: 2;
         padding: 2rem;
     }
-
+/* 
     .disclaimerText { 
         font-size: 10px;
         font-style: italic;
-    }
+    } */
 
     .disclaimerMsg {
         display: flex;
         flex-direction: column;
-        row-gap: 10px;
+        row-gap: 15px;
     }
 
     .firstLoadButton { 
         background-color: var(--pink-accent);
         position: relative;
         align-self: center;
+		margin-top: 10px;
         font-weight: 100;
         font-size: 1em;
         padding:  1% 5% 1% 5%;
@@ -186,6 +187,7 @@
 		footer {padding: 20px 20px 20px 12px}
 		.titleLogo {font-size: 15px; font-weight: 200;}
 		.archive {width: 50vw;}
+		.firstLoadButton {margin-top: 15px;}
 	}
 
 	@media (hover: hover) {

@@ -67,15 +67,17 @@
         column-gap: 20px;
         padding-left: 40px;
         padding-right: 40px;
-        height: 70vh;
+        height: inherit;
     }
 
     .picExtra { 
         width: inherit;
+        height: inherit;
         padding-right: 20px;
         padding-left: 20px;
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
+        align-self: inherit;
     }
 
     img {
@@ -92,9 +94,17 @@
     }
 
     @media (max-width: 800px){
-    .mainContentBox { justify-content: flex-start; max-width: 90vw; padding: 0px; height: 50vw; flex-direction: column; flex-wrap:nowrap; padding-left: 10px; padding-right: 10px;}
-    .photoDesc { align-self: start;  }
-    img {max-width: 95vw;}
+        .mainContentBox { justify-content: flex-start; 
+            max-width: 90vw; 
+            padding: 0px; 
+            height: 40vw; 
+            flex-direction: column; 
+            flex-wrap:nowrap; 
+            padding-left: 10px; 
+            padding-right: 10px;
+        }
+        .photoDesc { align-self: start;  }
+        img {max-width: 95vw;}
     }
 
 

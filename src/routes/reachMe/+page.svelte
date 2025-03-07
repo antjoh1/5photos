@@ -121,9 +121,19 @@
     }
 
     @media (max-width: 800px){
-        .mainContentBox {margin:auto; flex-direction: column; row-gap: 10px;  width: 90vw; align-items: center; padding-left: 20px; padding-right:20px;}
-        .photoDesc { padding-left: 10px; font-size: 16px; width: 90vw; padding-left: 20px; padding-right: 20px;}
-        .singleImage { max-width: 85vw; max-height: 60vh; margin:auto;}
+        .mainContentBox {margin:auto; 
+            flex-direction: column; 
+            row-gap: 10px;  
+            width: 90vw; 
+            align-items: center;
+        }
+        .photoDesc { padding-left: 10px; font-size: 16px; width: 90vw;}
+        .singleImage { max-width: 85vw; 
+            max-height: 60vh; 
+            margin:auto; 
+            padding-left: 20; 
+            padding-right: 20;
+        }
         .nameAndIcons { margin-top: 50px;}
     }
 

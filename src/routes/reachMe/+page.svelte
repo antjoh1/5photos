@@ -71,7 +71,7 @@
         display: flex;
         flex-direction: row;
         /* justify-content: flex-start; */
-        /* padding-left: 40px; */
+        padding-left: 40px;
         /* padding-right: 40px; */
         /* height: 80vh; */
         width: 90vw;
@@ -123,16 +123,15 @@
     }
 
     @media (max-width: 800px){
-        .mainContentBox {margin:auto; 
+        .mainContentBox {
+            padding-left: 0px;
+            margin:auto; 
             flex-direction: column; 
             row-gap: 10px;  
-            /* width: 90vw;  */
-            /* align-items: center; */
         }
         .photoDesc { width: inherit; font-size: 16px; width: 90vw;}
         .singleImage { max-width: 85vw; 
             max-height: 60vh; 
-            /* margin:auto;  */
             padding-left: 20; 
             padding-right: 20;
         }

@@ -40,14 +40,7 @@
 </ul>
 
 <style>
-    .form-body{ 
-        width: 50%;
-        margin: auto;
-        display: flex;
-        flex-direction: column;
-        row-gap: 2rem;
-    }
-
+    
     .form-entry{
         display: flex;
         flex-direction: row;

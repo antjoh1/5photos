@@ -1,6 +1,8 @@
 from pydantic import BaseModel
 
-class Images(BaseModel):
+class Image(BaseModel):
     id: str
     path: str
     altText: str 
+    imgDescription: str 
+    imgLocation: str

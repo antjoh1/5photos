@@ -1,9 +1,10 @@
 from fastapi import FastAPI, File
 from fastapi.middleware.cors import CORSMiddleware
-from web import users
+from web import users, images
 
 app = FastAPI()
 app.include_router(users.router)
+app.include_router(images.router)
 
 
 app.add_middleware(

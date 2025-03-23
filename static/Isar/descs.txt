@@ -1,0 +1,7 @@
+{
+   "photo1": {"text": ".1", "location": "Isar"},
+   "photo2": {"text": ".2", "location": "Isar"},
+   "photo3": {"text": ".3", "location": "Isar"},
+   "photo4": {"text": ".4", "location": "Isar"},
+   "photo5": {"text": ".5", "location": "Isar"}
+}

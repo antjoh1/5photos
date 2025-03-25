@@ -9,3 +9,6 @@ def get_image_batch(id: str) -> list[Image]:
 
 def get_one_image(id: str, imgDescription: str) -> Image:
     return data.get_image(id, imgDescription)
+
+def upvote_image(batch: str, id: str) -> Image:
+    return data.upvote_image(batch, id)

@@ -1,33 +1,40 @@
 from models.images import Image
 
 _images = [
-    Image(id = "Morso", path = "{top}/static/", altText="a pretty photo", imgDescription=".1", imgLocation="Morso Museo"),
-    Image(id = "Morso", path = "{top}/static/", altText="a nice photo", imgDescription=".2", imgLocation="Morso Museo"),
-    Image(id = "Morso", path = "{top}/static/", altText="a good photo", imgDescription=".3", imgLocation="Morso Museo"),
-    Image(id = "Morso", path = "{top}/static/", altText="a great photo", imgDescription=".4", imgLocation="Morso Museo"),
-    Image(id = "Morso", path = "{top}/static/", altText="a thingie photo", imgDescription=".5", imgLocation="Morso Museo"),
-    Image(id = "Munich", path = "{top}/static/", altText="a pretty photo", imgDescription=".1", imgLocation="Munich"),
-    Image(id = "Munich", path = "{top}/static/", altText="a nice photo", imgDescription=".2", imgLocation="Munich"),
-    Image(id = "Munich", path = "{top}/static/", altText="a good photo", imgDescription=".3", imgLocation="Munich"),
-    Image(id = "Munich", path = "{top}/static/", altText="a great photo", imgDescription=".4", imgLocation="Munich"),
-    Image(id = "Munich", path = "{top}/static/", altText="a thingie photo", imgDescription=".5", imgLocation="Munich")
+    Image(batch = "Morso", path = "{top}/static/", altText="a pretty photo", id=".1", imgLocation="Morso Museo", rating=0),
+    Image(batch = "Morso", path = "{top}/static/", altText="a nice photo", id=".2", imgLocation="Morso Museo", rating=0),
+    Image(batch = "Morso", path = "{top}/static/", altText="a good photo", id=".3", imgLocation="Morso Museo", rating=0),
+    Image(batch = "Morso", path = "{top}/static/", altText="a great photo", id=".4", imgLocation="Morso Museo", rating=0),
+    Image(batch = "Morso", path = "{top}/static/", altText="a thingie photo", id=".5", imgLocation="Morso Museo", rating=0),
+    Image(batch = "Munich", path = "{top}/static/", altText="a pretty photo", id=".1", imgLocation="Munich", rating=0),
+    Image(batch = "Munich", path = "{top}/static/", altText="a nice photo", id=".2", imgLocation="Munich", rating=0),
+    Image(batch = "Munich", path = "{top}/static/", altText="a good photo", id=".3", imgLocation="Munich", rating=0),
+    Image(batch = "Munich", path = "{top}/static/", altText="a great photo", id=".4", imgLocation="Munich", rating=0),
+    Image(batch = "Munich", path = "{top}/static/", altText="a thingie photo", id=".5", imgLocation="Munich", rating=0)
 ]
 
 def get_all_images() -> list[Image]:
     return _images
 
-def get_batch(id: str) -> list[Image]: 
+def get_batch(batch: str) -> list[Image]: 
     batch = [] 
 
     for image in _images: 
-        if image.id == id: 
+        if image.batch == batch: 
             batch.append(image)
         
     return batch
 
-def get_image(id: str, imgDescription: str) -> Image: 
+def get_image(batch: str, id: str) -> Image: 
     for image in _images: 
-        if image.id == id and image.imgDescription == imgDescription: 
+        if image.batch == batch and image.id == id: 
             return image 
         
     return None 
+
+def upvote_image(batch: str, id: str) -> Image:
+    for image in _images: 
+        if image.batch == batch and image.id == id:
+            image.rating += 1
+
+            return image

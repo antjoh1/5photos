@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends
-from sqlmodel import SQLModel, Session
+from sqlmodel import Session
 from models.images import Image 
+from crud import images
 from data.makeDB import get_session
 
 from typing import Annotated
@@ -15,5 +16,9 @@ def hello_images(word: str | None, session: sessionDep):
 
 
 @router.post("/")
-def get_one_image(imgLoc: str, ordinalNum: str, session: sessionDep) -> Image: 
-    return "This post request triggered - get_one_image"
+def get_one_image(imgLoc: str | None, ordinalNum: str | None, session: sessionDep) -> str: 
+    return images.get_one_image(imgLoc, ordinalNum, session)
+
+@router.post("/makeImg")
+def add_one_image(image: Image, session: sessionDep) -> Image: 
+    return images.add_one_image(image, session)

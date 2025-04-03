@@ -21,8 +21,8 @@
                 <p> {paragraph} </p>
             {/each}
         </div>
-
-        <p class='disclaimer'>Disclaimer: If you find yourself on a photo and you don't want it to be online - please reach out and I'll take it down.</p>
+<!-- 
+        <p class='disclaimer'>Disclaimer: If you find yourself on a photo and you don't want it to be online - please reach out and I'll take it down.</p> -->
 
         <p class='email'>bleonasylaaa@gmail.com</p>
     </div>
@@ -30,7 +30,6 @@
 
 
 <style> 
-
     p { 
         margin-top: 1rem;
         font-size: 1.5srem;
@@ -111,11 +110,11 @@
         font-size: 14px;
     }
     
-    .disclaimer { 
+    /* .disclaimer { 
         font-weight: 100;
         font-style: italic;
         font-size: 14px;
-    }
+    } */
 
     .introName { 
         font-size: 28px;

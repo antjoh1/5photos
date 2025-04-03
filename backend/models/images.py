@@ -1,6 +1,5 @@
 from sqlmodel import SQLModel, Field
 
-
 class Image(SQLModel):
     path: str
     imgLocation: str
@@ -9,9 +8,5 @@ class Image(SQLModel):
     
 class Images(Image, table = True): 
     id: int = Field(None, primary_key=True)
-    path: str
-    imgLocation: str
-    ordinalNum: str 
-    altText: str 
 
 

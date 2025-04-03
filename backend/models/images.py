@@ -1,13 +1,17 @@
-from pydantic import BaseModel
+from sqlmodel import SQLModel, Field
 
-class Image(BaseModel):
-    batch: str
+
+class Image(SQLModel):
     path: str
-    altText: str 
-    id: str 
     imgLocation: str
-    rating: int
+    ordinalNum: str
+    altText: str
+    
+class Images(Image, table = True): 
+    id: int = Field(None, primary_key=True)
+    path: str
+    imgLocation: str
+    ordinalNum: str 
+    altText: str 
 
-class upvoteImage(BaseModel):
-    batch: str
-    id: str
+

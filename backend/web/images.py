@@ -1,22 +1,19 @@
-from fastapi import APIRouter, Form
-import service.images as service 
-from models.images import Image, upvoteImage
+from fastapi import APIRouter, Depends
+from sqlmodel import SQLModel, Session
+from models.images import Image 
+from data.makeDB import get_session
+
 from typing import Annotated
+
+sessionDep = Annotated[Session, Depends(get_session)]
 
 router = APIRouter(prefix="/images")
 
 @router.get("/")
-def get_all_images() -> list[Image]:
-    return service.get_all_images()
+def hello_images(word: str | None, session: sessionDep): 
+    return f"Hello Images! - this is {word}"
 
-@router.get("/{batch}")
-def get_image_batch(batch: str) -> list[Image]:
-    return service.get_image_batch(batch)
-
-@router.get("/{batch}/{img}")
-def get_single_image(batch: str, img: str) -> Image: 
-    return service.get_one_image(batch, img)
 
 @router.post("/")
-def upvote_image(request: upvoteImage) -> Image:
-    return service.upvote_image(request.batch, request.id)
+def get_one_image(imgLoc: str, ordinalNum: str, session: sessionDep) -> Image: 
+    return "This post request triggered - get_one_image"

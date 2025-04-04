@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from sqlmodel import Session
-from models.images import Image 
+from models.images import Image, ImageUpdate
 from crud import images
 from data.makeDB import get_session
 
@@ -22,3 +22,11 @@ def get_one_image(imgLoc: str | None, ordinalNum: str | None, session: sessionDe
 @router.post("/makeImg")
 def add_one_image(image: Image, session: sessionDep) -> Image: 
     return images.add_one_image(image, session)
+
+@router.patch("/up")
+def upvote_image(image: ImageUpdate, session: sessionDep): 
+    return images.upvote_image(image, session)
+
+@router.patch("/down")
+def downvote_image(image: ImageUpdate, session: sessionDep):
+    return images.downvote_image(image, session)

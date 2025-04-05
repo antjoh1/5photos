@@ -1,8 +1,13 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, File, UploadFile
 from sqlmodel import Session
 from models.images import Image, ImageUpdate
 from crud import images
 from data.makeDB import get_session
+
+from typing import List 
+
+import shutil
+import os
 
 from typing import Annotated
 
@@ -30,3 +35,25 @@ def upvote_image(image: ImageUpdate, session: sessionDep):
 @router.patch("/down")
 def downvote_image(image: ImageUpdate, session: sessionDep):
     return images.downvote_image(image, session)
+
+@router.delete("/delete")
+def delete_image(image: ImageUpdate, session: sessionDep):
+    return images.delete_image(image, session)
+
+@router.post("/file")
+async def upload_file(files: List[UploadFile]): 
+    directory = "../static"
+    response_dict = {}
+
+    for i, file  in enumerate(files): 
+
+        filename = os.path.join(directory, file.filename)
+        response_dict.update({f"file{i}": {file.filename}})
+
+        with open(filename, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+        
+            buffer.close()
+        
+
+    return response_dict

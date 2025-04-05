@@ -34,7 +34,7 @@ def upvote_image(image: ImageUpdate, session: Session) -> Image:
     return selectedImage
 
 def downvote_image(image: ImageUpdate, session: Session) -> Image:
-    statement  = select(Images).where(Images.imgLocation == image.imgLocation).where(Images.ordinalNum == image.ordinalNum)
+    statement = select(Images).where(Images.imgLocation == image.imgLocation).where(Images.ordinalNum == image.ordinalNum)
     result = session.exec(statement) 
     selectedImage = result.one() 
 
@@ -49,4 +49,19 @@ def downvote_image(image: ImageUpdate, session: Session) -> Image:
     session.commit()
     session.refresh(selectedImage)
 
+    return selectedImage
+
+
+def delete_image(image: ImageUpdate, session: Session) -> Image: 
+    statement = select(Images).where(Images.imgLocation == image.imgLocation).where(Images.ordinalNum == image.ordinalNum)
+    result = session.exec(statement)
+
+    selectedImage = result.one() 
+
+    if not selectedImage:
+        raise HTTPException(status_code = 404, detail = "Image was not found!")
+    
+    session.delete(selectedImage)
+    session.commit() 
+    
     return selectedImage

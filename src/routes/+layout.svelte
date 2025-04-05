@@ -61,7 +61,7 @@
 	</div>
 
 	<footer>
-		<div class='textContainer bottom'> Bleona S. </div>
+		<div class='textContainer bottom'> <a href="/uploadPost">Bleona S.</a> </div>
 		<div class='textContainer bottom'> {userState.pickedDate}</div>
 	</footer>
 </div>

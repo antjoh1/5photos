@@ -182,8 +182,6 @@
         max-width: 70vw; 
         max-height: 60vh; 
         object-fit: fill;
-        /* padding: 15px; */
-        /* background-color: white; */
     }
 
 

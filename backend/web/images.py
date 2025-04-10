@@ -1,10 +1,8 @@
-from fastapi import APIRouter, Depends, File, UploadFile
+from fastapi import APIRouter, Depends, UploadFile, Form
 from sqlmodel import Session
 from models.images import Image, ImageUpdate
 from crud import images
 from data.makeDB import get_session
-
-from typing import List 
 
 import shutil
 import os
@@ -41,19 +39,32 @@ def delete_image(image: ImageUpdate, session: sessionDep):
     return images.delete_image(image, session)
 
 @router.post("/file")
-async def upload_file(files: List[UploadFile]): 
-    directory = "../static"
+async def upload_file(files: list[UploadFile], token: Annotated[str, Form()], session: sessionDep): 
+    print("Received files: ", files)
+    print("Received form data: ", token)
+
     response_dict = {}
+    token_dict = eval(token)
+    print(token_dict)
+
+    target_directory = os.path.join("../static", token_dict["batchName"])
+    
+    if token_dict["batchName"] not in os.listdir("../static"):
+        os.mkdir(target_directory)
 
     for i, file  in enumerate(files): 
-
-        filename = os.path.join(directory, file.filename)
+        filename = os.path.join(target_directory,file.filename)
         response_dict.update({f"file{i}": {file.filename}})
 
         with open(filename, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
-        
             buffer.close()
         
-
+        newImage = Image(path=filename, 
+                      imgLocation=token_dict[f"photo{i+1}-imgLocation"],
+                      ordinalNum= f".{i+1}",
+                      altText= token_dict[f"photo{i+1}-altText"])
+        
+        images.add_one_image(newImage, session)
+        
     return response_dict

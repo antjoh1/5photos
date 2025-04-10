@@ -1,7 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@100..900&display=swap');
+
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@100..900&display=swap');
 
 :root {
     --header-color: black;
@@ -12,6 +13,10 @@
     --background-color-3: #E0E0E0;
     --pink-accent: #F19AC8;
   }
+
+@theme { 
+    --color-pink-999: #F19AC8;
+}
 
 html {
     font-family: 'Lexend exa';

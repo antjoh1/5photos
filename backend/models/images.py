@@ -3,7 +3,7 @@ from sqlmodel import SQLModel, Field
 class Image(SQLModel):
     path: str
     imgLocation: str
-    ordinalNum: str
+    ordinalNum: str 
     altText: str
     rating: int = 0
     

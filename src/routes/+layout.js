@@ -4,7 +4,7 @@
 import photoBatches from "$lib/assets/photoData.json";
 
 export async function load ({ url }) {
-
+    
     return { 
         url: url.pathname,
         batches: photoBatches.map((batch) => ({

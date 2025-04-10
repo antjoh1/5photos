@@ -37,7 +37,7 @@
 				<div class="circle"></div>
 			</div>
 			<div class='textContainer interactive'>
-				<a href={reachMeLink}>reach out</a>
+				<a href={reachMeLink}> about </a>
 				<div class="circle"></div>
 			</div>
 		</header>

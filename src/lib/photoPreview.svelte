@@ -22,15 +22,29 @@
     let activePhotoText = $derived(chosenBatch.photos[photoOrder[i]].text)
     let activePhotoLocation = $derived(chosenBatch.photos[photoOrder[i]].location)
 
-    function switchPhoto() { 
-        if (i < (photoOrder.length-1)) {
-            i += 1
-        } else { i = 0}
-        console.log ( i )
-        animate = true
-        setTimeout(() => { 
-            animate = false; // Start fade in
-        }, userState.animationBaseLength*0.8); // This should match `out:fade` duration 
+    /** @param {string} direction*/
+    function switchPhoto( direction ) { 
+        if (direction == "next"){
+            if (i < (photoOrder.length-1)) {
+                i += 1
+            } else { i = 0}
+            console.log ( i )
+            animate = true
+            setTimeout(() => { 
+                animate = false; // Start fade in
+            }, userState.animationBaseLength*0.8); // This should match `out:fade` duration     
+        } else if (direction == "prev") {
+            if (i < (photoOrder.length-1)) {
+                i -= 1
+            } else { i = 0}
+            console.log ( i )
+            animate = true
+            setTimeout(() => { 
+                animate = false; // Start fade in
+            }, userState.animationBaseLength*0.8); // This should match `out:fade` duration 
+        } else { 
+            alert("Not a valid switchPhoto() input")
+        }
     }
 
     $inspect(activePhotoPath, activePhotoText, chosenBatch)
@@ -80,20 +94,31 @@
 </script>
 
 <div class='mainContentBox'  >
-    {#if !animate}
-        <div class="block" out:fly={{x: -200, duration: userState.animationBaseLength*0.8, easing:quartOut}} in:fly={{x:-200, duration:userState.animationBaseLength*0.8, easing:quartIn}}>
+    <div class='picExtra'>
+        <button class='nextPhotoButton' onclick={()=>{switchPhoto('prev'); getPic(chosenBatch.date, activePhotoText)}}> Prev </button>
+    </div>
+
+    <div class='pictureWrap'>
+
+        {#if !animate}
+        <div class="block" out:fly={{y: 200, duration: userState.animationBaseLength*0.8, easing:quartOut}} in:fly={{y:200, duration:userState.animationBaseLength*0.8, easing:quartIn}}>
             <img src={activePhotoPath} alt='mainPhoto'/>
+            
             <div class="picFooter">
+                
                 <div class="likeBox {counterVisible ? "countVisible" : ""} ">
                     <button class='likeButton' onclick={() =>  { likePic(chosenBatch.date, activePhotoText); likeColor = !likeColor; }}>
                         <HeartIcon filled={likeColor} ></HeartIcon>
                     </button>
+                    
                     <h3>
                         {#if counterVisible }
-                            {likeCounter}
+                        {likeCounter}
                         {/if}
                     </h3>
+                    
                 </div>
+                
                 <div class='photoDesc'>
                     <div > 
                         <h3> {activePhotoText} </h3>
@@ -102,17 +127,20 @@
                 </div>
             </div>
         </div>
+        
+        {/if}
+    </div>
     
+    <div class='picExtra'>
+        <button class='nextPhotoButton' onclick={()=>{switchPhoto('next'); getPic(chosenBatch.date, activePhotoText)}}> Next </button>
+    </div>
 
-        <div class='picExtra'>
-            <button class='nextPhotoButton' onclick={()=>{switchPhoto(); getPic(chosenBatch.date, activePhotoText)}}> Next </button>
-        </div>
-    {/if}
 </div>
 
 
 <style> 
     .block {
+        /* width: 60vw; */
         display: flex;
         flex-direction: column;
         row-gap: 15px;
@@ -120,20 +148,23 @@
         padding: 15px 15px 20px 15px;
     }
 
+    .pictureWrap {
+        display: flex;
+        justify-content: center;
+        width: 70vw;
+    }
+
     .mainContentBox {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        justify-content: center;
         row-gap: 15px;
         column-gap: 20px;
-        padding-left: 40px;
-        padding-right: 40px;
-        height: inherit;
+        height: 70vh;
     }
 
     .picExtra { 
-        width: inherit;
-        height: inherit;
         padding-right: 20px;
         padding-left: 20px;
         display: flex;
@@ -179,9 +210,9 @@
 
     
     img {
-        max-width: 70vw; 
+        max-width: 80vw; 
         max-height: 60vh; 
-        object-fit: fill;
+        object-fit: contain;
     }
 
 

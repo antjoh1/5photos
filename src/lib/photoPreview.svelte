@@ -7,9 +7,6 @@
 
     // Input variables defined during instantiating component in +page.svelte
     let { chosenBatch } = $props();
-    let likeColor = $state(false)
-    let likeCounter = $state(0)
-    let counterVisible = $derived(likeCounter > 0 ? true : false )
 
     let i = $state(0);
     let animate = $state(false);
@@ -20,36 +17,54 @@
 
     /** @type {string} */
     let activePhotoPath = $derived(chosenBatch[i].path.replace('../static', ''));
-    // let activePhotoPath = '/Prague/photo1.jpg'
     let activePhotoText = $derived(chosenBatch[i].ordinalNum)
     let activePhotoLocation = $derived(chosenBatch[i].imgLocation)
 
+    // Like variables
+    let likeColor = $state(false); // mirrors currentImageLikedVal
+    let likeCounter = $state(0); // instantiated then changed later
+    let counterVisible = $derived(likeCounter > 0 ? true : false );
+
+
+    function likedPhotoCheck() { 
+        console.log('this is localstroage pull', localStorage.getItem(`${activePhotoLocation}${activePhotoText}`))
+        likeColor = localStorage.getItem(`${activePhotoLocation}${activePhotoText}`) == 'true' ? true : false
+    }
+
     /** @param {string} direction*/
     function switchPhoto( direction ) { 
+
         if (direction == "next"){
             if (i < (photoOrder.length-1)) {
                 i += 1
-            } else { i = 0}
-            console.log ( i )
+            } else { i = 0 }
+            
             animate = true
+            // console.log(localStorage.getItem(`${chosenBatch[0].imgLocation}/${chosenBatch[0].ordinalNum}`))
+
             setTimeout(() => { 
                 animate = false; // Start fade in
-            }, userState.animationBaseLength*0.8); // This should match `out:fade` duration     
+            }, userState.animationBaseLength*0.8); // This should match `out:fade` duration    
+
         } else if (direction == "prev") {
-            if (i < (photoOrder.length-1)) {
+            if (i > (-1)) {
                 i -= 1
-            } else { i = 0}
-            console.log ( i )
+            } else { i = photoOrder.length-1 }
+            
             animate = true
+
             setTimeout(() => { 
                 animate = false; // Start fade in
             }, userState.animationBaseLength*0.8); // This should match `out:fade` duration 
+
         } else { 
             alert("Not a valid switchPhoto() input")
         }
+
+        likedPhotoCheck() // check if current photo is liked
     }
 
-    $inspect(activePhotoPath, activePhotoText, chosenBatch)
+    $inspect(activePhotoPath, activePhotoText, likeColor, likeCounter)
 
     /// GET request on button click 
     /** @param {string} batch
@@ -58,30 +73,46 @@
      */
     async function likePic(batch, id, routeEnd="up") {
 
-            const res  = await fetch(`http://127.0.0.1:8000/images/${routeEnd}`, {
-                method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    imgLocation: batch,
-                    ordinalNum: id,
-                }),
-            })
-        
+        const res  = await fetch(`http://127.0.0.1:8000/images/${routeEnd}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                imgLocation: batch,
+                ordinalNum: id,
+            }),
+        })
+
+        if (res.ok) {
+            const jsonResult = await res.json();
+            let result = JSON.stringify(jsonResult)
             
-        const jsonResult = await res.json();
-        let result = JSON.stringify(jsonResult)
+            likeCounter = jsonResult?.rating
+            
+            console.log(result)
+            
+            if (routeEnd === 'up'){
+                // set liked item into local storage
+                localStorage.setItem(`${batch}${id}`, 'true')
+            
+                
+            } else if (routeEnd === 'down'){
+                // remove item from local storage 
+                localStorage.removeItem(`${batch}${id}`)
+            }
 
-        likeCounter = jsonResult?.rating
+            likedPhotoCheck()
+        } else {
+            throw new Error( " Could not access photo on server ")
+        }
 
-        console.log(result)
+        // likedPhotoCheck()
+        
     }
 
     /** @param {string} imgLoc
      *  @param {string} ordinalNum
     */
     async function getPic(imgLoc, ordinalNum) {
-        console.log("This is happening in the getPic thing",`http://127.0.0.1:8000/images/${imgLoc}/${ordinalNum}`)
-
         const res = await fetch(`http://127.0.0.1:8000/images/${imgLoc}/${ordinalNum}`,{
             method: 'GET'
         })
@@ -99,8 +130,8 @@
     }
 
     onMount(() => {
-            console.log('this is onMount', chosenBatch[0].imgLocation)
             getPic(chosenBatch[0].imgLocation, chosenBatch[0].ordinalNum)
+            likedPhotoCheck()
         }
     )
 
@@ -108,7 +139,7 @@
 
 <div class='mainContentBox'  >
     <div class='picExtra'>
-        <button class='nextPhotoButton' onclick={()=>{switchPhoto('prev'); getPic(activePhotoLocation, activePhotoText)}}> Prev </button>
+        <button class='nextPhotoButton' onclick={()=>{switchPhoto('prev'); getPic(activePhotoLocation, activePhotoText);}}> Prev </button>
     </div>
 
     <div class='pictureWrap'>
@@ -121,7 +152,7 @@
                 
                 <div class="likeBox {counterVisible ? "countVisible" : ""} ">
 
-                    <button class='likeButton' onclick={() =>  {if (!likeColor) {likePic(activePhotoLocation, activePhotoText, "up") } else {likePic(activePhotoLocation, activePhotoText, "down") }; likeColor = !likeColor; }}>
+                    <button class='likeButton' onclick={() =>  {if (!likeColor) {likePic(activePhotoLocation, activePhotoText, "up") } else {likePic(activePhotoLocation, activePhotoText, "down") };}}>
                         <HeartIcon filled={likeColor} ></HeartIcon>
                     </button>
                     
@@ -146,7 +177,7 @@
     </div>
     
     <div class='picExtra'>
-        <button class='nextPhotoButton' onclick={()=>{switchPhoto('next'); getPic(activePhotoLocation, activePhotoText)}}> Next </button>
+        <button class='nextPhotoButton' onclick={()=>{switchPhoto('next'); getPic(activePhotoLocation, activePhotoText); }}> Next </button>
     </div>
 
 </div>
@@ -206,7 +237,7 @@
         height: 40px;
         width: 60px;
         background-color: var(--background-color-2);
-        border-radius: 10px;
+        /* border-radius: 10px; */
         transition: 250ms;
 
     }

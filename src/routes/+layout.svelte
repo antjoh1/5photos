@@ -14,6 +14,8 @@
     let blurBg = $state(false); 
     let introMsgFlag = $state(false);
 
+	console.log('this is layout.svelte', data)
+
     onMount( () => {
         if (userState.firstLoadCounter < 1){
             blurBg = true
@@ -54,7 +56,7 @@
 				<div class='blurBgDiv' in:fade={{duration: userState.introDuration/4}} out:fade={{duration: userState.introDuration/4}}></div>
 			</button>
 			<div class='firstLoadMessage archive'> 
-				<ArchivePicker {data}></ArchivePicker> 
+				<ArchivePicker {data} ></ArchivePicker> 
 			</div>
 			
 		{/if}

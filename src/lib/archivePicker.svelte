@@ -10,8 +10,8 @@
 
     <ul class='dateList'>
         {#each data.batches as batch}
-            <li class = {isSelected(batch.date) ? 'active' : 'notActive'}>
-                <a href="{base}/{batch.date.replace(/\s/g, '')}" onclick={() => {userState.pickedDate = batch.date; userState.archiveToggle=false}}>{batch.date}</a> 
+            <li class = {isSelected(batch) ? 'active' : 'notActive'}>
+                <a href="{base}/{batch.replace(/\s/g, '')}" onclick={() => {userState.pickedDate = batch; userState.archiveToggle=false}}>{batch}</a> 
             </li>
         {/each}
     </ul>

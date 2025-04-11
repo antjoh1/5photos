@@ -17,9 +17,17 @@ router = APIRouter(prefix="/images")
 def hello_images(word: str | None, session: sessionDep): 
     return f"Hello Images! - this is {word}"
 
+@router.get("/listBatches")
+def get_batch_names_route(session: sessionDep) -> list[str]:
+    return images.get_batch_names(session)
 
-@router.post("/")
-def get_one_image(imgLoc: str | None, ordinalNum: str | None, session: sessionDep) -> str: 
+@router.get("/{batch}")
+def get_image_batch(batch: str, session: sessionDep) -> list[Image]:
+    return images.get_image_batch(batch, session)
+
+
+@router.get("/{imgLoc}/{ordinalNum}")
+def get_one_image(imgLoc: str, ordinalNum: str, session: sessionDep) -> Image: 
     return images.get_one_image(imgLoc, ordinalNum, session)
 
 @router.post("/makeImg")
@@ -28,6 +36,7 @@ def add_one_image(image: Image, session: sessionDep) -> Image:
 
 @router.patch("/up")
 def upvote_image(image: ImageUpdate, session: sessionDep): 
+    print(image.model_dump())
     return images.upvote_image(image, session)
 
 @router.patch("/down")

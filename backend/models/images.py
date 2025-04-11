@@ -12,6 +12,7 @@ class Images(Image, table = True):
 
 class ImageUpdate(Image):
     path: str | None = None 
+    imgLocation: str | None = None
     ordinalNum: str | None = None
     altText: str | None = None
     rating: int | None = None 

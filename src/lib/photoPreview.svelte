@@ -2,7 +2,6 @@
     import { fly } from "svelte/transition";
 	import { quartIn, quartOut } from "svelte/easing";
     import { userState } from "../routes/state.svelte";
-    import { base } from "$app/paths";
 	import HeartIcon from "./heartIcon.svelte";
 	import { onMount } from "svelte";
 
@@ -15,12 +14,15 @@
     let i = $state(0);
     let animate = $state(false);
 
+    console.log("This is in photoPreview", chosenBatch)
+
     let photoOrder = ['photo1', 'photo2', 'photo3', 'photo4', 'photo5']
 
     /** @type {string} */
-    let activePhotoPath = $derived(base+chosenBatch.photos[photoOrder[i]].path);
-    let activePhotoText = $derived(chosenBatch.photos[photoOrder[i]].text)
-    let activePhotoLocation = $derived(chosenBatch.photos[photoOrder[i]].location)
+    let activePhotoPath = $derived(chosenBatch[i].path.replace('../static', ''));
+    // let activePhotoPath = '/Prague/photo1.jpg'
+    let activePhotoText = $derived(chosenBatch[i].ordinalNum)
+    let activePhotoLocation = $derived(chosenBatch[i].imgLocation)
 
     /** @param {string} direction*/
     function switchPhoto( direction ) { 
@@ -52,42 +54,53 @@
     /// GET request on button click 
     /** @param {string} batch
      *  @param {string} id
+     *  @param {string} routeEnd
      */
-    async function likePic(batch, id) {
-        const res  = await fetch(`http://127.0.0.1:8000/images/`, {
-            method: "POST",
-            headers: {"content-type": "application/json"},
-            body: JSON.stringify({
-                batch: batch,
-                id: id
+    async function likePic(batch, id, routeEnd="up") {
+
+            const res  = await fetch(`http://127.0.0.1:8000/images/${routeEnd}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    imgLocation: batch,
+                    ordinalNum: id,
+                }),
             })
-        })
+        
+            
+        const jsonResult = await res.json();
+        let result = JSON.stringify(jsonResult)
 
-        const json = await res.json()
-        let result = JSON.stringify(json)
-
-        likeCounter = json?.rating
+        likeCounter = jsonResult?.rating
 
         console.log(result)
     }
 
-    /** @param {string} batch
-     *  @param {string} id
-     */
-    async function getPic(batch, id) {
-        const res = await fetch(`http://127.0.0.1:8000/images/${batch}/${id}`,{
+    /** @param {string} imgLoc
+     *  @param {string} ordinalNum
+    */
+    async function getPic(imgLoc, ordinalNum) {
+        console.log("This is happening in the getPic thing",`http://127.0.0.1:8000/images/${imgLoc}/${ordinalNum}`)
+
+        const res = await fetch(`http://127.0.0.1:8000/images/${imgLoc}/${ordinalNum}`,{
             method: 'GET'
         })
 
-        const json = await res.json()
-        likeCounter = json.rating
-        let result = JSON.stringify(json)
+        if (!res.ok) {
+            console.log(res)
+            throw new Error('Could not get requested picture');
+        }
 
-        
+        const jsonResult = await res.json();
+        let result = JSON.stringify(jsonResult)
+        console.log(result)
+
+        likeCounter = jsonResult.rating;
     }
 
     onMount(() => {
-            getPic(chosenBatch.date, ".1")
+            console.log('this is onMount', chosenBatch[0].imgLocation)
+            getPic(chosenBatch[0].imgLocation, chosenBatch[0].ordinalNum)
         }
     )
 
@@ -95,7 +108,7 @@
 
 <div class='mainContentBox'  >
     <div class='picExtra'>
-        <button class='nextPhotoButton' onclick={()=>{switchPhoto('prev'); getPic(chosenBatch.date, activePhotoText)}}> Prev </button>
+        <button class='nextPhotoButton' onclick={()=>{switchPhoto('prev'); getPic(activePhotoLocation, activePhotoText)}}> Prev </button>
     </div>
 
     <div class='pictureWrap'>
@@ -107,7 +120,8 @@
             <div class="picFooter">
                 
                 <div class="likeBox {counterVisible ? "countVisible" : ""} ">
-                    <button class='likeButton' onclick={() =>  { likePic(chosenBatch.date, activePhotoText); likeColor = !likeColor; }}>
+
+                    <button class='likeButton' onclick={() =>  {if (!likeColor) {likePic(activePhotoLocation, activePhotoText, "up") } else {likePic(activePhotoLocation, activePhotoText, "down") }; likeColor = !likeColor; }}>
                         <HeartIcon filled={likeColor} ></HeartIcon>
                     </button>
                     
@@ -132,7 +146,7 @@
     </div>
     
     <div class='picExtra'>
-        <button class='nextPhotoButton' onclick={()=>{switchPhoto('next'); getPic(chosenBatch.date, activePhotoText)}}> Next </button>
+        <button class='nextPhotoButton' onclick={()=>{switchPhoto('next'); getPic(activePhotoLocation, activePhotoText)}}> Next </button>
     </div>
 
 </div>

@@ -14,8 +14,6 @@
     let blurBg = $state(false); 
     let introMsgFlag = $state(false);
 
-	console.log('this is layout.svelte', data)
-
     onMount( () => {
         if (userState.firstLoadCounter < 1){
             blurBg = true

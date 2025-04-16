@@ -12,21 +12,22 @@ export async function load( { params } ){
         // console.log('this is the pageserver data: ', image_list)
         return { "images": image_list }
     }
-    
 }
 
-console.log("page.js ran")
-export async function entries() {
-    let entriesList = []
-    console.log('entries() function ran')
-    const res = await fetch('htpp://127.0.0.1:8000/getBatches', { method: 'GET' })
-    const batches_json = await res.json()
+// console.log("page.js ran")
+// export async function entries() {
+//     let entriesList = []
+//     console.log('entries() function ran')
+//     const res = await fetch('http://127.0.0.1:8000/getBatches', { method: 'GET' })
+//     const batches_json = await res.json()
 
-    for (let entry of batches_json) { 
-        entriesList.push({ slug: entry.date.replace(/\s/g, '')})
-    }
+//     console.log('this is server fetch func', batches_json)
 
-    console.log(entriesList)
+//     for (let entry of batches_json) { 
+//         entriesList.push({ slug: entry.date.replace(/\s/g, '')})
+//     }
 
-    return entriesList;
-}
+//     console.log(entriesList)
+
+//     return entriesList;
+// }

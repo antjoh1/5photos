@@ -47,7 +47,7 @@
             }, userState.animationBaseLength*0.8); // This should match `out:fade` duration    
 
         } else if (direction == "prev") {
-            if (i > (-1)) {
+            if (i > (0)) {
                 i -= 1
             } else { i = photoOrder.length-1 }
             

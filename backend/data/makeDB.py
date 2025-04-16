@@ -1,6 +1,7 @@
-from models.images import Images
-
 from sqlmodel import SQLModel, Session, create_engine
+
+from models.images import Images
+from models.users import User
 
 sqlite_file_name = "database.db"
 sqlite_address = f"sqlite:///{sqlite_file_name}"

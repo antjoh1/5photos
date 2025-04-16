@@ -8,7 +8,7 @@ class Image(SQLModel):
     rating: int = 0
     
 class Images(Image, table = True): 
-    id: int = Field(None, primary_key=True)
+    id: int = Field(None, primary_key = True)
 
 class ImageUpdate(Image):
     path: str | None = None 

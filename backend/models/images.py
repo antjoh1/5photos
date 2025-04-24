@@ -2,6 +2,7 @@ from sqlmodel import SQLModel, Field
 
 class Image(SQLModel):
     path: str
+    batch: str
     imgLocation: str
     ordinalNum: str 
     altText: str
@@ -12,6 +13,7 @@ class Images(Image, table = True):
 
 class ImageUpdate(Image):
     path: str | None = None 
+    batch: str | None = None
     imgLocation: str | None = None
     ordinalNum: str | None = None
     altText: str | None = None

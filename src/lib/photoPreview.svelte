@@ -143,7 +143,6 @@
     </div>
 
     <div class='pictureWrap'>
-
         {#if !animate}
         <div class="block" out:fly={{y: 200, duration: userState.animationBaseLength*0.8, easing:quartOut}} in:fly={{y:200, duration:userState.animationBaseLength*0.8, easing:quartIn}}>
             <img src={activePhotoPath} alt='mainPhoto'/>
@@ -172,7 +171,6 @@
                 </div>
             </div>
         </div>
-        
         {/if}
     </div>
     
@@ -191,6 +189,8 @@
         row-gap: 15px;
         background-color: white;
         padding: 15px 15px 20px 15px;
+        border-radius: 2px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.521);
     }
 
     .pictureWrap {
@@ -206,7 +206,7 @@
         justify-content: center;
         row-gap: 15px;
         column-gap: 20px;
-        height: 70vh;
+        max-height: 70vh;
     }
 
     .picExtra { 
@@ -237,7 +237,6 @@
         height: 40px;
         width: 60px;
         background-color: var(--background-color-2);
-        /* border-radius: 10px; */
         transition: 250ms;
 
     }

@@ -1,6 +1,7 @@
-from models.users import UserBase, UserPublic, User, UserGet, UserLogin
+from models.users import UserBase, UserRegister,  UserPublic, User, UserGet, UserLogin
 from sqlmodel import SQLModel, Session, select
-from fastapi import HTTPException
+from fastapi import HTTPException, status
+from auth.users import hash_password
 
 from typing import List
 
@@ -15,8 +16,8 @@ def get_all_users(session: Session) -> List[UserPublic]:
 
     return userList
 
-def create_user(user: UserBase, session:Session) -> UserPublic: 
-    newEntry = User(name = user.name, password = user.password, age = user.age, city = user.city)
+def create_user(user: UserRegister, session:Session) -> UserPublic: 
+    newEntry = User(name = user.name, pass_hash = hash_password(user.password_raw), age = user.age, city = user.city, disabled=False)
 
     session.add(newEntry)
     session.commit() 
@@ -36,8 +37,15 @@ def delete_user(user: UserBase, session: Session) -> str:
     
     return f"Succesfully deleted {count} user(s)"
 
-def get_user(user: UserGet, session: Session) -> User:
-    statement = select(User).where(User.name == user.name)
+def get_user(user: str, session: Session) -> User:
+    statement = select(User).where(User.name == user)
     result = session.exec(statement)
+      
+    selected_user = result.all()
+    
+    print("this is in get_user", selected_user)
 
-    return result.all()[0]
+    try:
+        return selected_user[0]
+    except:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"username doesn't exist {user}")

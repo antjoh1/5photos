@@ -12,6 +12,7 @@
 			console.log(files[name].url);
 		}
 	}
+
 </script>
 
 <form class='flex-col w-100' enctype="multipart/form-data" method="POST">

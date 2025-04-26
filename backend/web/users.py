@@ -50,9 +50,16 @@ async def read_users_me(current_user: Annotated[User, Depends(userAuth.get_curre
     return current_user
 
 @router.get("/getUser/{username}")
-def get_particular_user(username: str, current_user: Annotated[User, Depends(userAuth.get_current_active_user)], session: sessionDep) -> str:\
+def get_particular_user(
+    username: str, 
+    current_user: Annotated[User, Depends(userAuth.get_current_active_user)], 
+    session: sessionDep) -> str:
     
     target_user = users.get_user(username, session)
     msg = f"user {current_user.name} is looking for {target_user.name}"
     
     return msg
+
+@router.get("/me/items/")
+async def read_own_items(current_user: Annotated[User, Depends(userAuth.get_current_active_user)]):
+    return [{"item_id": "Foo", "owner": current_user.name}]

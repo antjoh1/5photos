@@ -1,6 +1,6 @@
 /** @satisfies { import('./$types').Actions } */
 export const actions = { 
-    default: async ({ request }) => {
+    default: async ({ cookies, request }) => {
         console.log("form submission trigerred")
 
         // get request data from client
@@ -23,11 +23,14 @@ export const actions = {
         }
         const tokenData = JSON.stringify(token)
 
-        formData.append('token', tokenData )
+        formData.append('token', tokenData)
         console.log('Sending FormData:', formData)
 
         const res = await fetch("http://127.0.0.1:8000/images/file", {
             method: "POST", 
+            headers: {
+                "Authorization": `bearer ${cookies.get('jwt')}`
+            },
             body: formData
         })
 

@@ -87,10 +87,10 @@ async def get_current_user(token: Annotated[str, Depends(oAuth2_scheme)], sessio
     return user
 
 async def get_current_active_user(current_user: Annotated[User, Depends(get_current_user)]): 
-    if not current_user.name: 
+    if current_user.disabled: 
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail = "Incorrect username or password",
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail = "User Inactive",
         )
     
     return current_user

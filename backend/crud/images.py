@@ -34,7 +34,7 @@ def get_batch_names(session: Session) -> list[str]:
     return batchesList
 
 def add_one_image(image: Image, session: Session) -> Image:
-    newEntry = Images(path=image.path, ordinalNum=image.ordinalNum, imgLocation=image.imgLocation, altText=image.altText, rating=image.rating)
+    newEntry = Images(path=image.path, batch=image.batch, ordinalNum=image.ordinalNum, imgLocation=image.imgLocation, altText=image.altText, rating=image.rating)
 
     print(image.model_dump())
     session.add(newEntry)

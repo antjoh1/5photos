@@ -73,9 +73,10 @@ async def upload_file(files: list[UploadFile], token: Annotated[str, Form()], se
             buffer.close()
         
         newImage = Image(path=filename, 
-                      imgLocation=token_dict[f"photo{i+1}-imgLocation"],
-                      ordinalNum= f".{i+1}",
-                      altText= token_dict[f"photo{i+1}-altText"])
+                    batch = token_dict["batchName"],
+                    imgLocation=token_dict[f"photo{i+1}-imgLocation"],
+                    ordinalNum= f".{i+1}",
+                    altText= token_dict[f"photo{i+1}-altText"])
         
         images.add_one_image(newImage, session)
         

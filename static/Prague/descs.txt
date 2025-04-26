@@ -1,7 +1,0 @@
-{
-   "photo1": {"text": ".1", "location": "Prague"},
-   "photo2": {"text": ".2", "location": "Prague"},
-   "photo3": {"text": ".3", "location": "Prague"},
-   "photo4": {"text": ".4", "location": "Prague"},
-   "photo5": {"text": ".5", "location": "Prague"}
-}

@@ -1,62 +1,47 @@
 <script>
-    let user = {id: "user1", 
-                password: "password",
-                email: "mail@mail.com"
-    }
+	import { page } from "$app/state";
 
-    /** @type {string} */
-    let id = $state("")
+    let pageData = $state(page.form)
 
-    let users = $state()
-
-    /** @param {string} id */
-    async function fetchUser (id) { 
-        const res = await fetch(`http://127.0.0.1:8000/users/${id}`)
-        let result = await res.json() 
-
-        console.log(result)
-
-        if (result.length) { 
-            users = result
-        } else { users = [result]}
-        
-     }
+    // Triggers on change in pageData - probably not the best way to do this
+    // if server response is ok, then store token in localstorage
+    $effect(( ) => {
+        if (pageData.loginSuccess) {
+            localStorage.setItem("jwt", pageData.token.access_token)
+            localStorage.setItem("token_type", pageData.token.token_type) 
+            document.cookie = `jwt=${pageData.token.access_token}`
+        }
+    })
 
 
 </script>
 
+<form class="form-entry" method="POST">
+    <label for="username"> Username: </label>
+    <input type="text" name="username" id="username" />
 
-<div class="form-entry">
-    <label for="username"> username: </label>
-    <input type="text" name="username" id="username" bind:value={id}/>
-</div>  
+    <label for="password"> Password: </label>
+    <input type="text" name="password" id="password" />
 
-<button class="form-button" onclick={() => (fetchUser(id))}> Get users! </button>
 
-<ul>
-    {#each users as user}
-        <li> {user.id} - {user.email} </li>
-    {/each}
-</ul>
+    <div class='px-12'>    
+        <input type='submit' class='flex bg-black hover:bg-[var(--pink-accent)] border border-solid hover:border-black text-white hover:text-black p-3 justify-self-end transition duration-250 ease-in' value="Login">
+    </div>
+</form>  
+
 
 <style>
     
     .form-entry{
+        margin: auto;
+        width: 50%;
         display: flex;
-        flex-direction: row;
-        column-gap: 2rem;
+        flex-direction: column;
+        row-gap: 2rem;
     }
 
     label{
         width: 100px;
     }
 
-    .form-button { 
-        background: white;
-        margin: auto;
-        width: 150px;
-        height: 50px;
-        justify-content: center;
-        align-content: center;
-    }
 </style>

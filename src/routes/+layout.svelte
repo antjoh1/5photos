@@ -7,6 +7,7 @@
     import { quartIn, quartOut } from "svelte/easing";  
 	import { userState } from './state.svelte';
 	import ArchivePicker from '$lib/archivePicker.svelte';
+	import ArchiveList from '$lib/archiveList.svelte';
 
 	let { data, children } = $props(); 
 	const reachMeLink = base+'/reachMe'
@@ -26,43 +27,48 @@
 </script>
 
 <div class='wholePageContainer'>
+	<header> 
+		<div class='titleLogo px-4 py-2 bg-black'> <a href={base+'/'}>5cenes </a></div>
+		<div class='textContainer interactive'>
+			<div>
+				<input type='checkbox' name='archive' id='archive' bind:checked={userState.archiveToggle}/>  
+				<label for='archive'> photos </label>
+			</div>
+			<div class="circle"></div>
+		</div>
+		<div class='textContainer interactive px-4 py-2 bg-black'>
+			<a href={reachMeLink}> about </a>
+			<!-- <div class="circle"></div> -->
+		</div>
+	</header>
+
+	{#key page.data}
+		<div class='pageContentAnimated' 
+				in:slide={{axis: 'y', duration: userState.animationBaseLength, delay: userState.animationBaseLength*1.1}} 
+				out:slide={{axis: 'y', duration: userState.animationBaseLength}}
+		>
+			{@render children()}
+		</div>
+	{/key}
+
 	<div>
-		<header> 
-			<div class='titleLogo'> <a href={base+'/'}>5 SCENES </a></div>
-			<div class='textContainer interactive'>
-				<div>
-					<input type='checkbox' name='archive' id='archive' bind:checked={userState.archiveToggle}/>  
-					<label for='archive'> photos </label>
-				</div>
-				<div class="circle"></div>
-			</div>
-			<div class='textContainer interactive'>
-				<a href={reachMeLink}> about </a>
-				<div class="circle"></div>
-			</div>
-		</header>
-
-		{#key page.data}
-			<div class='pageContentAnimated' in:slide={{axis: 'y', duration: userState.animationBaseLength, delay: userState.animationBaseLength*1.1}} out:slide={{axis: 'y', duration: userState.animationBaseLength}}>
-				{@render children()}
-			</div>
-		{/key}
-
-
-		{#if userState.archiveToggle}
-			<button onclick={() => userState.archiveToggle=false} style="color:var(--background-color-3);"> BUTTON
-				<div class='blurBgDiv' in:fade={{duration: userState.introDuration/4}} out:fade={{duration: userState.introDuration/4}}></div>
-			</button>
-			<div class='firstLoadMessage archive'> 
-				<ArchivePicker {data} ></ArchivePicker> 
-			</div>
-			
-		{/if}
+		<ArchiveList></ArchiveList>
 	</div>
 
+
+	{#if userState.archiveToggle}
+		<button onclick={() => userState.archiveToggle=false} style="color:var(--background-color-3);"> BUTTON
+			<div class='blurBgDiv' in:fade={{duration: userState.introDuration/4}} out:fade={{duration: userState.introDuration/4}}></div>
+		</button>
+		<div class='firstLoadMessage archive'> 
+			<ArchivePicker {data} ></ArchivePicker> 
+		</div>
+		
+	{/if}
+
 	<footer>
-		<div class='textContainer bottom'> <a href="/uploadPost">Bleona S.</a> </div>
-		<div class='textContainer bottom'> {userState.pickedDate}</div>
+		<!-- <div class='textContainer bottom'> <a href="/uploadPost">Bleona S.</a> </div>
+		<div class='textContainer bottom'> {userState.pickedDate}</div> -->
 	</footer>
 </div>
 
@@ -72,7 +78,9 @@
 {/if}
 
 {#if introMsgFlag}
-    <div class='firstLoadMessage' in:fly={{delay: userState.introDuration*1.5, x:-1000, duration: userState.introDuration, easing:quartOut}} out:fly={{x:-800, duration: userState.introDuration, easing:quartIn}}>
+    <div class='firstLoadMessage' 
+		in:fly={{delay: userState.introDuration*1.5, x:-1000, duration: userState.introDuration, easing:quartOut}} 
+		out:fly={{x:-800, duration: userState.introDuration, easing:quartIn}}>
         
         <div class='disclaimerMsg'> 
             <h1 class='firstLoadTitle'>Hi!</h1>
@@ -101,36 +109,33 @@
 	}
 
 	.wholePageContainer { 
-		height: 100vh;
-		width: 100vw;
 		display: flex;
 		flex-direction: column;
-		row-gap: 50px;
-		justify-content: space-between;
+		/* row-gap: 50px; */
 	}
 
 	header { 
 		display: flex; 
 		justify-content: space-between;
 		align-items: center;
-		padding: 20px 40px 20px 40px;
-		background-color: var(--header-color);
+		padding: 20px 0px 20px 0px;
+		/* background-color: var(--header-color); */
 		color: var(--text-color-header);
-		margin-bottom: 2rem;
+		/* margin-bottom: 1rem; */
 	}
 
 	footer {
 		display: flex;
 		justify-content: space-between;
 		padding: 20px 40px 20px 40px;
-		background-color: var(--background-color-3);
+		background-color: var(--background-color-1);
 		font-weight: 100;
 		font-size: 1em;
 	}
 
-	.bottom { 
+	/* .bottom { 
 		color: black;
-	}
+	} */
 
 	/* Hover effect */ 
     .textContainer.interactive:hover {

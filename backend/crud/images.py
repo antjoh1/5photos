@@ -2,8 +2,8 @@ from models.images import Image, Images, ImageUpdate
 from sqlmodel import Session, select
 from fastapi import HTTPException
 
-def get_one_image(imgLoc: str | None, ordinalNum: str | None, session: Session) -> Image: 
-    statement = select(Images).where(Images.imgLocation == imgLoc).where(Images.ordinalNum == ordinalNum)
+def get_one_image(batch: str | None, ordinalNum: str | None, session: Session) -> Image: 
+    statement = select(Images).where(Images.batch == batch).where(Images.ordinalNum == ordinalNum)
     result = session.exec(statement)
 
     return result.one()
@@ -21,7 +21,7 @@ def get_image_batch(batchName: str, session: Session) -> list[dict]:
     return outputImages
 
 def get_batch_names(session: Session) -> list[str]: 
-    statement = select(Images.imgLocation)
+    statement = select(Images.batch)
     batches = session.exec(statement)
 
     batchesList = []

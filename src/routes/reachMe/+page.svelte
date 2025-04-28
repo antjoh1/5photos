@@ -21,9 +21,7 @@
                 <p> {paragraph} </p>
             {/each}
         </div>
-<!-- 
-        <p class='disclaimer'>Disclaimer: If you find yourself on a photo and you don't want it to be online - please reach out and I'll take it down.</p> -->
-
+        
         <p class='email'>bleonasylaaa@gmail.com</p>
     </div>
 </div>

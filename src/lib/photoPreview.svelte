@@ -109,11 +109,11 @@
         
     }
 
-    /** @param {string} imgLoc
+    /** @param {string} batch
      *  @param {string} ordinalNum
     */
-    async function getPic(imgLoc, ordinalNum) {
-        const res = await fetch(`http://127.0.0.1:8000/images/${imgLoc}/${ordinalNum}`,{
+    async function getPic(batch, ordinalNum) {
+        const res = await fetch(`http://127.0.0.1:8000/images/${batch}/${ordinalNum}`,{
             method: 'GET'
         })
 
@@ -236,7 +236,7 @@
         padding: 0px 20px 0px 15px;
         height: 40px;
         width: 60px;
-        background-color: var(--background-color-2);
+        background-color: black;
         transition: 250ms;
 
     }
@@ -244,6 +244,7 @@
     .likeBox.countVisible { 
         width: 100px;
         height: 40px;
+        color: white;
     }
 
     .likeButton{

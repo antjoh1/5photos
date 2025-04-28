@@ -28,10 +28,9 @@ def get_batch_names_route(session: sessionDep) -> list[str]:
 def get_image_batch(batch: str, session: sessionDep) -> list[Image]:
     return images.get_image_batch(batch, session)
 
-
-@router.get("/{imgLoc}/{ordinalNum}")
-def get_one_image(imgLoc: str, ordinalNum: str, session: sessionDep) -> Image: 
-    return images.get_one_image(imgLoc, ordinalNum, session)
+@router.get("/{batch}/{ordinalNum}")
+def get_one_image(batch: str, ordinalNum: str, session: sessionDep) -> Image: 
+    return images.get_one_image(batch, ordinalNum, session)
 
 @router.post("/makeImg")
 def add_one_image(image: Image, session: sessionDep, authDep: authDep) -> Image: 

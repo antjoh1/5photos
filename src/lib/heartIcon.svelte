@@ -3,7 +3,7 @@
 </script>
 
 <svg
-	stroke="#000"
+    stroke={filled ? "#000" : "#fff"}
     stroke-linecap="round"
     stroke-linejoin="round"
     stroke-width=1

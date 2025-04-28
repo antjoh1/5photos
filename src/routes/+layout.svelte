@@ -29,13 +29,13 @@
 <div class='wholePageContainer'>
 	<header> 
 		<div class='titleLogo px-4 py-2 bg-black'> <a href={base+'/'}>5cenes </a></div>
-		<div class='textContainer interactive'>
+		<!-- <div class='textContainer interactive'>
 			<div>
 				<input type='checkbox' name='archive' id='archive' bind:checked={userState.archiveToggle}/>  
 				<label for='archive'> photos </label>
-			</div>
-			<div class="circle"></div>
-		</div>
+			</div> 
+			<div class="circle"></div> 
+		</div> -->
 		<div class='textContainer interactive px-4 py-2 bg-black'>
 			<a href={reachMeLink}> about </a>
 			<!-- <div class="circle"></div> -->
@@ -51,20 +51,9 @@
 		</div>
 	{/key}
 
-	<div>
+	<div class="py-5">
 		<ArchiveList></ArchiveList>
 	</div>
-
-
-	{#if userState.archiveToggle}
-		<button onclick={() => userState.archiveToggle=false} style="color:var(--background-color-3);"> BUTTON
-			<div class='blurBgDiv' in:fade={{duration: userState.introDuration/4}} out:fade={{duration: userState.introDuration/4}}></div>
-		</button>
-		<div class='firstLoadMessage archive'> 
-			<ArchivePicker {data} ></ArchivePicker> 
-		</div>
-		
-	{/if}
 
 	<footer>
 		<!-- <div class='textContainer bottom'> <a href="/uploadPost">Bleona S.</a> </div>
@@ -106,6 +95,7 @@
 		font-weight: 100;
 		transition:  250ms;
 		font-size: 24px;
+		border: solide 1px black;
 	}
 
 	.wholePageContainer { 
@@ -140,6 +130,7 @@
 	/* Hover effect */ 
     .textContainer.interactive:hover {
 		color: black; /* Text changes to black */
+		border: solid 1px black;
 		z-index: 1;
     }
 

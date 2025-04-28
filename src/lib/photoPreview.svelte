@@ -188,7 +188,7 @@
         flex-direction: column;
         row-gap: 15px;
         background-color: white;
-        padding: 15px 15px 20px 15px;
+        padding: 15px 15px 90px 15px;
         border-radius: 2px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.521);
     }
@@ -197,6 +197,7 @@
         display: flex;
         justify-content: center;
         width: 70vw;
+        height: 100%;
     }
 
     .mainContentBox {
@@ -206,7 +207,8 @@
         justify-content: center;
         row-gap: 15px;
         column-gap: 20px;
-        max-height: 70vh;
+        height: 70vh;
+        /* height: 30vh; */
     }
 
     .picExtra { 
@@ -255,14 +257,17 @@
 
     
     img {
-        max-width: 80vw; 
-        max-height: 60vh; 
+        height: 100%;
+        width: 100%;
+        /* max-width: 80vw; 
+        max-height: 60vh;  */
         object-fit: contain;
     }
 
 
     @media (max-width: 800px){
-        .mainContentBox { justify-content: flex-start; 
+        .mainContentBox { 
+            justify-content: flex-start; 
             max-width: 90vw; 
             padding: 0px; 
             height: 40vw; 

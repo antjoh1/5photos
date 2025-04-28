@@ -64,6 +64,7 @@ h4 {
     font-weight: 100;
     transition:  250ms;
     font-size: 24px;
+    border: solid 1px black;
 }
 
 .textContainer:hover .circle {
@@ -77,11 +78,12 @@ h4 {
 }
 
 .textContainer:hover {
-    border-radius: 5px;
+    /* border-radius: 5px; */
     top: 0;
     right: 0;
-    background-color: #F19AC8;
+    background-color: var(--background-color-1);
     z-index: -1; 
+    font-weight: 300;
 }
 
 .blurBgDiv { 

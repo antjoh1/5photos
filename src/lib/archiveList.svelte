@@ -1,5 +1,6 @@
 <script> 
     import { onMount } from "svelte";
+	import { base } from "$app/paths";
 
     /** @type {string[]}*/
     let batches = $state([])
@@ -56,12 +57,14 @@
 
 <div class="w-11/12 mx-auto mt-1 grid grid-cols-3 gap-4">
     {#each batches as batch, i}
-        <div>
-            <h2 class="py-1"> {batch} </h2>
-            <div class="justify-self-center w-10/12 h-48 border hover:scale-110 transition duration-300 ease-in-out"> 
-                <img class="w-full h-full object-cover p-2" src={previewImgPaths[i]} alt="little preview thing" />  
+        <a href="{base}/{batch.replace(/\s/g, '')}" class="group w-full transition-all duration-150 ease-in-out">
+            <div class="justify-self-center m-auto">
+                <div class="justify-self-center w-10/12 h-48"> 
+                    <h2 class="justify-self-start py-1 px-4  group-hover:bg-black group-hover:text-white"> {batch} </h2>
+                    <img class="w-full h-full object-cover group-hover:border-2 group-hover:border-black group-hover:border-solid duration-150 ease-in-out " src={previewImgPaths[i]} alt="little preview thing" />  
+                </div>
             </div>
-        </div>
+        </a>
     {/each}
 </div>
 

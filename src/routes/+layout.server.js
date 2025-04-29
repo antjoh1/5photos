@@ -14,7 +14,7 @@ export async function load ({ url }) {
     const res = await fetch('http://127.0.0.1:8000/images/listBatches', { method: 'GET' })
     const batches_json = await res.json()
 
-    console.log('this is where layoutserverjs does stuff', batches_json)
+    // console.log('this is where layoutserverjs does stuff', batches_json)
 
     for (let entry of batches_json) { 
         entries.push({ slug: entry.replace(/\s/g, '')})

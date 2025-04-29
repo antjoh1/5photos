@@ -1,12 +1,15 @@
 <script> 
     import { onMount } from "svelte";
 	import { base } from "$app/paths";
+    import { userState } from "../routes/state.svelte";
 
     /** @type {string[]}*/
     let batches = $state([])
 
     /** @type {string[]}*/
     let previewImgPaths = $state([])
+
+    let isSelected = (/** @type {string} */ value) => {return value == userState.pickedDate}
 
 
     async function getBatches () {
@@ -53,18 +56,32 @@
 
 </script>
 
-<div class="textContainer px-4 py-2 bg-black mb-2"> photos </div>
+<div class="textContainer px-4 py-2 bg-black mb-2 transition-all duration-150"> photos </div>
 
 <div class="w-11/12 mx-auto mt-1 grid grid-cols-3 gap-4">
     {#each batches as batch, i}
-        <a href="{base}/{batch.replace(/\s/g, '')}" class="group w-full transition-all duration-150 ease-in-out">
-            <div class="justify-self-center m-auto">
+        <a href="{base}/{batch.replace(/\s/g, '')}" class="group w-full transition-all duration-150 ease-in-out" onclick={() => {return userState.pickedDate=batch}}>
+            <div class="justify-self-center m-auto mb-2">
                 <div class="justify-self-center w-10/12 h-48"> 
-                    <h2 class="justify-self-start py-1 px-4  group-hover:bg-black group-hover:text-white"> {batch} </h2>
-                    <img class="w-full h-full object-cover group-hover:border-2 group-hover:border-black group-hover:border-solid duration-150 ease-in-out " src={previewImgPaths[i]} alt="little preview thing" />  
+                    <h2 class="{isSelected(batch) ? 'active' : ''} justify-self-start py-1 px-4  group-hover:bg-black group-hover:text-white"> {batch} </h2>
+                    <div class="w-full h-full border-black overflow-clip group-hover:overflow-y-hidden group-hover:border-2 group-hover:border-solid ">
+                        <img class="w-full h-full object-cover group-hover:scale-110 duration-150 ease-in-out" src={previewImgPaths[i]} alt="little preview thing" />  
+                    </div>
                 </div>
             </div>
         </a>
     {/each}
 </div>
+
+<style>
+    .active {
+        background-color: black;
+        color: white;
+    }
+
+    .active:hover {
+        background-color: black;
+    }
+
+</style>
 

@@ -17,6 +17,7 @@
 
     /** @type {string} */
     let activePhotoPath = $derived(chosenBatch[i].path.replace('../static', ''));
+    // let activePhotoPath = $derived(chosenBatch[i].path);
     let activePhotoText = $derived(chosenBatch[i].ordinalNum)
     let activePhotoLocation = $derived(chosenBatch[i].imgLocation)
 

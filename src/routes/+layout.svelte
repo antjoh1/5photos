@@ -29,16 +29,8 @@
 <div class='wholePageContainer'>
 	<header> 
 		<div class='titleLogo px-4 py-2 bg-black'> <a href={base+'/'}>5cenes </a></div>
-		<!-- <div class='textContainer interactive'>
-			<div>
-				<input type='checkbox' name='archive' id='archive' bind:checked={userState.archiveToggle}/>  
-				<label for='archive'> photos </label>
-			</div> 
-			<div class="circle"></div> 
-		</div> -->
 		<div class='textContainer interactive px-4 py-2 bg-black'>
 			<a href={reachMeLink}> about </a>
-			<!-- <div class="circle"></div> -->
 		</div>
 	</header>
 
@@ -51,7 +43,7 @@
 		</div>
 	{/key}
 
-	<div class="py-5">
+	<div class="py-5 mb-10">
 		<ArchiveList></ArchiveList>
 	</div>
 
@@ -123,10 +115,6 @@
 		font-size: 1em;
 	}
 
-	/* .bottom { 
-		color: black;
-	} */
-
 	/* Hover effect */ 
     .textContainer.interactive:hover {
 		color: black; /* Text changes to black */
@@ -144,11 +132,6 @@
         z-index: 2;
         padding: 2rem;
     }
-/* 
-    .disclaimerText { 
-        font-size: 10px;
-        font-style: italic;
-    } */
 
     .disclaimerMsg {
         display: flex;
@@ -168,21 +151,15 @@
         transition: color 500ms ease-in-out;
     }
 
-	.archive { 
-		justify-content: center;
-		width: 20vw;
-		height: 300px;
-	}
-
-	input { 
+	/* input { 
 		display: none;
-	}
+	} */
 
 	@media (max-width: 800px) {
 		header {padding: 20px 20px 20px 20px}
 		footer {padding: 20px 20px 20px 12px}
 		.titleLogo {font-size: 15px; font-weight: 200;}
-		.archive {width: 50vw;}
+		/* .archive {width: 50vw;} */
 		.firstLoadButton {margin-top: 15px;}
 	}
 

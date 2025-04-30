@@ -1,0 +1,27 @@
+node_modules
+
+# Output
+.output
+.vercel
+.netlify
+.wrangler
+/build
+# .src
+# .static
+/.svelte-kit
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.venv
+.env
+.env.*
+!.env.example
+!.env.test
+.venv
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*

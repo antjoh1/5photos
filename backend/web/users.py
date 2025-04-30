@@ -11,7 +11,7 @@ import os
 from dotenv import load_dotenv
 from datetime import datetime, timedelta, timezone
 
-load_dotenv(dotenv_path="../../.env")
+load_dotenv(dotenv_path=".env")
 EXPIRATION_TIME_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES"))
 
 router = APIRouter(prefix = "/users")

@@ -58,9 +58,9 @@ async def upload_file(files: list[UploadFile], token: Annotated[str, Form()], se
     token_dict = eval(token)
     print(token_dict)
 
-    target_directory = os.path.join("../static", token_dict["batchName"])
+    target_directory = os.path.join("../frontend/static", token_dict["batchName"])
     
-    if token_dict["batchName"] not in os.listdir("../static"):
+    if token_dict["batchName"] not in os.listdir("../frontend/static"):
         os.mkdir(target_directory)
 
     for i, file  in enumerate(files): 

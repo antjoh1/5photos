@@ -7,9 +7,15 @@
     import { quartIn, quartOut } from "svelte/easing";  
 	import { userState } from './state.svelte';
 	import ArchiveList from '$lib/archiveList.svelte';
+	import UserIcon from '$lib/assets/userIcon.svelte'
+	import InstagramLogo from '$lib/assets/instagramLogo.svelte'
+
 
 	let { data, children } = $props(); 
 	const reachMeLink = base+'/reachMe'
+
+	let userIconStatus = $state(false)
+	let instagramIconStatus = $state(false)
 
     let blurBg = $state(false); 
     let introMsgFlag = $state(false);
@@ -21,15 +27,25 @@
         }
     })
 
-	$inspect(userState)
+	$inspect(userState, userIconStatus)
 
 </script>
 
 <div class='wholePageContainer'>
 	<header> 
-		<div class='titleLogo px-4 py-2 bg-black'> <a href={base+'/'}>5cenes </a></div>
-		<div class='textContainer interactive px-4 py-2 bg-black'>
-			<a href={reachMeLink}> about </a>
+		<div class='flex flex-row gap-2 overflow-visible'>
+			<div class=' textContainer interactive px-4 py-2 bg-black'> <a href={base+'/'}>5cenes </a></div>
+			<div class=' textContainer interactive px-4 py-2 bg-black'>
+				<a href={reachMeLink}> about </a>
+			</div>
+		</div>
+		<div class='flex flex-row gap-2'>
+			<a class='instaLink w-12 h-12 border border-black bg-black hover:bg-white transition-all duration-250 ease-in-out' href='https://www.instagram.com/bleonassss/' onmouseenter={()=>instagramIconStatus=true} onmouseleave={()=>instagramIconStatus=false}>
+				 <InstagramLogo active={instagramIconStatus}></InstagramLogo>
+			</a>
+			<a class='instaLink w-12 h-12 border border-black bg-black hover:bg-white transition-all duration-250 ease-in-out' href='{base}/login' onmouseenter={()=>userIconStatus=true} onmouseleave={()=>userIconStatus=false}>
+					<UserIcon active={userIconStatus}></UserIcon>
+			</a>
 		</div>
 	</header>
 
@@ -42,7 +58,7 @@
 		</div>
 	{/key}
 
-	<div class="py-5 mb-10">
+	<div class="py-5 my-10">
 		<ArchiveList></ArchiveList>
 	</div>
 
@@ -80,14 +96,6 @@
 {/if} 
 
 <style>
-
-	.titleLogo {
-		color: white;
-		font-weight: 100;
-		transition:  250ms;
-		font-size: 24px;
-		border: solide 1px black;
-	}
 
 	.wholePageContainer { 
 		display: flex;
@@ -157,7 +165,6 @@
 	@media (max-width: 800px) {
 		header {padding: 20px 20px 20px 20px}
 		footer {padding: 20px 20px 20px 12px}
-		.titleLogo {font-size: 15px; font-weight: 200;}
 		/* .archive {width: 50vw;} */
 		.firstLoadButton {margin-top: 15px;}
 	}

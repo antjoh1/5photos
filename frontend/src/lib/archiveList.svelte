@@ -56,7 +56,7 @@
 
 </script>
 
-<div class="textContainer px-4 py-2 bg-black mb-2 transition-all duration-150"> photos </div>
+<div class=" border-b border-black px-4 py-2 mb-8 text-2xl font-extralight"> photos </div>
 
 <div class="w-11/12 mx-auto mt-1 grid grid-cols-3 gap-4">
     {#each batches as batch, i}
@@ -65,7 +65,7 @@
                 <div class="justify-self-center w-10/12 h-48"> 
                     <h2 class="{isSelected(batch) ? 'active' : ''} justify-self-start py-1 px-4  group-hover:bg-black group-hover:text-white"> {batch} </h2>
                     <div class="w-full h-full border-black overflow-clip group-hover:overflow-y-hidden group-hover:border-2 group-hover:border-solid ">
-                        <img class="w-full h-full object-cover group-hover:scale-110 duration-150 ease-in-out" src={previewImgPaths[i]} alt="little preview thing" />  
+                        <img class="{isSelected(batch) ? 'active' : ''} w-full h-full object-cover group-hover:scale-110 duration-150 ease-in-out" src={previewImgPaths[i]} alt="little preview thing" />  
                     </div>
                 </div>
             </div>
@@ -77,6 +77,7 @@
     .active {
         background-color: black;
         color: white;
+        border: solid 2px black;
     }
 
     .active:hover {

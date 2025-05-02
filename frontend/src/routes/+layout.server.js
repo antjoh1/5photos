@@ -5,7 +5,7 @@ import photoBatches from "$lib/assets/photoData.json";
 import { userState } from "./state.svelte.js";
 
 
-console.log("this is layout server page")
+// console.log("this is layout server page")
 
 export async function load ({ url }) {
     let entries = []
@@ -21,7 +21,7 @@ export async function load ({ url }) {
         entriesList.push(entry)
     }
 
-    console.log(entriesList, entries)
+    // console.log(entriesList, entries)
 
     return { 
         url: url.pathname,

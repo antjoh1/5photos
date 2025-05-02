@@ -44,3 +44,32 @@ export const actions = {
     }
 }
 
+export async function load ( { cookies } ){
+
+    const jwt = cookies.get('jwt')
+
+    console.log("The load function in login started", jwt)
+
+    const res = await fetch('http://127.0.0.1:8000/users/me', {
+        method: "GET",
+        headers: {
+            'Authorization': `Bearer ${jwt}`
+        },
+    })
+
+    let userAuthTest = await res.json() 
+
+    if (!res.ok) {
+        // const errorText = await res.text();
+        // console.error("Error response:", errorText);
+        console.log(res.headers, 'need to login still')
+
+        return {loggedIn: false}
+
+    } else {
+        console.log('user is logged in apparently', res,  userAuthTest)
+
+        return {loggedIn: true}
+    }
+}
+

@@ -2,6 +2,7 @@
 	import { base } from '$app/paths';
 	import { page } from "$app/state";
 
+    let { data } = $props() 
     let pageData = $state(page.form)
     let loginStatus = $state(false)
 
@@ -9,8 +10,8 @@
     // if server response is ok, then store token in localstorage
     $effect(( ) => {
         if (pageData.loginSuccess) {
-            localStorage.setItem("jwt", pageData.token.access_token)
-            localStorage.setItem("token_type", pageData.token.token_type) 
+            // localStorage.setItem("jwt", pageData.token.access_token)
+            // localStorage.setItem("token_type", pageData.token.token_type) 
             document.cookie = `jwt=${pageData.token.access_token}`
 
             // alert("Successful Login")
@@ -18,10 +19,9 @@
         }
     })
 
-
 </script>
 
-{#if !loginStatus}
+{#if !data.loggedIn && !loginStatus}
     <form class="form-entry" method="POST">
         <div>
             <label for="username"> Username: </label>
@@ -36,13 +36,16 @@
             <input type='submit' class='flex bg-black hover:bg-[var(--pink-accent)] border border-solid hover:border-black text-white hover:text-black p-3 justify-self-end transition duration-250 ease-in' value="Login">
         </div>
     </form>  
+
 {:else}
+
     <div class='flex flex-col gap-5 w-1/4 m-auto'>
         <h1 class="text-center font-extralight text-2xl"> Welcome! </h1>
-        <a class="bg-black text-white text-center font-extralight p-4 border border-black hover:bg-white hover:text-black transition-all duration-250 ease-in-out" href="{base}/uploadPost" > Upload new photos  </a>
+        <a class="bg-black text-white text-center font-extralight p-4 border border-black hover:bg-white hover:text-black transition-all duration-250 ease-in-out" href="{base}/uploadPost" > Upload new post  </a>
+        <a class="bg-gray-300 text-black text-center font-extralight p-4 border border-black hover:bg-white hover:text-black transition-all duration-250 ease-in-out" href="{base}/deletePost" > Delete old post  </a>
     </div>
-{/if}
 
+{/if}
 
 
 <style>

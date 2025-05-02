@@ -6,7 +6,7 @@ from fastapi.security import OAuth2PasswordBearer
 from fastapi import HTTPException, status, Depends
 
 import jwt
-from jwt.exceptions import InvalidTokenError
+from jwt.exceptions import InvalidTokenError, ExpiredSignatureError
 from passlib.context import CryptContext
 from typing import Annotated
 from datetime import datetime, timedelta, timezone
@@ -39,7 +39,7 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
     if expires_delta:
         expire = datetime.now() + expires_delta
     else: 
-        expire = datetime.now() + timedelta(minutes=15)
+        expire = datetime.now(timezone.utc) + timedelta(seconds=5)
 
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
@@ -70,12 +70,15 @@ async def get_current_user(token: Annotated[str, Depends(oAuth2_scheme)], sessio
     
     try:
         print(f"started get_current_user,{ALGORITHM}, {SECRET_KEY},")
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM], options={"verify_exp": True})
         username = payload.get("sub")
         if username is None: 
             raise credentialsException
         token_data = TokenData(username=username)
 
+    except ExpiredSignatureError:
+        raise HTTPException(status_code=401, detail="Token has expired")
+    
     except InvalidTokenError: 
         raise credentialsException
     

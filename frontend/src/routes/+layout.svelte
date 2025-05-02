@@ -34,7 +34,7 @@
 <div class='wholePageContainer'>
 	<header> 
 		<div class='flex flex-row gap-2 overflow-visible'>
-			<div class=' textContainer interactive px-4 py-2 bg-black'> <a href={base+'/'}>5cenes </a></div>
+			<div class=' textContainer interactive px-4 py-2 bg-black'> <a href={base+'/'}> 5cenes </a></div>
 			<div class=' textContainer interactive px-4 py-2 bg-black'>
 				<a href={reachMeLink}> about </a>
 			</div>

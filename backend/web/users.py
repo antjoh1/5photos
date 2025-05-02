@@ -41,7 +41,8 @@ async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()], sess
     print("Success authentication for user: ", user)
 
     access_token_expires = timedelta(minutes=EXPIRATION_TIME_MINUTES)
-    access_token = userAuth.create_access_token(data = {"sub":user.name}, expires_delta=access_token_expires)
+    # access_token = userAuth.create_access_token(data = {"sub":user.name}, expires_delta=access_token_expires)
+    access_token = userAuth.create_access_token(data = {"sub":user.name})
 
     return userAuth.Token(access_token=access_token, token_type="bearer")
 

@@ -56,7 +56,11 @@
 
 </script>
 
-<div class=" border-b border-black px-4 py-2 mb-8 text-2xl font-extralight"> photos </div>
+<div class=" border-b border-black  pt-2 mb-8 text-2xl font-extralight">
+    <p class=" border w-min border-black py-2 px-4 bg-white">
+        photos
+    </p>
+</div>
 
 <div class="w-11/12 mx-auto mt-1 grid grid-cols-3 gap-4">
     {#each batches as batch, i}

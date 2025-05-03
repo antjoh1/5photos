@@ -57,7 +57,7 @@
 </script>
 
 <div class=" border-b border-black  pt-2 mb-8 text-2xl font-extralight">
-    <p class=" border w-min border-black py-2 px-4 bg-white">
+    <p class=" border-b-2 w-min border-black py-2 px-4">
         photos
     </p>
 </div>

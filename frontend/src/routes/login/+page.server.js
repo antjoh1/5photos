@@ -1,3 +1,5 @@
+import { redirect } from '@sveltejs/kit'
+
 /** @satisfies { import('./$types').Actions } */
 export const actions = {
     default: async({ request }) => {
@@ -69,7 +71,9 @@ export async function load ( { cookies } ){
     } else {
         console.log('user is logged in apparently', res,  userAuthTest)
 
-        return {loggedIn: true}
+        redirect( 307, '/userActions')
+
+        // return {loggedIn: true}
     }
 }
 

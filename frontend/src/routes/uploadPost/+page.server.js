@@ -1,3 +1,6 @@
+import { redirect } from '@sveltejs/kit';
+import { base } from '$app/paths';
+
 /** @satisfies { import('./$types').Actions } */
 export const actions = { 
     default: async ({ cookies, request }) => {
@@ -50,3 +53,31 @@ export const actions = {
         };
     }
 }
+
+
+export async function load ( { cookies } ){
+
+    const jwt = cookies.get('jwt')
+
+    console.log("The load function in login started")
+
+    const res = await fetch('http://127.0.0.1:8000/users/me', {
+        method: "GET",
+        headers: {
+            'Authorization': `Bearer ${jwt}`
+        },
+    })
+
+    let userAuthTest = await res.json() 
+
+    if (!res.ok) {
+        console.log(res.headers, 'need to login still')
+        throw redirect(307, '/login')
+
+
+    } else {
+        console.log('user is logged in', res,  userAuthTest)
+        return { loggedIn: true }
+    }
+}
+

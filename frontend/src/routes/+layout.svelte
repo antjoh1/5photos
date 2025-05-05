@@ -6,7 +6,6 @@
 	import { slide, fade, fly} from 'svelte/transition';
     import { quartIn, quartOut } from "svelte/easing";  
 	import { userState } from './state.svelte';
-	import ArchiveList from '$lib/archiveList.svelte';
 	import UserIcon from '$lib/assets/userIcon.svelte'
 	import InstagramLogo from '$lib/assets/instagramLogo.svelte'
 
@@ -33,34 +32,29 @@
 
 <div class='wholePageContainer'>
 	<header> 
-		<div class='flex flex-row gap-2 overflow-visible'>
-			<div class=' textContainer interactive px-4 py-2 bg-black'> <a href={base+'/'}> 5cenes </a></div>
-			<div class=' textContainer interactive px-4 py-2 bg-black'>
-				<a href={reachMeLink}> about </a>
-			</div>
+		<div class='flex flex-row gap-2'>
+			<div class=' textContainer interactive px-4 py-2 bg-black'> <a href={base+'/'}> 5cenes </a> </div>
+			<div class=' textContainer interactive px-4 py-2 bg-black'> <a href={reachMeLink}> about </a> </div>
 		</div>
 		<div class='flex flex-row gap-2'>
 			<a class='instaLink w-12 h-12 border border-black bg-black hover:bg-white transition-all duration-250 ease-in-out' href='https://www.instagram.com/bleonassss/' onmouseenter={()=>instagramIconStatus=true} onmouseleave={()=>instagramIconStatus=false}>
-				 <InstagramLogo active={instagramIconStatus}></InstagramLogo>
+				<InstagramLogo active={instagramIconStatus}></InstagramLogo>
 			</a>
 			<a class='instaLink w-12 h-12 border border-black bg-black hover:bg-white transition-all duration-250 ease-in-out' href='{base}/login' onmouseenter={()=>userIconStatus=true} onmouseleave={()=>userIconStatus=false}>
-					<UserIcon active={userIconStatus}></UserIcon>
+				<UserIcon active={userIconStatus}></UserIcon>
 			</a>
 		</div>
 	</header>
 
 	{#key page.data}
 		<div class='pageContentAnimated' 
-				in:slide={{axis: 'y', duration: userState.animationBaseLength, delay: userState.animationBaseLength*1.1}} 
-				out:slide={{axis: 'y', duration: userState.animationBaseLength}}
+				in:slide={{ axis: 'y', duration: userState.animationBaseLength }} 
+				out:slide={{ axis: 'y', duration: userState.animationBaseLength }}
 		>
 			{@render children()}
 		</div>
 	{/key}
 
-	<div class="py-5 my-10">
-		<ArchiveList></ArchiveList>
-	</div>
 
 	<footer>
 		<!-- <div class='textContainer bottom'> <a href="/uploadPost">Bleona S.</a> </div>
@@ -157,10 +151,6 @@
         border-radius: 5%;
         transition: color 500ms ease-in-out;
     }
-
-	/* input { 
-		display: none;
-	} */
 
 	@media (max-width: 800px) {
 		header {padding: 20px 20px 20px 20px}

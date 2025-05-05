@@ -10,11 +10,11 @@
 >
   <rect x="2" y="2" width="20" height="20" rx="5" ry="5" 
   stroke={active ? "#000" : "#fff"}
-  stroke-width={active ? "2" : "1"}
+  stroke-width={active ? "1" : "1"}
   />
   <path d="M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8z" 
   stroke={active ? "#000" : "#fff"}
-  stroke-width={active ? "2" : "1"}
+  stroke-width={active ? "1" : "1"}
   />
 
   <circle cx="18" cy="6" r="1" 

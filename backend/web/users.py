@@ -37,17 +37,18 @@ async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()], sess
 
     if not user: 
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="incorrect username/password")
-    
-    print("Success authentication for user: ", user)
 
     access_token_expires = timedelta(minutes=EXPIRATION_TIME_MINUTES)
-    # access_token = userAuth.create_access_token(data = {"sub":user.name}, expires_delta=access_token_expires)
-    access_token = userAuth.create_access_token(data = {"sub":user.name})
+
+    access_token = userAuth.create_access_token(data = {"sub":user.name}, expires_delta=access_token_expires)
+
+    print("Success authentication for user: ", user, "Expires in: ", access_token_expires)
+    # access_token = userAuth.create_access_token(data = {"sub":user.name})
 
     return userAuth.Token(access_token=access_token, token_type="bearer")
 
 @router.get("/me")
-async def read_users_me(current_user: Annotated[User, Depends(userAuth.get_current_active_user)]):
+async def read_users_me(current_user: Annotated[User, Depends(userAuth.get_current_active_user)]) -> UserPublic:
     return current_user
 
 @router.get("/getUser/{username}")

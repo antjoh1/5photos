@@ -58,8 +58,7 @@ h4 {
 }
 
 .textContainer { 
-    position: relative;
-    display: inline-block;
+    display: block;
     color: white;
     font-weight: 100;
     transition:  250ms;
@@ -68,13 +67,12 @@ h4 {
 }
 
 .textContainer:hover {
-    /* border-radius: 5px; */
     top: 0;
     right: 0;
     color: black;
     background-color: var(--background-color-1);
     z-index: -1; 
-    font-weight: 300;
+    font-weight: 100;
 }
 
 .blurBgDiv { 

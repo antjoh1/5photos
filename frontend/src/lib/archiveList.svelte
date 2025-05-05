@@ -51,25 +51,23 @@
         previewImgPaths = paths
     })
 
-    $inspect(batches, previewImgPaths)
-
 
 </script>
 
-<div class=" border-b border-black  pt-2 mb-8 text-2xl font-extralight">
+<div class=" border-b border-black  pt-2 mb-6 text-2xl font-extralight">
     <p class=" border-b-2 w-min border-black py-2 px-4">
         photos
     </p>
 </div>
 
-<div class="w-11/12 mx-auto mt-1 grid grid-cols-3 gap-4">
+<div class="w-11/12 mx-auto mt-1 grid grid-cols-3 gap-6 ">
     {#each batches as batch, i}
-        <a href="{base}/{batch.replace(/\s/g, '')}" class="group w-full transition-all duration-150 ease-in-out" onclick={() => {return userState.pickedDate=batch}}>
-            <div class="justify-self-center m-auto mb-2">
-                <div class="justify-self-center w-10/12 h-48"> 
-                    <h2 class="{isSelected(batch) ? 'active' : ''} justify-self-start py-1 px-4  group-hover:bg-black group-hover:text-white"> {batch} </h2>
-                    <div class="w-full h-full border-black overflow-clip group-hover:overflow-y-hidden group-hover:border-2 group-hover:border-solid ">
-                        <img class="{isSelected(batch) ? 'active' : ''} w-full h-full object-cover group-hover:scale-110 duration-150 ease-in-out" src={previewImgPaths[i]} alt="little preview thing" />  
+        <a href="{base}/{batch.replace(/\s/g, '')}" class="group w-full mb-1 p-1 overflow-clip transition-all duration-150 ease-in-out" onclick={() => {return userState.pickedDate=batch}}>
+            <div class="justify-self-center m-auto mb-2" >
+                <div class="justify-self-center"> 
+                    <h2 class="{isSelected(batch) ? 'active' : ''} inline-block  justify-self-start py-1 px-4  group-hover:bg-black group-hover:text-white"> {batch} </h2>
+                    <div class=" border-black  group-hover:overflow-y-clip group-hover:border-2 group-hover:border-solid ">
+                        <img class="{isSelected(batch) ? 'active' : ''} object-contain group-hover:scale-110 duration-150 ease-in-out" src={previewImgPaths[i]} alt="little preview thing" />  
                     </div>
                 </div>
             </div>

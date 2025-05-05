@@ -6,7 +6,7 @@
 	import { onMount } from "svelte";
 
     // Input variables defined during instantiating component in +page.svelte
-    let { chosenBatch } = $props();
+    let { chosenBatch } = $props()
 
     let i = $state(0);
     let animate = $state(false);
@@ -14,6 +14,7 @@
     console.log("This is in photoPreview", chosenBatch)
 
     let photoOrder = ['photo1', 'photo2', 'photo3', 'photo4', 'photo5']
+    let screenWidth = $state(0);
 
     /** @type {string} */
     let activePhotoPath = $derived(chosenBatch[i].path.replace('../static', ''));
@@ -133,91 +134,68 @@
     onMount(() => {
             getPic(chosenBatch[0].imgLocation, chosenBatch[0].ordinalNum)
             likedPhotoCheck()
+            screenWidth = window.screen.width
         }
     )
 
 </script>
 
 <div class='mainContentBox'  >
-    <div class='picExtra'>
-        <button class='nextPhotoButton' onclick={()=>{switchPhoto('prev'); getPic(activePhotoLocation, activePhotoText);}}> Prev </button>
-    </div>
 
-    <div class='pictureWrap'>
-        {#if !animate}
-        <div class="block" out:fly={{y: 200, duration: userState.animationBaseLength*0.8, easing:quartOut}} in:fly={{y:200, duration:userState.animationBaseLength*0.8, easing:quartIn}}>
-            <img src={activePhotoPath} alt='mainPhoto'/>
+    {#if !animate}
+    <div class="block" out:fly={{y: 200, duration: userState.animationBaseLength*0.8, easing:quartOut}} in:fly={{y:200, duration:userState.animationBaseLength*0.8, easing:quartIn}}>
+        <img src={activePhotoPath} alt='mainPhoto'/>
+        
+        <div class="picFooter"> 
+            <div class="likeBox {counterVisible ? "countVisible" : ""} ">
+                <button class='likeButton' onclick={() =>  {if (!likeColor) {likePic(activePhotoLocation, activePhotoText, "up") } else {likePic(activePhotoLocation, activePhotoText, "down") };}}>
+                    <HeartIcon filled={likeColor} ></HeartIcon>
+                </button>
+                
+                <h3>
+                    {#if counterVisible }
+                    {likeCounter}
+                    {/if}
+                </h3> 
+            </div>
             
-            <div class="picFooter">
-                
-                <div class="likeBox {counterVisible ? "countVisible" : ""} ">
-
-                    <button class='likeButton' onclick={() =>  {if (!likeColor) {likePic(activePhotoLocation, activePhotoText, "up") } else {likePic(activePhotoLocation, activePhotoText, "down") };}}>
-                        <HeartIcon filled={likeColor} ></HeartIcon>
-                    </button>
-                    
-                    <h3>
-                        {#if counterVisible }
-                        {likeCounter}
-                        {/if}
-                    </h3>
-                    
-                </div>
-                
-                <div class='photoDesc'>
-                    <div > 
-                        <h3> {activePhotoText} </h3>
-                        <h4> {activePhotoLocation} </h4>
-                    </div>
+            <div class='photoDesc'>
+                <div > 
+                    <h3> {activePhotoText} </h3>
+                    <h4> {activePhotoLocation} </h4>
                 </div>
             </div>
         </div>
-        {/if}
+    </div>
+    {/if}
+    
+    <div class='px-4 m-auto flex flex-row  w-8/12 justify-around'>
+        <button class='w-[40px] h-[40px] py-2 px-2  text-gray-500 text-xs border border-black rounded-full font-light hover:scale-110 transition-all duration-150' onclick={()=>{switchPhoto('prev'); getPic(activePhotoLocation, activePhotoText);}}> &larr; </button>
+        <button class='w-[40px] h-[40px] py-2 px-2 text-gray-500 text-xs border border-black rounded-full font-light hover:scale-110 transition-all duration-150' onclick={()=>{switchPhoto('next'); getPic(activePhotoLocation, activePhotoText); }}> &rarr; </button>
     </div>
     
-    <div class='picExtra'>
-        <button class='nextPhotoButton' onclick={()=>{switchPhoto('next'); getPic(activePhotoLocation, activePhotoText); }}> Next </button>
-    </div>
 
 </div>
 
 
 <style> 
     .block {
-        /* width: 60vw; */
         display: flex;
         flex-direction: column;
-        row-gap: 15px;
+        align-self: center;
+        row-gap: 2rem;
         background-color: white;
-        padding: 15px 15px 90px 15px;
-        border-radius: 2px;
+        padding: 15px 15px 15px 15px;
+        height: auto;
+        /* height: 80vh; */
+        /* width: 80vw; */
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.521);
-    }
-
-    .pictureWrap {
-        display: flex;
-        justify-content: center;
-        width: 70vw;
-        height: 100%;
     }
 
     .mainContentBox {
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
+        flex-direction: column;
         row-gap: 15px;
-        column-gap: 20px;
-        height: 70vh;
-        /* height: 30vh; */
-    }
-
-    .picExtra { 
-        padding-right: 20px;
-        padding-left: 20px;
-        display: flex;
-        justify-content: flex-start;
-        align-self: inherit;
     }
 
     .photoDesc{ 
@@ -228,7 +206,8 @@
     .picFooter {
         display: flex; 
         justify-content: space-between;
-        align-items: center;
+        /* align-self: center; */
+        /* width: 50%; */
     }
 
     .likeBox { 
@@ -258,28 +237,23 @@
 
     
     img {
-        height: 100%;
-        width: 100%;
-        /* max-width: 80vw; 
-        max-height: 60vh;  */
-        object-fit: contain;
+        max-height: 70vh;
+        max-width: 100%;
+        /* object-fit: fill; */
+        align-self: center;
     }
 
 
-    @media (max-width: 800px){
+    /* @media (max-width: 800px){
         .mainContentBox { 
-            justify-content: flex-start; 
             max-width: 90vw; 
             padding: 0px; 
             height: 40vw; 
-            flex-direction: column; 
-            flex-wrap:nowrap; 
+            flex-direction: row; 
             padding-left: 10px; 
             padding-right: 10px;
         }
-        .photoDesc { align-self: start;  }
-        img {max-width: 95vw;}
-    }
+    } */
 
 
 </style>

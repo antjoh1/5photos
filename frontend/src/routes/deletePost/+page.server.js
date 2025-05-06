@@ -1,3 +1,4 @@
+import { PUBLIC_BACKEND_URL } from '$env/static/public'
 import { redirect } from '@sveltejs/kit'
 
 export async function load ( { cookies } ){
@@ -6,7 +7,7 @@ export async function load ( { cookies } ){
 
     console.log("The load function in login started", jwt)
 
-    const res = await fetch('http://127.0.0.1:8000/users/me', {
+    const res = await fetch(`${PUBLIC_BACKEND_URL}/users/me`, {
         method: "GET",
         headers: {
             'Authorization': `Bearer ${jwt}`

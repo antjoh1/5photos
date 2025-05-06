@@ -1,4 +1,5 @@
 import { redirect } from '@sveltejs/kit'
+import { PUBLIC_BACKEND_URL } from '$env/static/public'
 
 /** @satisfies { import('./$types').Actions } */
 export const actions = {
@@ -22,7 +23,8 @@ export const actions = {
 
         console.log("this is happening in login", user, pass)
 
-        const response = await fetch(`http://127.0.0.1:8000/users/token`, {
+        // const response = await fetch(`http://backend:8000/users/token`, {
+        const response = await fetch(`${PUBLIC_BACKEND_URL}/users/token`, {
             method: 'POST',
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: params.toString()
@@ -52,7 +54,7 @@ export async function load ( { cookies } ){
 
     console.log("The load function in login started", jwt)
 
-    const res = await fetch('http://127.0.0.1:8000/users/me', {
+    const res = await fetch(`${PUBLIC_BACKEND_URL}/users/me`, {
         method: "GET",
         headers: {
             'Authorization': `Bearer ${jwt}`

@@ -5,6 +5,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from web import users, images
 from data import makeDB
 
+import sys
+
 tags_metadata = [
     {
         "name": "images",
@@ -16,21 +18,24 @@ tags_metadata = [
     }
 ]
 
+print("Python path:", sys.path)
+
 app = FastAPI(openapi_tags = tags_metadata)
-app.include_router(images.router, tags=["images"])
-app.include_router(users.router, tags=["users"])
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173", 
                    "http://localhost:4173",
-                   "http://0.0.0.0:3000",
                    "http://localhost:3000",
-                   "http://127.0.0.1:3000"],  # your SvelteKit dev URL
+                   "http://127.0.0.1:3000"],  # for container use
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+app.include_router(images.router, tags=["images"])
+app.include_router(users.router, tags=["users"])
 
 @app.get("/")
 def hello_world() -> str:

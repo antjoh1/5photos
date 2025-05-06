@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
 	import { base } from "$app/paths";
     import { userState } from "../routes/state.svelte";
+    import { PUBLIC_BACKEND_URL } from "$env/static/public";
 
     /** @type {string[]}*/
     let batches = $state([])
@@ -13,7 +14,8 @@
 
 
     async function getBatches () {
-        let res = await fetch("http://127.0.0.1:8000/images/listBatches", {
+        // let res = await fetch("http://backend:8000/images/listBatches", {
+        let res = await fetch(`${PUBLIC_BACKEND_URL}/images/listBatches`, {
             method: "GET"
         })
 
@@ -29,7 +31,8 @@
      *  @param { string } ordinalNum
     */
     async function getImage (batch, ordinalNum) { 
-        let res = await fetch(`http://127.0.0.1:8000/images/${batch}/${ordinalNum}`, {
+        // let res = await fetch(`http://backend:8000/images/${batch}/${ordinalNum}`, {
+        let res = await fetch(`${PUBLIC_BACKEND_URL}/images/${batch}/${ordinalNum}`, {
             method: "GET"
         })
 

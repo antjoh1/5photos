@@ -4,6 +4,7 @@
     import { userState } from "../routes/state.svelte";
 	import HeartIcon from "./heartIcon.svelte";
 	import { onMount } from "svelte";
+    import { PUBLIC_BACKEND_URL } from "$env/static/public";
 
     // Input variables defined during instantiating component in +page.svelte
     let { chosenBatch } = $props()
@@ -29,7 +30,7 @@
 
 
     function likedPhotoCheck() { 
-        console.log('this is localstroage pull', localStorage.getItem(`${activePhotoLocation}${activePhotoText}`))
+        console.log('this is localstorage pull', localStorage.getItem(`${activePhotoLocation}${activePhotoText}`))
         likeColor = localStorage.getItem(`${activePhotoLocation}${activePhotoText}`) == 'true' ? true : false
     }
 
@@ -75,7 +76,7 @@
      */
     async function likePic(batch, id, routeEnd="up") {
 
-        const res  = await fetch(`http://127.0.0.1:8000/images/${routeEnd}`, {
+        const res  = await fetch(`${PUBLIC_BACKEND_URL}/images/${routeEnd}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -115,8 +116,9 @@
      *  @param {string} ordinalNum
     */
     async function getPic(batch, ordinalNum) {
-        const res = await fetch(`http://127.0.0.1:8000/images/${batch}/${ordinalNum}`,{
-            method: 'GET'
+        const res = await fetch(`${PUBLIC_BACKEND_URL}/images/${batch}/${ordinalNum}`,{
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
         })
 
         if (!res.ok) {

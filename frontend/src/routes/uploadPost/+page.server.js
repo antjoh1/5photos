@@ -1,5 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 import { base } from '$app/paths';
+import { PUBLIC_BACKEND_URL } from '$env/static/public';
 
 /** @satisfies { import('./$types').Actions } */
 export const actions = { 
@@ -29,13 +30,15 @@ export const actions = {
         formData.append('token', tokenData)
         console.log('Sending FormData:', formData)
 
-        const res = await fetch("http://127.0.0.1:8000/images/file", {
+        const res = await fetch(`${PUBLIC_BACKEND_URL}/images/file`, {
+        // const res = await fetch("http://backend:8000/images/file", {
             method: "POST", 
             headers: {
                 "Authorization": `bearer ${cookies.get('jwt')}`
             },
             body: formData
         })
+        
 
         if (!res.ok) {
             const errorText = await res.text();
@@ -61,7 +64,8 @@ export async function load ( { cookies } ){
 
     console.log("The load function in login started")
 
-    const res = await fetch('http://127.0.0.1:8000/users/me', {
+    const res = await fetch(`${PUBLIC_BACKEND_URL}/users/me`, {
+    // const res = await fetch('http://backend:8000/users/me', {
         method: "GET",
         headers: {
             'Authorization': `Bearer ${jwt}`

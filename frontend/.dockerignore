@@ -1,0 +1,9 @@
+build
+node_modules
+.svelte-kit
+.nojekyll
+../.env
+.github
+.gitignore
+*.log
+.env

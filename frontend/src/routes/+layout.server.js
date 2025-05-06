@@ -3,6 +3,7 @@
 
 import photoBatches from "$lib/assets/photoData.json";
 import { userState } from "./state.svelte.js";
+import { PUBLIC_BACKEND_URL } from "$env/static/public";
 
 
 // console.log("this is layout server page")
@@ -11,7 +12,8 @@ export async function load ({ url }) {
     let entries = []
     let entriesList = /** @type {string[]} */ ([])
     // console.log('entries() function ran')
-    const res = await fetch('http://127.0.0.1:8000/images/listBatches', { method: 'GET' })
+    console.log(PUBLIC_BACKEND_URL)
+    const res = await fetch(`${PUBLIC_BACKEND_URL}/images/listBatches`, { method: 'GET' })
     const batches_json = await res.json()
 
     // console.log('this is where layoutserverjs does stuff', batches_json)

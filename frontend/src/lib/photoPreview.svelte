@@ -43,8 +43,6 @@
             } else { i = 0 }
             
             animate = true
-            // console.log(localStorage.getItem(`${chosenBatch[0].imgLocation}/${chosenBatch[0].ordinalNum}`))
-
             setTimeout(() => { 
                 animate = false; // Start fade in
             }, userState.animationBaseLength*0.8); // This should match `out:fade` duration    
@@ -76,8 +74,10 @@
      */
     async function likePic(batch, id, routeEnd="up") {
 
+        console.log(PUBLIC_BACKEND_URL, "this is in upvote")
         const res  = await fetch(`${PUBLIC_BACKEND_URL}/images/${routeEnd}`, {
             method: 'PATCH',
+            mode: 'cors',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 imgLocation: batch,
@@ -107,18 +107,17 @@
         } else {
             throw new Error( " Could not access photo on server ")
         }
-
-        // likedPhotoCheck()
-        
     }
 
     /** @param {string} batch
      *  @param {string} ordinalNum
     */
     async function getPic(batch, ordinalNum) {
+        console.log(PUBLIC_BACKEND_URL, "this is in downvote")
         const res = await fetch(`${PUBLIC_BACKEND_URL}/images/${batch}/${ordinalNum}`,{
             method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
+            mode: 'cors',
+            headers: { 'Content-Type': 'application/json' }
         })
 
         if (!res.ok) {
@@ -208,8 +207,6 @@
     .picFooter {
         display: flex; 
         justify-content: space-between;
-        /* align-self: center; */
-        /* width: 50%; */
     }
 
     .likeBox { 
@@ -241,21 +238,9 @@
     img {
         max-height: 70vh;
         max-width: 100%;
-        /* object-fit: fill; */
         align-self: center;
     }
 
-
-    /* @media (max-width: 800px){
-        .mainContentBox { 
-            max-width: 90vw; 
-            padding: 0px; 
-            height: 40vw; 
-            flex-direction: row; 
-            padding-left: 10px; 
-            padding-right: 10px;
-        }
-    } */
 
 
 </style>

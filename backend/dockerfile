@@ -1,14 +1,32 @@
-FROM python:3.13
-WORKDIR /usr/local/app
+# FROM python:3.13
+# WORKDIR /usr/local/app
 
-COPY requirements.txt ./
+# COPY requirements.txt ./
+# RUN pip install --no-cache-dir -r requirements.txt
+
+# COPY . ./backend
+# EXPOSE 8000
+
+# WORKDIR /usr/local/app/backend
+# RUN useradd app 
+# USER app 
+
+# CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+# Use official Python slim image
+FROM python:3.13-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install dependencies
+COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . ./backend
+# Copy application code
+COPY backend/ .
+
+# Expose port and start Uvicorn
+ENV PYTHONUNBUFFERED=1
 EXPOSE 8000
-
-WORKDIR /usr/local/app/backend
-RUN useradd app 
-USER app 
-
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

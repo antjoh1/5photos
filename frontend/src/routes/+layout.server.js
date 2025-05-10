@@ -11,12 +11,10 @@ import { PUBLIC_BACKEND_URL } from "$env/static/public";
 export async function load ({ url }) {
     let entries = []
     let entriesList = /** @type {string[]} */ ([])
-    // console.log('entries() function ran')
-    console.log(PUBLIC_BACKEND_URL)
-    const res = await fetch(`${PUBLIC_BACKEND_URL}/images/listBatches`, { method: 'GET' })
+    console.log(PUBLIC_BACKEND_URL, 'this is in layour server js')
+    const res = await fetch(`${PUBLIC_BACKEND_URL}/images/listBatches`, { method: 'GET', mode: 'cors' })
     const batches_json = await res.json()
 
-    // console.log('this is where layoutserverjs does stuff', batches_json)
 
     for (let entry of batches_json) { 
         entries.push({ slug: entry.replace(/\s/g, '')})

@@ -14,9 +14,9 @@
 
 
     async function getBatches () {
-        // let res = await fetch("http://backend:8000/images/listBatches", {
         let res = await fetch(`${PUBLIC_BACKEND_URL}/images/listBatches`, {
-            method: "GET"
+            method: "GET",
+            mode: "cors"
         })
 
         if (!res.ok) {
@@ -24,6 +24,7 @@
         }
 
         const json = await res.json()
+        console.log('this is in archiveList listBatches', json)
         batches = json
     }
 
@@ -31,9 +32,9 @@
      *  @param { string } ordinalNum
     */
     async function getImage (batch, ordinalNum) { 
-        // let res = await fetch(`http://backend:8000/images/${batch}/${ordinalNum}`, {
         let res = await fetch(`${PUBLIC_BACKEND_URL}/images/${batch}/${ordinalNum}`, {
-            method: "GET"
+            method: "GET",
+            mode: "cors"
         })
 
         if (!res.ok) { 
@@ -41,7 +42,7 @@
         }
 
         const imageObj = await res.json()
-
+        console.log('this is in archiveList', imageObj)
         return imageObj.path.replace('../static', '')
     }
 

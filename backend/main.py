@@ -22,12 +22,18 @@ print("Python path:", sys.path)
 
 app = FastAPI(openapi_tags = tags_metadata)
 
+@app.get("/")
+def hello_world() -> str:
+    return "Hello World!"
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", 
-                   "http://localhost:4173",
-                   "http://localhost:3000",
-                   "http://127.0.0.1:3000"],  # for container use
+    # allow_origins=["http://localhost:5173", 
+    #                "http://localhost:4173",
+    #                "http://localhost:3000",
+    #                "http://127.0.0.1:3000",
+    #                "http://frontend:3000"],  # for container use
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -36,10 +42,6 @@ app.add_middleware(
 
 app.include_router(images.router, tags=["images"])
 app.include_router(users.router, tags=["users"])
-
-@app.get("/")
-def hello_world() -> str:
-    return "Hello World!"
 
 
 if __name__ == "__main__": 

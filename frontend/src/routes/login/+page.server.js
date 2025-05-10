@@ -23,9 +23,9 @@ export const actions = {
 
         console.log("this is happening in login", user, pass)
 
-        // const response = await fetch(`http://backend:8000/users/token`, {
         const response = await fetch(`${PUBLIC_BACKEND_URL}/users/token`, {
             method: 'POST',
+            mode: 'cors',
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: params.toString()
         });
@@ -53,9 +53,9 @@ export async function load ( { cookies } ){
     const jwt = cookies.get('jwt')
 
     console.log("The load function in login started", jwt)
-
     const res = await fetch(`${PUBLIC_BACKEND_URL}/users/me`, {
         method: "GET",
+        mode: "cors",
         headers: {
             'Authorization': `Bearer ${jwt}`
         },
@@ -74,8 +74,6 @@ export async function load ( { cookies } ){
         console.log('user is logged in apparently', res,  userAuthTest)
 
         redirect( 307, '/userActions')
-
-        // return {loggedIn: true}
     }
 }
 

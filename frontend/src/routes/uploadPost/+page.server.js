@@ -33,6 +33,7 @@ export const actions = {
         const res = await fetch(`${PUBLIC_BACKEND_URL}/images/file`, {
         // const res = await fetch("http://backend:8000/images/file", {
             method: "POST", 
+            mode: "cors",
             headers: {
                 "Authorization": `bearer ${cookies.get('jwt')}`
             },
@@ -67,6 +68,7 @@ export async function load ( { cookies } ){
     const res = await fetch(`${PUBLIC_BACKEND_URL}/users/me`, {
     // const res = await fetch('http://backend:8000/users/me', {
         method: "GET",
+        mode: "cors",
         headers: {
             'Authorization': `Bearer ${jwt}`
         },

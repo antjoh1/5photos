@@ -1,19 +1,60 @@
-services: 
+# services: 
 
+#   backend:
+#     container_name: backend
+#     build: ./backend
+#     env_file:
+#       - ./.env
+#     restart: always
+#     command: uvicorn main:app --host 0.0.0.0 --port 8000
+#     ports:
+#       - "8000:8000"
+   
+#   frontend:
+#     container_name: frontend
+#     build: ./frontend
+#     restart: always
+#     ports: 
+#       - "3000:3000"
+#     depends_on:
+#       - backend
+
+services:
   backend:
-    container_name: backend
-    build: ./backend
+    build:
+      context: .
+      dockerfile: backend/dockerfile
+    volumes:
+      # Mount code for live reload if you want
+      - ./backend:/app
+      # Persist your SQLite database
+      - ./backend/database.db:/app/database.db
     env_file:
       - ./.env
-    restart: always
-    command: uvicorn main:app --host 0.0.0.0 --port 8000
     ports:
       - "8000:8000"
-   
+    networks:
+      - app-net
+
   frontend:
-    container_name: frontend
-    build: ./frontend
-    ports: 
+    build:
+      context: .
+      dockerfile: frontend/dockerfile
+    volumes:
+      - ./frontend:/app
+    env_file:
+      - frontend/.env
+    environment:
+      ORIGIN: "http://frontend:3000"
+      PUBLIC_BACKEND_URL: "http://backend:8000"
+      PORT: "3000"
+    ports:
       - "3000:3000"
     depends_on:
       - backend
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    driver: bridge

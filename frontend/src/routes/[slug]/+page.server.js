@@ -5,9 +5,7 @@ console.log("page.server.js ran")
 /** @type {import('./$types').PageServerLoad} */
 export async function load( { params } ){ 
     console.log(params)
-    // const res = await fetch (`http://backend:8000/images/${params.slug}`)
-    // const res = await fetch (`http://localhost:8000/images/${params.slug}`)
-    const res = await fetch (`${PUBLIC_BACKEND_URL}/images/${params.slug}`)
+    const res = await fetch (`${PUBLIC_BACKEND_URL}/images/${params.slug}`, { mode:'cors' })
     const image_list = await res.json()
 
     if (!res.ok){ 
